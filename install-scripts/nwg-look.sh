@@ -1,6 +1,9 @@
 #!/bin/bash
 
 nwg_look=(
+  go
+  cmake
+  gtk3-devel
 )
 
 ############## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU'RE DOING! ##############

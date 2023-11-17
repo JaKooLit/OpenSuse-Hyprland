@@ -40,8 +40,6 @@ hypr_package=(
   swww
   wget
   wl-clipboard
-  wlogout
-  yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
@@ -49,8 +47,6 @@ hypr_package_2=(
   brightnessctl
   btop
   cava
-  eog
-  gnome-system-monitor
   mousepad
   mpv
   nvtop
@@ -61,6 +57,8 @@ hypr_package_2=(
 # The following will be installed with NO recommends
 package_no_recommends=(
   waybar
+  eog
+  gnome-system-monitor
 )
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
