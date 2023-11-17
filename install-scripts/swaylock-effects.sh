@@ -24,6 +24,11 @@ LOG="install-$(date +'%d-%H%M%S')_swaylock-effects.log"
 
 printf "${NOTE} Installing swaylock-effects\n"
 
+# add repo to get wayland-protocols
+sudo zypper ar -f obs://X11:Wayland X11-Wayland 2>&1 | tee -a "$LOG"
+sudo zypper ref 2>&1 | tee -a "$LOG"
+sudo zypper in wayland-protocols 2>&1 | tee -a "$LOG"
+
 if git clone https://github.com/mortie/swaylock-effects.git; then
   cd swaylock-effects || exit 1
   meson build
