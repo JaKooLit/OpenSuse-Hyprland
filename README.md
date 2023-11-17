@@ -22,5 +22,4 @@ chmod +x install.sh
 
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
-- [ ] Some apps cannot be installed like wlogout
 - [ ] hyprland-nvidia is untested

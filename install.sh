@@ -130,6 +130,7 @@ chmod +x install-scripts/*
 # Install hyprland packages
 execute_script "00-hypr-pkgs.sh"
 execute_script "fonts.sh"
+execute_script "wlogout.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
@@ -169,7 +170,6 @@ fi
 
 if [ "$dots" == "Y" ]; then
     execute_script "dotfiles.sh"
-
 fi
 
 clear
