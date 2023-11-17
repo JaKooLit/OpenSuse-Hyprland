@@ -5,6 +5,7 @@ gcc
 gobject-introspection
 gcc
 gtk3-devel
+meson
 )
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
