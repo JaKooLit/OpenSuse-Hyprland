@@ -23,3 +23,4 @@ chmod +x install.sh
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
 - [ ] hyprland-nvidia is untested
+- [ ] cant install yad so hint button cannot be launched
