@@ -38,7 +38,6 @@ hypr_package=(
   swayidle
   swaylock-effects
   swww
-  waybar
   wget
   wl-clipboard
   wlogout
@@ -115,5 +114,15 @@ for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   fi
 done
 
+
+# installing waybar without recommends (Its installing lots of stuff)
+printf "\n%s - Installing waybar.... \n" "${NOTE}"
+for PKG1 in "waybar" ; do
+  sudo zypper in -y --no-recommends "$PKG1" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    exit 1
+  fi
+done
 
 clear
