@@ -59,9 +59,8 @@ hypr_package_2=(
 )
 
 # The following will be installed with NO recommends
-package_no-recommends=(
+package_no_recommends=(
   waybar
-
 )
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
@@ -141,7 +140,7 @@ done
 # Installation of main components
 printf "\n%s - Installing hyprland packages (no-recommends).... \n" "${NOTE}"
 
-for PKG_N in "${package_no-recommends[@]}"; do
+for PKG_N in "${package_no_recommends[@]}"; do
   install_package_2 "$PKG_N" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
