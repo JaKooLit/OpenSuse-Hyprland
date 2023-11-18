@@ -23,15 +23,14 @@
 
 ## 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
-
-### 🆕  What's new with v2?
-- Rofi, Pywal Colors and Moved to Kitty. (Previous config was foot as tty and wofi as app launcher)
 - Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md) 
 
+### 🆕  Prerequisites
+- This install script is intended for Tumbleweed (Graphical install). I have created this script for Netinstalled Graphical installation. On my test, the "server type" gives lots of errors.
+- This should work on a DE installed OpenSuse Tumbleweed.
 
 ### ✨  Some notes on installation
-- This install script was tested on Minimal OpenSuse using netinstaller
-- This script is meant to install in opensuse tumbleweed
+
 
 ### ⚠️ WARNING! nwg-look takes long time to install. 
 - nwg-look is a utility to costumize your GTK theme. It's a LXAppearance like. Its a good tool though but this package is entirely optional
