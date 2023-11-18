@@ -131,6 +131,7 @@ printf "\n"
 chmod +x install-scripts/*
 
 # Install hyprland packages
+execute_script "00-dependencies.sh"
 execute_script "00-hypr-pkgs.sh"
 execute_script "fonts.sh"
 execute_script "wlogout.sh"

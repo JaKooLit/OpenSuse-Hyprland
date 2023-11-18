@@ -25,19 +25,38 @@ LOG="install-$(date +'%d-%H%M%S')_swaylock-effects.log"
 printf "${NOTE} Installing swaylock-effects\n"
 
 # add repo to get wayland-protocols
-zypper addrepo https://download.opensuse.org/repositories/openSUSE:Factory/standard/openSUSE:Factory.repo 2>&1 | tee -a "$LOG"
+sudo zypper addrepo https://download.opensuse.org/repositories/home:zilti:hyprland/openSUSE_Tumbleweed/home:zilti:hyprland.repo
 sudo zypper ref -y 2>&1 | tee -a "$LOG"
-sudo zypper in wayland-protocols 2>&1 | tee -a "$LOG"
 
-if git clone https://github.com/mortie/swaylock-effects.git; then
-  cd swaylock-effects || exit 1
-  meson build
-  ninja -C build
-  sudo ninja -C build install 2>&1 | tee -a "$LOG"
-  # Return to the previous directory
-  cd - || exit 1
-else
-  echo -e "${ERROR} Download failed for swaylock-effects" 2>&1 | tee -a "$LOG"
-fi
+# Function for installing packages
+install_package() {
+  # Checking if package is already installed
+  if sudo zypper se -i "$1" &>> /dev/null ; then
+    echo -e "${OK} $1 is already installed. Skipping..."
+  else
+    # Package not installed
+    echo -e "${NOTE} Installing $1 ..."
+    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    # Making sure package is installed
+    if sudo zypper se -i "$1" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $1 was installed."
+    else
+      # Something is missing, exiting to review log
+      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      exit 1
+    fi
+  fi
+}
+
+# Swaylock-Effects
+
+for lock in swaylock-effects; do
+  install_package "$lock" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $lock install had failed, please check the install.log"
+    exit 1
+  fi
+done
+
 
 clear
