@@ -26,8 +26,8 @@
 - Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md) 
 
 ### 🆕  Prerequisites
-- This install script is intended for Tumbleweed (Graphical install). I have created this script for Netinstalled Graphical installation. On my test, the "server type" gives lots of errors.
-- This should work on a DE installed OpenSuse Tumbleweed.
+- This install script is intended for Tumbleweed (Generic Desktop). On my test, the "server type" gives lots of errors.
+- In theory, This should work on a any Tumbleweed with DE (Plasma, Gnome, XFCE). Although I am not sure about xfce default login manager if able to detect Hyprland.
 
 ### ✨  Some notes on installation
 
