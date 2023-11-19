@@ -26,7 +26,7 @@ printf "${NOTE} Installing swaylock-effects\n"
 
 # add repo to get wayland-protocols
 sudo zypper addrepo https://download.opensuse.org/repositories/home:zilti:hyprland/openSUSE_Tumbleweed/home:zilti:hyprland.repo
-sudo zypper ref -y 2>&1 | tee -a "$LOG"
+sudo zypper ref 2>&1 | tee -a "$LOG"
 
 # Function for installing packages
 install_package() {
