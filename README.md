@@ -68,8 +68,9 @@ source ~/.zshrc
 
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
-- [ ] hyprland-nvidia is untested
+- [ ] hyprland-nvidia - NOT SUPPORTED
 - [ ] cant install yad so hint button cannot be launched
+- [ ] SDDM is not starting so DO NOT SDDM
 - [ ] Install zsh and oh-my-zsh without necessary steps above
 - [ ] possibly adding gruvbox themes, cursors, icons
 
