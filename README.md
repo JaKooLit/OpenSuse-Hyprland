@@ -30,17 +30,14 @@
 - In theory, This should work on a any Tumbleweed with DE (Plasma, Gnome, XFCE). Although I am not sure about xfce default login manager if able to detect Hyprland.
 
 ### ✨  Some notes on installation
-
-
-### ⚠️ WARNING! nwg-look takes long time to install. 
-- nwg-look is a utility to costumize your GTK theme. It's a LXAppearance like. Its a good tool though but this package is entirely optional
+- Some apps are being installed using OPI. These packages are wlogout, swaylock-effects and nwg-look
 
 ### ✨ Costumize the packages
 - inside the install-scripts folder, you can edit 00-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
 - default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 
-- to follow
+- to follow.. for now not supported
 
 ### ✨ to run
 > clone this repo by using git. Change directory, make executable and run the script

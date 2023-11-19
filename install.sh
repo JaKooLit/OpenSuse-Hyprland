@@ -17,6 +17,10 @@ echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (H
 echo
 echo "$(tput setaf 3)NOTE: You will be required to answer some questions during the installation! $(tput sgr0)"
 echo
+echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
+echo
+echo "$(tput setaf 166)ATTENTION: For now, NO NVIDIA SUPPORT! $(tput sgr0)"
+echo
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
 
@@ -49,7 +53,6 @@ LOG="install-$(date +%d-%H%M%S).log"
 bluetooth=""
 dots=""
 gtk_themes=""
-nvidia=""
 rog=""
 sddm=""
 swaylock=""
@@ -106,8 +109,6 @@ execute_script() {
 
 # Collect user responses to all questions
 printf "\n"
-ask_yes_no "-Do you have nvidia gpu?" nvidia
-printf "\n"
 ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
 printf "\n"
 ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
@@ -134,15 +135,8 @@ chmod +x install-scripts/*
 execute_script "00-dependencies.sh"
 execute_script "00-hypr-pkgs.sh"
 execute_script "fonts.sh"
+execute_script "hyprland.sh"
 execute_script "wlogout.sh"
-
-if [ "$nvidia" == "Y" ]; then
-    execute_script "nvidia.sh"
-fi
-
-if [ "$nvidia" == "N" ]; then
-    execute_script "hyprland.sh"
-fi
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"

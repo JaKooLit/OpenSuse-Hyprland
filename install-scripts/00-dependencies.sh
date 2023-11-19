@@ -9,6 +9,11 @@ dependencies=(
 	devel_basis
 )
 
+# for installing nwg-look, swaylock-effects, wlogout
+opi=(
+  opi
+)
+
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -52,6 +57,25 @@ install_package() {
   fi
 }
 
+# Function for installing packages
+install_package_2() {
+  # Checking if package is already installed
+  if sudo zypper se -i "$1" &>> /dev/null ; then
+    echo -e "${OK} $1 is already installed. Skipping..."
+  else
+    # Package not installed
+    echo -e "${NOTE} Installing $1 ..."
+    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    # Making sure package is installed
+    if sudo zypper se -i "$1" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $1 was installed."
+    else
+      # Something is missing, exiting to review log
+      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      exit 1
+    fi
+  fi
+}
 
 # Installation of main dependencies
 printf "\n%s - Installing main dependencies.... \n" "${NOTE}"
@@ -60,6 +84,14 @@ for PKG1 in "${dependencies[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    exit 1
+  fi
+done
+
+for PKG2 in "${opi[@]}"; do
+  install_package "$PKG2" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG2 install had failed, please check the install.log"
     exit 1
   fi
 done

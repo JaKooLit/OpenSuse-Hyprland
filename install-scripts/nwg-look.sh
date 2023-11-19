@@ -1,11 +1,5 @@
 #!/bin/bash
 
-nwg_look=(
-  go
-  cmake
-  gtk3-devel
-)
-
 ############## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU'RE DOING! ##############
 
 # Determine the directory where the script is located
@@ -26,17 +20,19 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +'%d-%H%M%S')_nwg-look.log"
+LOG="install-$(date +'%d-%H%M%S')_wlogout.log"
+
+printf "${NOTE} Installing nwg-look using opi\n"
 
 # Function for installing packages
-install_package() {
+install_package_opi() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    sudo opi "$1" -n 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -48,19 +44,12 @@ install_package() {
   fi
 }
 
-for package in "${nwg_look[@]}"; do
-  install_package "$package" || exit 1
+# nwg-look using opi
+
+for nwg in nwg-look; do
+  install_package_opi "$nwg" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $nwg install had failed, please check the install.log"
+    exit 1
+  fi
 done
-
-printf "${NOTE} Installing nwg-look\n"
-if git clone https://github.com/nwg-piotr/nwg-look.git; then
-  cd nwg-look || exit 1
-  make build
-  sudo make install
-  cd ..
-else
-  echo -e "${ERROR} Download failed for nwg-look."
-  exit 1
-fi
-
-clear

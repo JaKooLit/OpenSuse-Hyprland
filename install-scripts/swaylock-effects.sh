@@ -22,21 +22,17 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +'%d-%H%M%S')_swaylock-effects.log"
 
-printf "${NOTE} Installing swaylock-effects\n"
-
-# add repo to get wayland-protocols
-sudo zypper addrepo https://download.opensuse.org/repositories/home:zilti:hyprland/openSUSE_Tumbleweed/home:zilti:hyprland.repo
-sudo zypper ref 2>&1 | tee -a "$LOG"
+printf "${NOTE} Installing swaylock-effects using opi\n"
 
 # Function for installing packages
-install_package() {
+install_package_opi() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    sudo opi "$1" -n 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -51,7 +47,7 @@ install_package() {
 # Swaylock-Effects
 
 for lock in swaylock-effects; do
-  install_package "$lock" 2>&1 | tee -a "$LOG"
+  install_package_opi "$lock" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $lock install had failed, please check the install.log"
     exit 1

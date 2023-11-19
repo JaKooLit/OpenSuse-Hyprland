@@ -51,8 +51,7 @@ install_package() {
 }
 
 # Adding hyprland-nvidia repository
-REPO_URL="https://download.opensuse.org/repositories/home:xbb:hyprland/openSUSE_Tumbleweed/"
-sudo zypper addrepo "$REPO_URL" hyprland "$1" 2>&1 | tee -a "$LOG"
+sudo zypper addrepo https://download.opensuse.org/repositories/home:xbb:hyprland/openSUSE_Tumbleweed/home:xbb:hyprland.repo hyprland"$1" 2>&1 | tee -a "$LOG"
 sudo zypper refresh
 
 # Setting priority for the repository
