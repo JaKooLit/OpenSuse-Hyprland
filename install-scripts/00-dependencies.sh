@@ -89,7 +89,7 @@ for PKG1 in "${dependencies[@]}"; do
 done
 
 for PKG2 in "${opi[@]}"; do
-  install_package "$PKG2" 2>&1 | tee -a "$LOG"
+  install_package_2 "$PKG2" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG2 install had failed, please check the install.log"
     exit 1
