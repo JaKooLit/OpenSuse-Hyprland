@@ -121,8 +121,6 @@ ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
 printf "\n"
 ask_yes_no "Install XDG-DESKTOP-PORTAL-HYPRLAND? (for proper Screen Share ie OBS)" xdph
 printf "\n"
-ask_yes_no "-Install swaylock-effects? (recommended - for screen locks)" swaylock
-printf "\n"
 ask_yes_no "-Do you want to install zsh and oh-my-zsh?" zsh
 printf "\n"
 ask_yes_no "-Do you want to copy Hyprland dotfiles?" dots
@@ -137,6 +135,8 @@ execute_script "00-hypr-pkgs.sh"
 execute_script "fonts.sh"
 execute_script "hyprland.sh"
 execute_script "wlogout.sh"
+execute_script "nwg-look.sh"
+execute_script "swaylock-effects.sh"
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
