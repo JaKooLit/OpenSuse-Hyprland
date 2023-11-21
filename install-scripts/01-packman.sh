@@ -27,7 +27,7 @@ LOG="install-$(date +%d-%H%M%S)_packman.log"
 # Installation of main components
 printf "\n%s - adding packman (Globally).... \n" "${NOTE}"
 
-sudo zypper ar -cfp 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/' packman 2>&1 | tee -a "$LOG"
+sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/' packman 2>&1 | tee -a "$LOG"
 
 sudo zypper refresh 2>&1 | tee -a "$LOG"
 
