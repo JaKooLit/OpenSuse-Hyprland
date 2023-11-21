@@ -53,3 +53,5 @@ for logout in wlogout; do
     exit 1
   fi
 done
+
+clear

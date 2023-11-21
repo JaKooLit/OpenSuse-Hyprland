@@ -53,3 +53,5 @@ for nwg in nwg-look; do
     exit 1
   fi
 done
+
+clear

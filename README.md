@@ -19,14 +19,25 @@
 ### ✨ A video walk through my dotfiles[`Link`](https://youtu.be/fO-RBHvVEcc?si=ijqxxnq_DLiyO8xb)
 ### ✨ A video walk through of My Hyprland-Dots v2[`Link`](https://youtu.be/yaVurRoXc-s?si=iDnBC5S3thPBX3ZE)
 
-
-
 ## 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
 - Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md) 
 
+## Installation hangs when automating adding of Packman
+- Need to manually install Packman repo as it does not proceed further if I add in the install script
+-to add
+```bash
+sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/' packman
+sudo zypper refresh
+```
+- accept or not accept the gpg key
+- then switch to Packman repo
+```bash
+sudo zypper dup --from packman --allow-vendor-change
+```
+
 ### 🆕  Prerequisites
-- This install script is intended for Tumbleweed (Generic Desktop). On my test, the "server type" gives lots of errors.
+- This install script is intended for atleast Server type installed.
 - In theory, This should work on a any Tumbleweed with DE (Plasma, Gnome, XFCE). Although I am not sure about xfce default login manager if able to detect Hyprland.
 
 ### ✨  Some notes on installation
@@ -69,23 +80,10 @@ source ~/.zshrc
 - [ ] Make it fully functional (duh 🤣)
 - [ ] hyprland-nvidia - NOT SUPPORTED
 - [ ] cant install yad so hint button cannot be launched
-- [ ] SDDM is not starting so DO NOT SDDM
-- [ ] Install zsh and oh-my-zsh without necessary steps above
-- [ ] possibly adding gruvbox themes, cursors, icons
+- [ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.
 
 ### ❗ some known issues
-- reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
-```  
- while in sddm press ctrl+alt+F2 or F3
-log into your account
-`lspci -nn`, find the id of your nvidia card
-`ls /dev/dri/by-path` find the matching id
-`ls -l /dev/dri/by-path` to check where the symlink points to 
-)
-7. add "env = WLR_DRM_DEVICES,/dev/dri/cardX" to the ENVvariables config (.config/hypr/configs/ENVariables.conf)  ; X being where the symlink of the gpu points to
-```
-- more info from the hyprland wiki [`Hyprland Wiki Link`](https://wiki.hyprland.org/FAQ/#my-external-monitor-is-blank--doesnt-render--receives-no-signal-laptop)
-
+- See FAQ section of Hyprland-Dots [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ)
 
 ### 📒 Final Notes
 - join my discord channel [`Discord`](https://discord.gg/V2SJ92vbEN)
@@ -93,8 +91,6 @@ log into your account
 
 ### 👍👍👍 Thanks and Credits!
 - [`Hyprland`](https://hyprland.org/) Of course to Hyprland and @vaxerski for this awesome Dynamic Tiling Manager.
-- [`HYPRLAND COPR REPO`](https://copr.fedorainfracloud.org/coprs/solopasha/hyprland/) - a shout out to the one who created and maintaining Hyprland COPR Repo 
-- shout out to CooSee from Gentoo forums for the nice rainbow borders
 
 ## 💖 Support
 - a Star on my Github repos would be nice 🌟

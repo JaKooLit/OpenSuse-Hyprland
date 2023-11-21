@@ -84,6 +84,7 @@ done
 
 printf " Activating sddm service........\n"
 sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
+sudo update-alternatives --set default-displaymanager /usr/lib/X11/displaymanagers/sddm 2>&1 | tee -a "$LOG"
 sudo systemctl enable sddm.service 2>&1 | tee -a "$LOG"
 
 # Set up SDDM
