@@ -2,7 +2,6 @@
 
 blue=(
 bluez
-bluez-tools
 blueman
 )
 
