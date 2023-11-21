@@ -52,6 +52,7 @@ hypr_package_2=(
   nvtop
   vim
   wlsunset
+  yad
 )
 
 # The following will be installed with NO recommends

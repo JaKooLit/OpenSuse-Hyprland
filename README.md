@@ -59,8 +59,7 @@ source ~/.zshrc
 - to change the theme, edit ~/.zshrc ZSH_THEME="desired theme"
 
 ### ✨ Hyprland Dot Notes
-~~ SUPER H for HINT or click on the waybar HINT! Button!~~ (DOES NOT WORK WITH OPENSUSE. Since I dont know how to install YAD)
-- SUPER SHIFT H to launch the Some quick tips and tricks!
+- SUPER H for HINT or click on the waybar HINT! Button 
 
 ### ✨ Packages that are manually downloaded and build. These packages will not be updated by dnf and have to be manually updated
 - nwg-look [`LINK`](https://github.com/nwg-piotr/nwg-look)
