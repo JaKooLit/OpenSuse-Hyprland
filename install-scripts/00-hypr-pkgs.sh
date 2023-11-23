@@ -15,7 +15,6 @@ Extra=(
 hypr_package=( 
   curl
   dunst
-  eog
   git
   go
   grim
@@ -23,7 +22,6 @@ hypr_package=(
   ImageMagick
   jq
   kitty
-  libjack0
   nano
   NetworkManager-applet
   openssl
@@ -40,7 +38,6 @@ hypr_package=(
   swappy
   swayidle
   swww
-  waybar
   wget
   wl-clipboard
 )
@@ -50,7 +47,6 @@ hypr_package_2=(
   brightnessctl
   btop
   cava
-  gnome-system-monitor
   mousepad
   mpv
   nvtop
@@ -59,6 +55,12 @@ hypr_package_2=(
   yad
 )
 
+# The following will be installed with NO recommends
+package_no_recommends=(
+  waybar
+  eog
+  gnome-system-monitor
+)
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 # Determine the directory where the script is located
@@ -83,9 +85,28 @@ LOG="install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
 set -e
 
+# Function for installing packages
+install_package() {
+  # Checking if package is already installed
+  if sudo zypper se -i "$1" &>> /dev/null ; then
+    echo -e "${OK} $1 is already installed. Skipping..."
+  else
+    # Package not installed
+    echo -e "${NOTE} Installing $1 ..."
+    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    # Making sure package is installed
+    if sudo zypper se -i "$1" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $1 was installed."
+    else
+      # Something is missing, exiting to review log
+      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      exit 1
+    fi
+  fi
+}
 
 # Function for installing packages (NO Recommends)
-install_package() {
+install_package_2() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
     echo -e "${OK} $1 is already installed. Skipping..."
@@ -109,6 +130,17 @@ printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    exit 1
+  fi
+done
+
+# Installation of main components
+printf "\n%s - Installing hyprland packages (no-recommends).... \n" "${NOTE}"
+
+for PKG_N in "${package_no_recommends[@]}"; do
+  install_package_2 "$PKG_N" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
     exit 1

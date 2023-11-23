@@ -1,7 +1,10 @@
 #!/bin/bash
 
-sddm=(
+sddm1=(
   sddm
+)
+
+sddm2=(
   libqt5-qtgraphicaleffects
   libqt5-qtquickcontrols
   libqt5-qtquickcontrols2
@@ -31,7 +34,7 @@ LOG="install-$(date +%d-%H%M%S)_sddm.log"
 
 set -e
 
-# Function for installing packages (NO Recommends)
+# Function for installing packages
 install_package() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
@@ -39,7 +42,7 @@ install_package() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
+    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -53,10 +56,20 @@ install_package() {
 
 # Install SDDM 
 printf "\n%s - Installing sddm.... \n" "${NOTE}"
-for PKG1 in "${sddm[@]}" ; do
+for PKG1 in "${sddm1[@]}" ; do
   sudo zypper in -y --no-recommends "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    exit 1
+  fi
+done
+
+# Installation of additional sddm stuff
+printf "\n%s - Installing sddm additional stuff.... \n" "${NOTE}"
+for PKG2 in "${sddm2[@]}"; do
+  install_package "$PKG2" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG2 install had failed, please check the install.log"
     exit 1
   fi
 done
