@@ -19,21 +19,18 @@ hypr_package=(
   go
   grim
   gvfs
-  ImageMagick
+  gvfs-backends
   jq
   kitty
   nano
-  NetworkManager-applet
   openssl
   pamixer
-  pavucontrol
-  playerctl
+  pavucontrol  
   polkit-gnome
   python311-requests
   python311-pip
   python311-pywal
   qt5ct
-  rofi-wayland
   slurp
   swappy
   swayidle
@@ -60,6 +57,12 @@ package_no_recommends=(
   waybar
   eog
   gnome-system-monitor
+  ImageMagick
+  libnotify-tools
+  NetworkManager-applet
+  playerctl
+  rofi-wayland
+  xwayland 
 )
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
