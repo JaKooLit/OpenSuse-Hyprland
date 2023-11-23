@@ -1,17 +1,14 @@
 #!/bin/bash
 
 thunar=(
-thunar-volman 
-tumbler 
-thunar-archive-plugin
-xarchiver
+  thunar  
+  thunar-volman 
+  tumbler 
+  thunar-archive-plugin
+  xarchiver
 )
 
-# no recommends
 
-package_no_recommends=(
-  thunar
-)
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -35,28 +32,8 @@ LOG="install-$(date +%d-%H%M%S)_thunar.log"
 
 set -e
 
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
 # Function for installing packages (NO Recommends)
-install_package_2() {
+install_package() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
     echo -e "${OK} $1 is already installed. Skipping..."
@@ -76,16 +53,6 @@ install_package_2() {
 }
 
 # Thunar
-# Installation of main components
-printf "\n%s - Installing thunar packages (no-recommends).... \n" "${NOTE}"
-
-for PKG_N in "${package_no_recommends[@]}"; do
-  install_package_2 "$PKG_N" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
-    exit 1
-  fi
-done
 
 printf "${NOTE} Installing additional Thunar Packages...\n"  
   for THUNAR in "${thunar[@]}"; do

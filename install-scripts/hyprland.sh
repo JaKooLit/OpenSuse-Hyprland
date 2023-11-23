@@ -28,7 +28,7 @@ LOG="install-$(date +%d-%H%M%S)_hyprland.log"
 # Set the script to exit on error
 set -e
 
-# Function for installing packages
+# Function for installing packages (NO Recommends)
 install_package() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
@@ -36,7 +36,7 @@ install_package() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
