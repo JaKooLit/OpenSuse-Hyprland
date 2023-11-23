@@ -8,6 +8,7 @@ google-droid-fonts
 google-noto-sans-cjk-fonts
 google-noto-coloremoji-fonts
 liberation-fonts
+noto-mono-fonts
 symbols-only-nerd-fonts
 )
 
