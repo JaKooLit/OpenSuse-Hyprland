@@ -3,12 +3,10 @@
 thunar=(
 thunar-volman 
 tumbler 
-thunar-archive-plugin
-xarchiver
+thunar-plugin-archive
 )
 
 # no recommends
-
 package_no_recommends=(
   thunar
 )
@@ -87,11 +85,43 @@ for PKG_N in "${package_no_recommends[@]}"; do
   fi
 done
 
+# Function for installing packages
+install_package_opi() {
+  # Checking if package is already installed
+  if sudo zypper se -i "$1" &>> /dev/null ; then
+    echo -e "${OK} $1 is already installed. Skipping..."
+  else
+    # Package not installed
+    echo -e "${NOTE} Installing $1 ..."
+    sudo opi "$1" -n 2>&1 | tee -a "$LOG"
+    # Making sure package is installed
+    if sudo zypper se -i "$1" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $1 was installed."
+    else
+      # Something is missing, exiting to review log
+      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      exit 1
+    fi
+  fi
+}
+
 printf "${NOTE} Installing additional Thunar Packages...\n"  
   for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" 2>&1 | tee -a "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR install had failed, please check the install.log"; exit 1; }
   done
+
+
+# xarchiver using opi
+printf "${NOTE} Installing xarchiver using OPI...\n" 
+for archive in xarchiver; do
+  install_package_opi "$archive" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $archive install had failed, please check the install.log"
+    exit 1
+  fi
+done
+
 
   # Check for existing config folders and backup
   for DIR1 in Thunar xfce4; do
