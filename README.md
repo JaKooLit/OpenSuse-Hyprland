@@ -79,7 +79,7 @@ source ~/.zshrc
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
 - [ ] hyprland-nvidia - NOT SUPPORTED
-- [ ] cant install yad so hint button cannot be launched
+- [ ] Dunst not working
 - [ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.
 
 ### ❗ some known issues
