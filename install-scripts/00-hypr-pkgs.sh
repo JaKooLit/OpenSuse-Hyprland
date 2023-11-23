@@ -23,6 +23,7 @@ hypr_package=(
   ImageMagick
   jq
   kitty
+  libjack0
   nano
   NetworkManager-applet
   openssl
