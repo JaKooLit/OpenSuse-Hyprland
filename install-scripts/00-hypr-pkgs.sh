@@ -38,6 +38,7 @@ hypr_package=(
   swww
   wget
   wl-clipboard
+  xdg-user-dirs
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
@@ -151,6 +152,8 @@ for PKG_N in "${package_no_recommends[@]}"; do
   fi
 done
 
+# update home libraries
+xdg-user-dirs-update 
 
 # Install cliphist using go
 export PATH=$PATH:/usr/local/go/bin
