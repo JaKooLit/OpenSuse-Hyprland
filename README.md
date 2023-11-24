@@ -13,28 +13,14 @@
 ### 📷 More Screenshots [`Link`](https://github.com/JaKooLit/screenshots/tree/main/Hyprland-V2-Screenshots/General/)
 
 
-### ✨ Youtube presentation [`v1`](https://youtu.be/w2dt4GlHjV0)
-### ✨ Youtube presentation [`v2`](https://youtu.be/_U_WR33XNYY)
-
-### ✨ A video walk through my dotfiles[`Link`](https://youtu.be/fO-RBHvVEcc?si=ijqxxnq_DLiyO8xb)
-### ✨ A video walk through of My Hyprland-Dots v2[`Link`](https://youtu.be/yaVurRoXc-s?si=iDnBC5S3thPBX3ZE)
 
 ## 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
 - Check out changelogs here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/blob/main/CHANGELOG.md) 
 
-## Installation hangs when automating adding of Packman
-- Need to manually install Packman repo as it does not proceed further if I add in the install script
--to add
-```bash
-sudo zypper ar -cfp 90 'https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/' packman
-sudo zypper refresh
-```
-- accept or not accept the gpg key
-- then switch to Packman repo
-```bash
-sudo zypper dup --from packman --allow-vendor-change
-```
+## Activating Packman Repo
+- by default, the packman mirror chosen is "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
+- if you require to change the mirror, edit install-scripts/01-packman.sh and add mirrors of your choice. you can find mirrors [HERE](http://packman.links2linux.org/mirrors)
 
 ### 🆕  Prerequisites
 - This install script is intended for atleast Server type installed.
@@ -72,17 +58,13 @@ source ~/.zshrc
 ### ✨ Hyprland Dot Notes
 - SUPER H for HINT or click on the waybar HINT! Button 
 
-### ✨ Packages that are manually downloaded and build. These packages will not be updated by dnf and have to be manually updated
-- nwg-look [`LINK`](https://github.com/nwg-piotr/nwg-look)
-- a.) to update this package, in your installation folder, you can move that folder (nwg-look) or download manually, cd into it, and ran git pull && sudo make install
 
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
 - [ ] hyprland-nvidia - NOT SUPPORTED
-- [ ] Dunst not working
-- [ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.
+- [ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log-in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.
 
-### ❗ some known issues
+### ❗ some known issues on Hyprland-Dots
 - See FAQ section of Hyprland-Dots [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ)
 
 ### 📒 Final Notes
