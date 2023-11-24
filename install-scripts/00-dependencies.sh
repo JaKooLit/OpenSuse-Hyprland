@@ -12,6 +12,7 @@ dependencies=(
 # for installing nwg-look, swaylock-effects, wlogout
 opi=(
   opi
+  go
 )
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
