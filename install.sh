@@ -67,7 +67,6 @@ dots=""
 gtk_themes=""
 rog=""
 #sddm=""
-swaylock=""
 thunar=""
 xdph=""
 zsh=""
@@ -174,13 +173,6 @@ fi
 if [ "$xdph" == "Y" ]; then
     execute_script "xdph.sh"
 fi
-
-if [ "$swaylock" == "Y" ]; then
-    execute_script "swaylock-effects.sh"
-fi
-
-# nwg look (placed here to esure dependencies ae installed)
-execute_script "nwg-look.sh"
 
 if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
