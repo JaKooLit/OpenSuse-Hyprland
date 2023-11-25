@@ -1,5 +1,3 @@
-# STILL on EARLY STAGE and can only work with NONE nvidia
-
 <div align="center">
 
 # 💌 ** JaKooLit's Opensuse Tumbleweed - Hyprland Install Script ** 💌
