@@ -149,7 +149,7 @@ execute_script "hyprland.sh"
 execute_script "wlogout.sh"
 execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
-execuet_script "cliphist.sh"
+execute_script "cliphist.sh"
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
