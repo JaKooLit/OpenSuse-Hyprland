@@ -61,6 +61,9 @@ source ~/.zshrc
 - SUPER H for HINT or click on the waybar HINT! Button 
 - Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
 
+### ❗ some known issues on Hyprland-Dots
+- [ ] right click "extract here" does not work on thunar
+
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
 - [ ] hyprland-nvidia - NOT SUPPORTED
