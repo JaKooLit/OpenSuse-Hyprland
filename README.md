@@ -20,7 +20,7 @@
 
 ## Activating Packman Repo
 - by default, the packman mirror chosen is "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
-- if you require to change the mirror, edit install-scripts/01-packman.sh and add mirrors of your choice. you can find mirrors [HERE](http://packman.links2linux.org/mirrors)
+- if you require to change the mirror, edit install-scripts/00-packman.sh and add mirrors of your choice. you can find mirrors [HERE](http://packman.links2linux.org/mirrors)
 
 ### 🆕  Prerequisites
 - This install script is intended for atleast Server type installed.
@@ -30,7 +30,7 @@
 - Some apps are being installed using OPI. These packages are wlogout, swaylock-effects and nwg-look
 
 ### ✨ Costumize the packages
-- inside the install-scripts folder, you can edit 00-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
+- inside the install-scripts folder, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
 - default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 

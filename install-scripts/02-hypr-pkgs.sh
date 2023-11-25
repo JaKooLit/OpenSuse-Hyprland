@@ -155,11 +155,6 @@ done
 # update home libraries
 xdg-user-dirs-update 
 
-# Install cliphist using go
-export PATH=$PATH:/usr/local/go/bin
-go install go.senan.xyz/cliphist@latest 2>&1 | tee -a "$LOG"
 
-# copy cliphist into /usr/local/bin for some reason it is installing in ~/go/bin
-sudo cp -r "$HOME/go/bin/cliphist" "/usr/local/bin/" 2>&1 | tee -a "$LOG"
 
 clear

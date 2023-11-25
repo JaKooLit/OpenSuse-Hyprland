@@ -141,14 +141,15 @@ printf "\n"
 chmod +x install-scripts/*
 
 # Install hyprland packages
-execute_script "01-packman.sh"
-execute_script "00-dependencies.sh"
-execute_script "00-hypr-pkgs.sh"
+execute_script "00-packman.sh"
+execute_script "01-dependencies.sh"
+execute_script "02-hypr-pkgs.sh"
 execute_script "fonts.sh"
 execute_script "hyprland.sh"
 execute_script "wlogout.sh"
 execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
+execuet_script "cliphist.sh"
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
