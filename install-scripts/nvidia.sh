@@ -1,8 +1,12 @@
 #!/bin/bash
 
+hyprland_nvidia="https://download.opensuse.org/repositories/home:xbb:hyprland/openSUSE_Tumbleweed/home:xbb:hyprland.repo"
+
 nvidia_pkg=(
-  openSUSE-repos-NVIDIA
   hyprland
+  nvidia-video-G06
+  nvidia-gl-G06
+  nvidia-utils-G06
   Mesa-libva
   libva-nvidia-driver
 )
@@ -51,11 +55,12 @@ install_package() {
 }
 
 # Adding hyprland-nvidia repository
-sudo zypper addrepo https://download.opensuse.org/repositories/home:xbb:hyprland/openSUSE_Tumbleweed/home:xbb:hyprland.repo hyprland"$1" 2>&1 | tee -a "$LOG"
-sudo zypper refresh
+sudo zypper -n --quiet ar --refresh -p 90 "$hyprland_nvidia" hyprland_nvidia 2>&1 | tee -a "$LOG"
+sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
-# Setting priority for the repository
-sudo zypper --gpg-auto-import-keys modifyrepo --priority 1 hyprland
+# adding NVIDIA repo
+zypper addrepo -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing Nvidia packages...\n"
