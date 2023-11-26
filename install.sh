@@ -75,17 +75,21 @@ zsh=""
 # Define the directory where your scripts are located
 script_directory=install-scripts
 
-# Function to ask a yes/no question and set the response in a variable
+# Function to ask a yes/no question and set the response in a variable (accepts Yy or Nn)
 ask_yes_no() {
+    local response
     while true; do
-        read -p "$(colorize_prompt "$CAT"  "$1 (y/n): ")" choice
-        case "$choice" in
+        read -p "$(colorize_prompt "$CAT" "$1 (Y/N): ")" -r response
+        case "$response" in
             [Yy]* ) eval "$2='Y'"; return 0;;
             [Nn]* ) eval "$2='N'"; return 1;;
-            * ) echo "Please answer with y or n.";;
+            * ) echo "Please answer with Y/y or N/n.";;
         esac
     done
 }
+
+# ... (Rest of your script remains unchanged)
+
 
 # Function to ask a custom question with specific options and set the response in a variable
 ask_custom_option() {
@@ -156,9 +160,7 @@ execute_script "cliphist.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
-fi
-
-if [ "$nvidia" == "N" ]; then
+else
     execute_script "hyprland.sh"
 fi
 

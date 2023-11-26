@@ -42,7 +42,7 @@ install_package() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
+    sudo zypper in --auto-agree-with-licenses -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -54,13 +54,9 @@ install_package() {
   fi
 }
 
-# Adding hyprland-nvidia repository
-sudo zypper -n --quiet ar --refresh -p 90 "$hyprland_nvidia" hyprland_nvidia 2>&1 | tee -a "$LOG"
-sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
-
 # adding NVIDIA repo
-zypper addrepo -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA
-
+sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing Nvidia packages...\n"
