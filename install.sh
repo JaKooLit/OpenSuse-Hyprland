@@ -65,7 +65,7 @@ LOG="install-$(date +%d-%H%M%S).log"
 bluetooth=""
 dots=""
 gtk_themes=""
-rog=""
+#rog=""
 #sddm=""
 thunar=""
 xdph=""
@@ -125,8 +125,8 @@ printf "\n"
 ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
-printf "\n"
-ask_yes_no "-Installing on Asus ROG Laptops?" rog
+#printf "\n"
+#ask_yes_no "-Installing on Asus ROG Laptops?" rog
 printf "\n"
 #ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
 #printf "\n"
@@ -163,9 +163,9 @@ if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
 
-if [ "$rog" == "Y" ]; then
+#if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
-fi
+#fi
 
 #if [ "$sddm" == "Y" ]; then
 #    execute_script "sddm.sh"
