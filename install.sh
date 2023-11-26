@@ -65,7 +65,8 @@ LOG="install-$(date +%d-%H%M%S).log"
 bluetooth=""
 dots=""
 gtk_themes=""
-#rog=""
+nvidia=""
+rog=""
 #sddm=""
 thunar=""
 xdph=""
@@ -120,13 +121,15 @@ execute_script() {
 
 # Collect user responses to all questions
 printf "\n"
+ask_yes_no "-Do you have nvidia gpu?" nvidia
+printf "\n"
 ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
 printf "\n"
 ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
 printf "\n"
 ask_yes_no "-Do you want to install Thunar file manager?" thunar
-#printf "\n"
-#ask_yes_no "-Installing on Asus ROG Laptops?" rog
+printf "\n"
+ask_yes_no "-Installing on Asus ROG Laptops?" rog
 printf "\n"
 #ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
 #printf "\n"
@@ -151,6 +154,14 @@ execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
 execute_script "cliphist.sh"
 
+if [ "$nvidia" == "Y" ]; then
+    execute_script "nvidia.sh"
+fi
+
+if [ "$nvidia" == "N" ]; then
+    execute_script "hyprland.sh"
+fi
+
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
 fi
@@ -163,9 +174,9 @@ if [ "$thunar" == "Y" ]; then
     execute_script "thunar.sh"
 fi
 
-#if [ "$rog" == "Y" ]; then
+if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
-#fi
+fi
 
 #if [ "$sddm" == "Y" ]; then
 #    execute_script "sddm.sh"
