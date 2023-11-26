@@ -57,7 +57,7 @@ install_package_opi() {
 
     printf " Installing ASUS ROG packages using opi...\n"
     for ASUS in "${asusctl[@]}"; do
-	    install_package  "$ASUS" 2>&1 | tee -a "$LOG"
+	    install_package_opi  "$ASUS" 2>&1 | tee -a "$LOG"
       if [ $? -ne 0 ]; then
       echo -e "\e[1A\e[K${ERROR} - $ASUS install had failed, please check the install.log"
       exit 1
