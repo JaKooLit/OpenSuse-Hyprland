@@ -7,9 +7,13 @@ ZSH_THEME="mikeh"
 
 plugins=( 
     git
+    suse
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
+
+# check the suse plugins commands here
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/suse/suse.plugin.zsh
 
 source $ZSH/oh-my-zsh.sh
 
