@@ -23,41 +23,22 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +%d-%H%M%S)_hyprland.log"
+LOG="install-$(date +%d-%H%M%S)_cliphist.log"
 
 # Set the script to exit on error
 set -e
 
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -f -y "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-# Hyprland
+# force reinstall go because on my experience it says installed but its not installing cliphist
 
 printf "${NOTE} Installing cliphist (clipboard Manager) using go...\n"
  for CLIP in "${cliphist[@]}"; do
-   install_package "$CLIP" 2>&1 | tee -a "$LOG"
+   sudo zypper in -f -y "$CLIP" 2>&1 | tee -a "$LOG"
    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $CLIP install had failed, please check the install.log"; exit 1; }
   done
 
 
 # Install cliphist using go
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/bin
 go install go.senan.xyz/cliphist@latest 2>&1 | tee -a "$LOG"
 
 # copy cliphist into /usr/local/bin for some reason it is installing in ~/go/bin

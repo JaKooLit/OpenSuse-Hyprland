@@ -20,7 +20,7 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +'%d-%H%M%S')_wlogout.log"
+LOG="install-$(date +'%d-%H%M%S')_nwg-look.log"
 
 printf "${NOTE} Installing nwg-look using opi\n"
 
