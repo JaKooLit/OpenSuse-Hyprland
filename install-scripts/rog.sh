@@ -1,9 +1,21 @@
 #!/bin/bash
 
+## dependencies are taken from the asusctl website https://gitlab.com/asus-linux/asusctl
+
 asusctl=(
-asusctl
-supergfxctl
-asusctl-rog-gui
+  rustup 
+  make 
+  cmake 
+  systemd-devel 
+  clang-devel 
+  llvm-devel 
+  gdk-pixbuf-devel 
+  cairo-devel 
+  pango-devel 
+  freetype-devel 
+  gtk3-devel 
+  libexpat-devel 
+  libayatana-indicator3-7
 )
 
 
@@ -29,19 +41,15 @@ RESET=$(tput sgr0)
 LOG="install-$(date +%d-%H%M%S)_rog.log"
 
 
-
-# Set the script to exit on error
-set -e
-
-# Function for installing packages
-install_package_opi() {
+# Function for installing packages (NO Recommends)
+install_package_2() {
   # Checking if package is already installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    sudo opi "$1" -n 2>&1 | tee -a "$LOG"
+    sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -55,15 +63,51 @@ install_package_opi() {
 
 ### Install software for Asus ROG laptops ###
 
-    printf " Installing ASUS ROG packages using opi...\n"
-    for ASUS in "${asusctl[@]}"; do
-	    install_package_opi  "$ASUS" 2>&1 | tee -a "$LOG"
-      if [ $? -ne 0 ]; then
-      echo -e "\e[1A\e[K${ERROR} - $ASUS install had failed, please check the install.log"
-      exit 1
+printf " Installing asusctl dependencies...\n"
+  for ASUS in "${asusctl[@]}"; do
+  install_package_2  "$ASUS" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+  echo -e "\e[1A\e[K${ERROR} - $ASUS install had failed, please check the install.log"
+  exit 1
+  fi
+  done
+
+# Function to handle the installation and log messages
+install_and_log() {
+  local project_name="$1"
+  local git_url="$2"
+  
+  printf "${NOTE} Installing $project_name\n"
+
+  if git clone "$git_url" "$project_name"; then
+    cd "$project_name" || exit 1
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 2>&1 | tee -a "$LOG"
+    source "$HOME/.cargo/env"
+    make
+
+    if sudo make install 2>&1 | tee -a "$LOG"; then
+      printf "${OK} $project_name installed successfully.\n"
+      if [ "$project_name" == "supergfxctl" ]; then
+        # Enable supergfxctl
+        sudo systemctl enable --now supergfxd 2>&1 | tee -a "$LOG"
       fi
-    done
-    printf " Activating ROG services...\n"
-    sudo systemctl enable --now supergfxd 2>&1 | tee -a "$LOG"
+    else
+      echo -e "${ERROR} Installation failed for $project_name."
+    fi
+
+    # Return to the previous directory
+    cd - || exit 1
+  else
+    echo -e "${ERROR} Cloning $project_name from $git_url failed."
+  fi
+}
+
+# Download and build asusctl
+install_and_log "asusctl" "https://gitlab.com/asus-linux/asusctl.git"
+
+# Download and build supergfxctl
+install_and_log "supergfxctl" "https://gitlab.com/asus-linux/supergfxctl.git"
+
 
 clear
+
