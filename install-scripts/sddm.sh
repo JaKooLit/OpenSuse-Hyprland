@@ -4,7 +4,7 @@ sddm1=(
   sddm-qt6
   xauth
   xorg-x11-server
-  xorg-x11-fonts-core
+  xf86-input-evdev
 )
 
 sddm2=(
