@@ -30,6 +30,7 @@
 
 ### ✨  Some notes on installation
 - Some apps are being installed using OPI. These packages are wlogout, swaylock-effects and nwg-look
+- for SDDM, by script sddm-qt6 will be installed. If you have already sddm, I HIGHLY SUGGEST NOT to install sddm through this script since I dont know the impact to your current sddm. Opensuse ship 2 version, sddm and sddm-qt6. The latter is more up to date... (I think)
 
 ### ✨ Costumize the packages
 - inside the install-scripts folder, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
@@ -68,7 +69,7 @@ source ~/.zshrc
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)
 - [ ] hyprland-nvidia - NOT SUPPORTED
-- [ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log-in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.
+- ~~[ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log-in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.~~ FIXED 🥳
 
 ### ❗ some known issues on Hyprland-Dots
 - See FAQ section of Hyprland-Dots [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ)
