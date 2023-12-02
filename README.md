@@ -64,7 +64,7 @@ source ~/.zshrc
 - Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/4.-FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/5.-TIPS)
 
 ### ❗ some known issues on Hyprland-Dots
-- [ ] right click "extract here" does not work on thunar
+- ~~[ ] right click "extract here" does not work on thunar~~ FIXED :)
 
 ### 🛣️ TO DO:
 - [ ] Make it fully functional (duh 🤣)

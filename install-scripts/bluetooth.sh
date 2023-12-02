@@ -1,8 +1,8 @@
 #!/bin/bash
 
 blue=(
-bluez
-blueman
+  bluez
+  blueman
 )
 
 
