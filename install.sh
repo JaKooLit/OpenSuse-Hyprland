@@ -67,7 +67,7 @@ dots=""
 gtk_themes=""
 #nvidia=""
 rog=""
-#sddm=""
+sddm=""
 thunar=""
 xdph=""
 zsh=""
@@ -135,8 +135,8 @@ ask_yes_no "-Do you want to install Thunar file manager?" thunar
 printf "\n"
 ask_yes_no "-Installing on Asus ROG Laptops?" rog
 printf "\n"
-#ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
-#printf "\n"
+ask_yes_no "-Install and configure SDDM log-in Manager?" sddm
+printf "\n"
 ask_yes_no "Install XDG-DESKTOP-PORTAL-HYPRLAND? (for proper Screen Share ie OBS)" xdph
 printf "\n"
 ask_yes_no "-Do you want to install zsh and oh-my-zsh?" zsh
@@ -153,7 +153,6 @@ execute_script "01-dependencies.sh"
 execute_script "02-hypr-pkgs.sh"
 execute_script "fonts.sh"
 execute_script "hyprland.sh"
-execute_script "wlogout.sh"
 execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
 execute_script "cliphist.sh"
@@ -180,9 +179,9 @@ if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
 fi
 
-#if [ "$sddm" == "Y" ]; then
-#    execute_script "sddm.sh"
-#fi
+if [ "$sddm" == "Y" ]; then
+    execute_script "sddm.sh"
+fi
 
 if [ "$xdph" == "Y" ]; then
     execute_script "xdph.sh"

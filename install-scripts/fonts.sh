@@ -1,15 +1,16 @@
 #!/bin/bash
 
 fonts=(
-adobe-sourcecodepro-fonts
-fira-code-fonts
-fontawesome-fonts
-google-droid-fonts
-google-noto-sans-cjk-fonts
-google-noto-coloremoji-fonts
-liberation-fonts
-noto-sans-mono-fonts
-symbols-only-nerd-fonts
+  adobe-sourcecodepro-fonts
+  fira-code-fonts
+  fontawesome-fonts
+  google-droid-fonts
+  google-noto-sans-cjk-fonts
+  google-noto-coloremoji-fonts
+  liberation-fonts
+  noto-sans-mono-fonts
+  symbols-only-nerd-fonts
+  xorg-x11-fonts-core
 )
 
 
