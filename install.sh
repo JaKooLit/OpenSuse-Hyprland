@@ -67,7 +67,7 @@ dots=""
 gtk_themes=""
 #nvidia=""
 rog=""
-#sddm=""
+sddm=""
 thunar=""
 xdph=""
 zsh=""
@@ -180,9 +180,9 @@ if [ "$rog" == "Y" ]; then
     execute_script "rog.sh"
 fi
 
-#if [ "$sddm" == "Y" ]; then
-#    execute_script "sddm.sh"
-#fi
+if [ "$sddm" == "Y" ]; then
+    execute_script "sddm.sh"
+fi
 
 if [ "$xdph" == "Y" ]; then
     execute_script "xdph.sh"

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 sddm1=(
-  sddm
+  sddm-qt6
 )
 
-sddm2=(
-  libqt5-qtgraphicaleffects
-  libqt5-qtquickcontrols
-  libqt5-qtquickcontrols2
-)
+#sddm2=(
+#  libqt5-qtgraphicaleffects
+#  libqt5-qtquickcontrols
+#  libqt5-qtquickcontrols2
+#)
 
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
