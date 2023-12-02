@@ -36,7 +36,7 @@
 - default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 
-- to follow.. for now not supported
+- Kinda tricky as I cant find a proper and official way to install nvidia drivers. For now, not supported
 
 ### ✨ to run
 > clone this repo by using git. Change directory, make executable and run the script
