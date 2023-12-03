@@ -22,6 +22,9 @@ hypr_package=(
   gvfs-backends
   jq
   kitty
+  kvantum-qt6
+  kvantum-themes
+  kvantum-manager
   nano
   openssl
   pamixer
