@@ -156,6 +156,7 @@ execute_script "hyprland.sh"
 execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
 execute_script "cliphist.sh"
+execute_script "wlogout.sh"
 
 #if [ "$nvidia" == "Y" ]; then
 #    execute_script "nvidia.sh"
