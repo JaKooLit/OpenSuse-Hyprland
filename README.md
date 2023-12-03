@@ -31,6 +31,7 @@
 ### ✨  Some notes on installation
 - Some apps are being installed using OPI. These packages are wlogout, swaylock-effects and nwg-look
 - for SDDM, by script sddm-qt6 will be installed. If you have already sddm, I HIGHLY SUGGEST NOT to install sddm through this script since I dont know the impact to your current sddm. Opensuse ship 2 version, sddm and sddm-qt6. The latter is more up to date... (I think)
+- Another for SDDM, if you are installing from a server type of opensuse install, I highly suggest to install the sddm theme since you'll get a vanilla look sddm theme. 
 
 ### ✨ Costumize the packages
 - inside the install-scripts folder, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
