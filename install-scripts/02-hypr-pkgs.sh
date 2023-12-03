@@ -37,6 +37,7 @@ hypr_package=(
   swayidle
   swww
   wget
+  wayland-protocols-devel
   wl-clipboard
   xdg-user-dirs
 )
