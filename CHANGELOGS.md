@@ -2,6 +2,7 @@
 
 ## 03 Dec 2023
 - Added kvantum for qt apps theming
+- return of wlogout due to theming issues of rofi-power
 
 ### 02 Dec 2023
 - SDDM install script is now ready :) (NOTE! I chose sddm-qt6 to install!)
