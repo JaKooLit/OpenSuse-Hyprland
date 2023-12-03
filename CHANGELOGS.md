@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 03 Dec 2023
+- Added kvantum for qt apps theming
+
 ### 02 Dec 2023
 - SDDM install script is now ready :) (NOTE! I chose sddm-qt6 to install!)
 
