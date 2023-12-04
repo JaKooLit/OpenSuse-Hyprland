@@ -37,6 +37,9 @@
 - inside the install-scripts folder, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
 - default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
+### ⚠️ WARNING! If you have GDM already as log-in manager, DO NOT install SDDM
+- You will likely to encounter issues
+
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 
 - Kinda tricky as I cant find a proper and official way to install nvidia drivers. For now, not supported
 
