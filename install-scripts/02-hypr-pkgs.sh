@@ -35,6 +35,7 @@ hypr_package=(
   python311-pywal
   qt5ct
   qt6ct
+  qt6-svg
   slurp
   swappy
   swayidle
