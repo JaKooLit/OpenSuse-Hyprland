@@ -54,7 +54,8 @@
 - You will likely to encounter issues
 
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 
-- Kinda tricky as I cant find a proper and official way to install nvidia drivers. For now, not supported
+- Please take note that the nvidia driver will be install is G06 driver, which is for GeForce 700 series (Maxwell, Pascal...) and up
+- You can edi the install-scripts/nvidia.sh if you require for older cards. However, do take note that it may not work as older nvidia drivers dont support wayland well.
 
 ### ✨ to run
 > clone this repo by using git. Change directory, make executable and run the script
@@ -84,8 +85,8 @@ source ~/.zshrc
 - ~~[ ] right click "extract here" does not work on thunar~~ FIXED :)
 
 ### 🛣️ TO DO:
-- [ ] Make it fully functional (duh 🤣)
-- [ ] hyprland-nvidia - NOT SUPPORTED
+- ~~[ ] Make it fully functional (duh 🤣)~~ done
+- ~~[ ] hyprland-nvidia - NOT SUPPORTED~~ NOW SUPPORTED 🥳
 - ~~[ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log-in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.~~ FIXED 🥳
 
 ### ❗ some known issues on Hyprland-Dots

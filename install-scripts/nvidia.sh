@@ -9,14 +9,17 @@ nvidia_pkg=(
   libva-utils
   libglvnd
   libglvnd-devel
-  nvidia-driver-G06-kmp-default
-  nvidia-video-G06
-  nvidia-gl-G06
-  nvidia-utils-G06
   Mesa-libva
   xf86-video-nv
 )
 
+nvidia_drivers=(
+  nvidia-driver-G06
+  nvidia-driver-G06-kmp-default
+  nvidia-video-G06
+  nvidia-gl-G06
+  nvidia-utils-G06
+)
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 # Determine the directory where the script is located
@@ -61,13 +64,14 @@ install_package() {
   fi
 }
 
+
 # adding NVIDIA repo
 sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
 printf "${YELLOW} Installing Nvidia packages...\n"
-  for NVIDIA in "${nvidia_pkg[@]}"; do
+  for NVIDIA in "${nvidia_pkg[@]}" "${nvidia_drivers[@]}"; do
     install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
   done
 
