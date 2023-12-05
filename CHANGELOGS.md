@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 05 Dec 2023
+- Finally Nvidia GPU is supported :)
+
 ## 03 Dec 2023
 - Added kvantum for qt apps theming
 - return of wlogout due to theming issues of rofi-power
