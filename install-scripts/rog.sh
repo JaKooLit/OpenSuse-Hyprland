@@ -11,8 +11,9 @@ asusctl=(
   llvm-devel 
   gdk-pixbuf-devel 
   cairo-devel 
-  pango-devel 
-  freetype-devel 
+  pango-devel
+  power-profiles-daemon 
+  freetype2-devel 
   gtk3-devel 
   libexpat-devel 
   libayatana-indicator3-7
@@ -71,6 +72,19 @@ printf " Installing asusctl dependencies...\n"
   exit 1
   fi
   done
+
+# additional steps required before installing asusctl
+# adding current user to wheel group: See here re:adding user to wheel https://asus-linux.org/wiki/opensuse-guide/
+printf "Checking if 'wheel' group exists...\n"
+getent group wheel || sudo groupadd wheel 2>&1 | tee -a "$LOG" || true
+
+printf "Adding user to wheel group...\n"
+sudo gpasswd -a $(whoami) wheel 2>&1 | tee -a "$LOG" || true
+
+# removing suse-prime and tlp as they are known interferring (see the asusctl linux website above)
+sudo zypper rm -n -y suse-prime 2>&1 | tee -a "$LOG" || true
+
+sudo zypper rm -n -y tlp 2>&1 | tee -a "$LOG" || true
 
 # Function to handle the installation and log messages
 install_and_log() {

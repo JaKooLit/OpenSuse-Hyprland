@@ -102,7 +102,9 @@ printf "${NOTE} Installing additional Thunar Packages...\n"
       echo -e "${NOTE} Backed up $DIR1 to $DIRPATH-back-up."
     fi
   done
-  cp -r assets/xfce4 ~/.config/ && { echo "Copy xfce4 completed!"; } || { echo "Error: Failed to copy xfce4 config files."; exit 1; } 2>&1 | tee -a "$LOG"
-  cp -r assets/Thunar ~/.config/ && { echo "Copy Thunar completed!"; } || { echo "Error: Failed to copy Thunar config files."; exit 1; } 2>&1 | tee -a "$LOG"
+
+# copyying from assets
+cp -r assets/xfce4 ~/.config/ && echo "Copy xfce4 completed!" || echo "Error: Failed to copy xfce4 config files." 2>&1 | tee -a "$LOG"
+cp -r assets/Thunar ~/.config/ && echo "Copy Thunar completed!" || echo "Error: Failed to copy Thunar config files." 2>&1 | tee -a "$LOG"
 
 clear

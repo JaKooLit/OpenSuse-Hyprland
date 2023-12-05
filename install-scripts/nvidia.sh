@@ -1,15 +1,22 @@
 #!/bin/bash
 
-hyprland_nvidia="https://download.opensuse.org/repositories/home:xbb:hyprland/openSUSE_Tumbleweed/home:xbb:hyprland.repo"
-
 nvidia_pkg=(
+  openSUSE-repos-NVIDIA
+  dkms
   hyprland
+  libvdpau1
+  libva-vdpau-driver
+  libva-utils
+  libglvnd
+  libglvnd-devel
+  nvidia-driver-G06-kmp-default
   nvidia-video-G06
   nvidia-gl-G06
   nvidia-utils-G06
   Mesa-libva
-  libva-nvidia-driver
+  xf86-video-nv
 )
+
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 # Determine the directory where the script is located
@@ -65,7 +72,7 @@ printf "${YELLOW} Installing Nvidia packages...\n"
   done
 
 
-printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
+printf "${YELLOW} adding nvidia-stuff to /etc/default/grub..."
 
   # Additional options to add to GRUB_CMDLINE_LINUX
   additional_options="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1"

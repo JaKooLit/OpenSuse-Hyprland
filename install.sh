@@ -65,7 +65,7 @@ LOG="install-$(date +%d-%H%M%S).log"
 bluetooth=""
 dots=""
 gtk_themes=""
-#nvidia=""
+nvidia=""
 rog=""
 sddm=""
 thunar=""
@@ -87,9 +87,6 @@ ask_yes_no() {
         esac
     done
 }
-
-# ... (Rest of your script remains unchanged)
-
 
 # Function to ask a custom question with specific options and set the response in a variable
 ask_custom_option() {
@@ -124,8 +121,8 @@ execute_script() {
 }
 
 # Collect user responses to all questions
-#printf "\n"
-#ask_yes_no "-Do you have nvidia gpu?" nvidia
+printf "\n"
+ask_yes_no "-Do you have nvidia gpu?" nvidia
 printf "\n"
 ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
 printf "\n"
@@ -152,17 +149,16 @@ execute_script "00-packman.sh"
 execute_script "01-dependencies.sh"
 execute_script "02-hypr-pkgs.sh"
 execute_script "fonts.sh"
-execute_script "hyprland.sh"
 execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
 execute_script "cliphist.sh"
 execute_script "wlogout.sh"
 
-#if [ "$nvidia" == "Y" ]; then
-#    execute_script "nvidia.sh"
-#else
-#    execute_script "hyprland.sh"
-#fi
+if [ "$nvidia" == "Y" ]; then
+    execute_script "nvidia.sh"
+else
+    execute_script "hyprland.sh"
+fi
 
 if [ "$gtk_themes" == "Y" ]; then
     execute_script "gtk_themes.sh"
@@ -200,20 +196,20 @@ clear
 
 printf "\n${OK} Yey! Installation Completed.\n"
 printf "\n"
-#printf "\n${NOTE} NOTICE TO NVIDIA OWNERS! IT's a MUST for your to reboot your system\n"
 sleep 2
 printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
 printf "\n"
 printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
-read -n1 -rep "${CAT} Would you like to reboot now? (y,n)" HYP
 
-if [[ $HYP =~ ^[Yy]$ ]]; then
+read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
+
+if [[ "$HYP" =~ ^[Yy]$ ]]; then
     if [[ "$nvidia" == "Y" ]]; then
         echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
         systemctl reboot
     else
         systemctl reboot
-    
     fi    
 fi
+
 

@@ -48,12 +48,12 @@ install_package() {
 printf "${WARN} #### IF YOU HAVE ALREADY ZSH AND OH MY ZSH, YOU SHOULD CHOOSE NO HERE #########\n"
 printf "${WARN} ### --------------------------------------------------------------------########\n"
 printf "${NOTE} ## CHECK OUT README FOR ADDITIONAL STEPS REQUIRED ONCE ZSH AND OH-MY-ZSH INSTALLED ##\n"
-printf "\n"
-printf "\n"
-read -n1 -rep "${CAT} OPTIONAL - Would you like to install zsh and oh-my-zsh and use as default shell? (y/n)" zsh
+printf "\n\n"
+
+read -rp "${CAT} OPTIONAL - Would you like to install zsh and oh-my-zsh and use as default shell? (y/n) " zsh
 echo
 
-if [[ $zsh =~ ^[Yy]$ ]]; then
+if [[ "$zsh" =~ ^[Yy]$ ]]; then
   for ZSH in zsh; do
     install_package "$ZSH" 2>&1 | tee -a "$LOG"
     if [ $? -ne 0 ]; then
@@ -69,7 +69,8 @@ if [[ $zsh =~ ^[Yy]$ ]]; then
   cp -r 'assets/.zshrc' ~/
   cp -r 'assets/.zprofile' ~/
 else
-  printf "${NOTE} ZSH wont be installed.\n"
+  printf "${NOTE} ZSH won't be installed.\n"
 fi
 
 clear
+
