@@ -31,8 +31,6 @@ echo "$(tput setaf 3)NOTE: You will be required to answer some questions during 
 echo
 echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
 echo
-echo "$(tput setaf 166)ATTENTION: For now, NO NVIDIA SUPPORT! $(tput sgr0)"
-echo
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
 
