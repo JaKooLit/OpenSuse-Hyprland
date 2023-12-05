@@ -55,7 +55,7 @@
 
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 
 - Please take note that the nvidia driver will be install is G06 driver, which is for GeForce 700 series (Maxwell, Pascal...) and up see here [`NVIDIA-Opensuse-Link`](https://en.opensuse.org/SDB:NVIDIA_drivers)
-- You can edi the install-scripts/nvidia.sh if you require for older cards. However, do take note that it may not work as older nvidia drivers dont support wayland well.
+- You can edit the install-scripts/nvidia.sh if you require for older cards. However, do take note that it may not work as older nvidia drivers dont support wayland well.
 
 ### 🔔 NOTICE TO ASUS ROG Laptop owners ### 
 - There is an guide by Asusctl dev [`Asusctl`](https://asus-linux.org/wiki/opensuse-guide/)
