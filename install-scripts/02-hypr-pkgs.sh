@@ -13,7 +13,6 @@ Extra=(
 
 # packages neeeded
 hypr_package=(
-  bc 
   curl
   dunst
   git
