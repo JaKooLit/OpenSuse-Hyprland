@@ -38,6 +38,7 @@
 - if you require to change the mirror, edit install-scripts/00-packman.sh and add mirrors of your choice. you can find mirrors [HERE](http://packman.links2linux.org/mirrors)
 
 ### 🆕  Prerequisites
+- install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script DOES not include uninstallation of packages as it may break your system due to shared packages / libraries.
 - This install script is intended for atleast Server type installed.
 - In theory, This should work on a any Tumbleweed with DE (Plasma, Gnome, XFCE). Although I am not sure about xfce default login manager if able to detect Hyprland.
 
