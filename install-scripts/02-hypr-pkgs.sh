@@ -20,15 +20,18 @@ hypr_package=(
   grim
   gvfs
   gvfs-backends
+  ImageMagick
   jq
   kitty
   kvantum-qt6
   kvantum-themes
   kvantum-manager
+  libnotify-tools
   nano
   openssl
   pamixer
-  pavucontrol  
+  pavucontrol
+  playerctl  
   polkit-gnome
   python311-requests
   python311-pip
@@ -36,6 +39,7 @@ hypr_package=(
   qt5ct
   qt6ct
   qt6-svg
+  rofi-wayland
   slurp
   swappy
   swayidle
@@ -44,6 +48,7 @@ hypr_package=(
   wayland-protocols-devel
   wl-clipboard
   xdg-user-dirs
+  xwayland
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
@@ -64,12 +69,7 @@ package_no_recommends=(
   waybar
   eog
   gnome-system-monitor
-  ImageMagick
-  libnotify-tools
   NetworkManager-applet
-  playerctl
-  rofi-wayland
-  xwayland 
 )
 
 ############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
