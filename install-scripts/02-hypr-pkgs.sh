@@ -58,6 +58,7 @@ hypr_package_2=(
   cava
   mousepad
   mpv
+  mpv-mpris
   nvtop
   vim
   wlsunset
