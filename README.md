@@ -39,8 +39,10 @@
 
 ### 🆕  Prerequisites
 - install a backup tool like `snapper` or `timeshift`. and Backup your system before installing hyprland using this script. This script DOES not include uninstallation of packages as it may break your system due to shared packages / libraries.
+
 - This install script is intended for atleast Server type installed.
 - In theory, This should work on a any Tumbleweed with DE (Plasma, Gnome, XFCE). Although I am not sure about xfce default login manager if able to detect Hyprland.
+- If you have nvidia, and wanted to use proprietary drivers, uninstall nouveau first (if installed). This script will be installing proprietary nvidia drivers and will not deal with removal of nouveau.
 
 ### ✨  Some notes on installation
 - Some apps are being installed using OPI. These packages are wlogout, swaylock-effects and nwg-look
