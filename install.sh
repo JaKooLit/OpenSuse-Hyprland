@@ -179,6 +179,8 @@ if [ "$zsh" == "Y" ]; then
     execute_script "zsh.sh"
 fi
 
+execute_script "InputGroup.sh"
+
 if [ "$dots" == "Y" ]; then
     execute_script "dotfiles.sh"
 fi
