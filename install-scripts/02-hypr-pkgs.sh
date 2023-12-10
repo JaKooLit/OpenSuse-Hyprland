@@ -38,7 +38,7 @@ hypr_package=(
   python311-pywal
   qt5ct
   qt6ct
-  qt6-svg
+  qt6-svg-devel
   rofi-wayland
   slurp
   swappy
