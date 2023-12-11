@@ -73,7 +73,7 @@ chmod +x install.sh
 ./install.sh
 ```
 ### ✨ for ZSH and OH-MY-ZSH installation
-> do this once installed and script completed; do the following to change the default shell zsh
+> installer should auto change your default shell to zsh. However, if it does not, do this
 ```bash
 chsh -s $(which zsh)
 zsh
@@ -96,6 +96,7 @@ source ~/.zshrc
 - ~~[ ] right click "extract here" does not work on thunar~~ FIXED :)
 
 ### 🛣️ TO DO:
+- ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
 - ~~[ ] Make it fully functional (duh 🤣)~~ done
 - ~~[ ] hyprland-nvidia - NOT SUPPORTED~~ NOW SUPPORTED 🥳
 - ~~[ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log-in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.~~ FIXED 🥳

@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 11 Dec 2023
+- Changing over to zsh automatically if user opted
+- If chose to install zsh and have no login manager, zsh auto login will auto start Hyprland
+
 ## 05 Dec 2023
 - Finally Nvidia GPU is supported :)
 
