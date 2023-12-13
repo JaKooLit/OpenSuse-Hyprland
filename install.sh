@@ -144,6 +144,7 @@ execute_script "nwg-look.sh"
 execute_script "swaylock-effects.sh"
 execute_script "cliphist.sh"
 execute_script "wlogout.sh"
+execute_script "force-install.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"

@@ -92,8 +92,9 @@ source ~/.zshrc
 ### 🏴‍☠️🏴‍☠️🏴‍☠️ Got a questions regarding the Hyprland Dots?
 - Head over to wiki Link [`WIKI`](🏴https://github.com/JaKooLit/Hyprland-Dots/wiki)
 
-### ❗ some known issues on Hyprland-Dots
-- ~~[ ] right click "extract here" does not work on thunar~~ FIXED :)
+### ❗ some known issues on this Installer
+- some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
+- At this time the packages force to install are the following `playerctl`
 
 ### 🛣️ TO DO:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
