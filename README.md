@@ -64,6 +64,8 @@
 ### 🔔 NOTICE TO NVIDIA OWNERS ### 
 - Please take note that the nvidia driver will be install is G06 driver, which is for GeForce 700 series (Maxwell, Pascal...) and up see here [`NVIDIA-Opensuse-Link`](https://en.opensuse.org/SDB:NVIDIA_drivers)
 - You can edit the install-scripts/nvidia.sh if you require for older cards. However, do take note that it may not work as older nvidia drivers dont support wayland well.
+> [!IMPORTANT]
+> If you want to use nouveau driver, choose N when asked if you have nvidia gpu. This is because the nvidia installer part, it will blacklist nouveau. Hyprland will still be installed but it will skip blacklisting nouveau.
 
 ### 🔔 NOTICE TO ASUS ROG Laptop owners ### 
 - There is an guide by Asusctl dev [`Asusctl`](https://asus-linux.org/wiki/opensuse-guide/)
