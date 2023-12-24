@@ -72,9 +72,9 @@
 - However. during my test, the ROG gui is not behaving well, and I cant click any button. So The asusctl and supergfxctl that I have set here are build from source through their gitlab
 
 #### ✨ to run
-> clone this repo by using git. Change directory, make executable and run the script
+> clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 ```bash
-git clone https://github.com/JaKooLit/OpenSuse-Hyprland.git
+git clone --depth=1 https://github.com/JaKooLit/OpenSuse-Hyprland.git
 cd OpenSuse-Hyprland
 chmod +x install.sh
 ./install.sh
