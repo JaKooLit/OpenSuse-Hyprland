@@ -48,6 +48,7 @@ hypr_package=(
   wayland-protocols-devel
   wl-clipboard
   xdg-user-dirs
+  xdg-utils
   xwayland
 )
 
