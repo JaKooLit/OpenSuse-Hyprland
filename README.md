@@ -103,6 +103,10 @@ source ~/.zshrc
 #### 🙋 Got a questions regarding the Hyprland Dots or configurations? 🙋
 - Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
 
+#### 🙋 👋 Having issues or questions? 
+- for the install part, kindly open issue on this repo
+- for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
+
 #### ❗ some known issues on this Installer
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
 - At this time the packages force to install are the following `playerctl`
