@@ -112,6 +112,10 @@ source ~/.zshrc
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
 - At this time the packages force to install are the following `playerctl`
 
+#### 🔧 Proper way to re-installing a particular script from install-scripts folder
+- CD into Fedora-Hyprland Folder and then ran the below command. 
+- i.e. `./install-scripts/gtk-themes` - For reinstall GTK Themes. 
+
 #### 🛣️ TO DO:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
 - ~~[ ] Make it fully functional (duh 🤣)~~ done

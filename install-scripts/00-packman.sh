@@ -1,26 +1,21 @@
 #!/bin/bash
+# 💫 https://github.com/JaKooLit 💫 #
+# Packman #
 
 packman_repo="https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
 
+## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PARENT_DIR="$SCRIPT_DIR/.."
 
 # Change the working directory to the parent directory of the script
+PARENT_DIR="$SCRIPT_DIR/.."
 cd "$PARENT_DIR" || exit 1
 
-# Set colors for output messages
-OK=$(tput setaf 2)[OK]$(tput sgr0)
-ERROR=$(tput setaf 1)[ERROR]$(tput sgr0)
-NOTE=$(tput setaf 3)[NOTE]$(tput sgr0)
-WARN=$(tput setaf 166)[WARN]$(tput sgr0)
-CAT=$(tput setaf 6)[ACTION]$(tput sgr0)
-ORANGE=$(tput setaf 166)
-YELLOW=$(tput setaf 3)
-RESET=$(tput sgr0)
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
-LOG="install-$(date +%d-%H%M%S)_packman.log"
+LOG="Install-Logs/install-$(date +%d-%H%M%S)_packman.log"
 
 # Adding Packman repository and switching over to Packman
 printf "\n%s - Adding Packman repository (Globally).... \n" "${NOTE}"
