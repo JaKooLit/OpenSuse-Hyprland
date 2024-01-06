@@ -139,6 +139,9 @@ log into your account
 - ~~[ ] hyprland-nvidia - NOT SUPPORTED~~ NOW SUPPORTED 🥳
 - ~~[ ] SDDM is not starting. However, if you opt to install zsh, I have already set for auto log-in to Hyprland so once you set up zsh like the instruction above. You just need to type username and password.~~ FIXED 🥳
 
+#### 🫥 Improving performance for Older Nvidia Cards using driver 470
+  - [`SEE HERE`](https://github.com/JaKooLit/Hyprland-Dots/discussions/123#discussion-6035205)
+  
 #### ❗ some known issues on Hyprland-Dots
 - See FAQ section of Hyprland-Dots [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ)
 
