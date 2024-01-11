@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 11 Jan 2024
+- dropped wlsunset
+
 ## 30 December 2023
 - Install scripts cleaned up and better collection of install-logs
 - Pokemon Colorscripts is not optional
