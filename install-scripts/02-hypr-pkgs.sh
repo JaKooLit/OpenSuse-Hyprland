@@ -61,7 +61,6 @@ hypr_package_2=(
   mpv-mpris
   nvtop
   vim
-  wlsunset
   yad
 )
 
