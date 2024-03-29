@@ -21,13 +21,13 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_bluetooth.log"
 
 # Bluetooth
-printf "${NOTE} Installing Bluetooth Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $BLUE install had failed, please check the install.log"; exit 1; }
-  done
+printf "${NOTE} Installing bluetooth packages...\n"
+for BLUE in "${blue[@]}"; do
+  install_package "$BLUE" 2>&1 | tee -a "$LOG"
+  [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $BLUE has failed to install, please check install.log"; exit 1; }
+done
 
-  printf " Activating Bluetooth Services...\n"
-  sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
+printf " Activating bluetooth services...\n"
+sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
 
-  clear
+clear

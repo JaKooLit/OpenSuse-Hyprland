@@ -92,34 +92,34 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
 # Installation of main components
-printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
+printf "\n%s - Installing Hyprland packages...\n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 has failed to install, please check install.log"
     exit 1
   fi
 done
 
 # Installation of main components
-printf "\n%s - Installing hyprland packages (no-recommends).... \n" "${NOTE}"
+printf "\n%s - Installing Hyprland packages (no-recommends)...\n" "${NOTE}"
 
 for PKG_N in "${package_no_recommends[@]}"; do
   install_package_no "$PKG_N" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 has failed to install, please check install.log"
     exit 1
   fi
 done
 
 # removing dunst and mako to avoid swaync conflict
-printf "\n%s - Checking if mako or dunst are installed and removing for swaync to work properly \n" "${NOTE}"
+printf "\n%s - Checking if mako or dunst are installed and removing them for swaync to work properly...\n" "${NOTE}"
 
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation's has failed, please check the log"
     exit 1
   fi
 done

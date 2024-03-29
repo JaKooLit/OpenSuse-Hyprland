@@ -41,7 +41,7 @@ sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/t
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
-printf "${YELLOW} Installing Nvidia packages...\n"
+printf "${YELLOW} Installing NVIDIA packages...\n"
   for NVIDIA in "${nvidia_pkg[@]}" "${nvidia_drivers[@]}"; do
     install_package_agree "$NVIDIA" 2>&1 | tee -a "$LOG"
   done
@@ -53,16 +53,16 @@ additional_options="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidi
 
 # Check if additional options are already present in GRUB_CMDLINE_LINUX
 if grep -q "GRUB_CMDLINE_LINUX.*$additional_options" /etc/default/grub; then
-  echo "GRUB_CMDLINE_LINUX already contains the additional options" 2>&1 | tee -a "$LOG"
+  echo "GRUB_CMDLINE_LINUX already contains additional options" 2>&1 | tee -a "$LOG"
   else
   # Append the additional options to GRUB_CMDLINE_LINUX
   sudo sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$additional_options /" /etc/default/grub
-  echo "Added the additional options to GRUB_CMDLINE_LINUX" 2>&1 | tee -a "$LOG"
+  echo "Added additional options to GRUB_CMDLINE_LINUX" 2>&1 | tee -a "$LOG"
 fi
 
 # Update GRUB configuration
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-echo "Nvidia DRM modeset and additional options have been added to /etc/default/grub. Please reboot for changes to take effect." 2>&1 | tee -a "$LOG"
+echo "NVIDIA DRM modeset and additional options have been added to /etc/default/grub. Please reboot for the changes to take effect." 2>&1 | tee -a "$LOG"
 
 clear

@@ -27,11 +27,11 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 
 
 # Install SDDM 
-printf "\n%s - Installing sddm and dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing sddm and its dependencies...\n" "${NOTE}"
 for PKG1 in "${sddm[@]}" ; do
   install_package_no "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 has failed to install, please check install.log"
     exit 1
   fi
 done
@@ -44,13 +44,13 @@ for login_manager in lightdm gdm lxdm lxdm-gtk3; do
   fi
 done
 
-printf " Activating sddm service........\n"
+printf "Activating the sddm service...\n"
 sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
 sudo update-alternatives --set default-displaymanager /usr/lib/X11/displaymanagers/sddm 2>&1 | tee -a "$LOG"
 sudo systemctl enable sddm.service 2>&1 | tee -a "$LOG"
 
 # Set up SDDM
-echo -e "${NOTE} Setting up the login screen."
+echo -e "${NOTE} Setting up the login screen..."
 sddm_conf_dir=/etc/sddm.conf.d
 [ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir -p "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
 
@@ -65,7 +65,7 @@ valid_input=false
 while [ "$valid_input" != true ]; do
   read -n 1 -r -p "${CAT} OPTIONAL - Would you like to install SDDM themes? (y/n)" install_sddm_theme
   if [[ $install_sddm_theme =~ ^[Yy]$ ]]; then
-    printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
+    printf "\n%s - Installing the simple SDDM theme...\n" "${NOTE}"
 
     # Check if /usr/share/sddm/themes/simple-sddm exists and remove if it does
     if [ -d "/usr/share/sddm/themes/simple-sddm" ]; then
@@ -99,7 +99,7 @@ while [ "$valid_input" != true ]; do
     printf "\n%s - No SDDM themes will be installed.\n" "${NOTE}" 2>&1 | tee -a "$LOG"
     valid_input=true
   else
-    printf "\n%s - Invalid input. Please enter 'y' for Yes or 'n' for No.\n" "${ERROR}" 2>&1 | tee -a "$LOG"
+    printf "\n%s - Invalid input. Please enter 'y' for yes or 'n' for no.\n" "${ERROR}" 2>&1 | tee -a "$LOG"
   install_sddm_theme=""
   fi
 done

@@ -24,15 +24,15 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_xdph.log"
 for xdgs in "${xdg[@]}"; do
   install_package_no "$xdgs" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $xdph install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $xdph has failed to install, please check install.log"
     exit 1
   fi
 done
 
-printf "${NOTE} Checking for other XDG-Desktop-Portal-Implementations....\n"
+printf "${NOTE} Checking for other XDG-Desktop-Portal implementations...\n"
 sleep 1
 printf "\n"
-printf "${NOTE} XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
+printf "${NOTE} XDG-desktop-portal-KDE & GNOME (if installed) should be manually disabled or removed! I can't remove it... Sorry...\n"
 while true; do
     read -rp "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) " XDPH1
     echo
@@ -44,22 +44,21 @@ while true; do
         printf "${NOTE} Clearing any other xdg-desktop-portal implementations...\n"
         # Check if packages are installed and uninstall if present
         if sudo zypper se -i xdg-desktop-portal-wlr &>> /dev/null; then
-        echo "Removing xdg-desktop-portal-wlr..."
-        sudo zypper rm -y xdg-desktop-portal-wlr 2>&1 | tee -a "$LOG"
+          echo "Removing xdg-desktop-portal-wlr..."
+          sudo zypper rm -y xdg-desktop-portal-wlr 2>&1 | tee -a "$LOG"
         fi
 
         if sudo zypper se -i xdg-desktop-portal-lxqt &>> /dev/null; then
-        echo "Removing xdg-desktop-portal-lxqt..."
-        sudo zypper rm -y xdg-desktop-portal-lxqt 2>&1 | tee -a "$LOG"
+          echo "Removing xdg-desktop-portal-lxqt..."
+          sudo zypper rm -y xdg-desktop-portal-lxqt 2>&1 | tee -a "$LOG"
         fi
 
         break
         ;;
       [Nn])
-        echo "no other XDG-implementations will be removed." >> "$LOG"
+        echo "Other XDG implementations won't be removed." >> "$LOG"
         break
         ;;
-        
       *)
         echo "Invalid input. Please enter 'y' for yes or 'n' for no."
         ;;

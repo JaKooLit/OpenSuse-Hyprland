@@ -16,13 +16,13 @@ echo " \_| (_| o |\ (_) (_) |_ |  |_ "
 printf "\n%.0s" {1..2}  
 
 # Welcome message
-echo "$(tput setaf 6)Welcome to JaKooLit's OpenSUSE (Tumbleweed)- Hyprland Install Script!$(tput sgr0)"
+echo "$(tput setaf 6)Welcome to JaKooLit's OpenSUSE (Tumbleweed) - Hyprland Install Script!$(tput sgr0)"
 echo
-echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
+echo "$(tput setaf 166)ATTENTION: Run a full system update and reboot first!! (Highly Recommended)$(tput sgr0)"
 echo
-echo "$(tput setaf 3)NOTE: You will be required to answer some questions during the installation! $(tput sgr0)"
+echo "$(tput setaf 3)NOTE: You will be required to answer some questions during the installation!$(tput sgr0)"
 echo
-echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland wont start! $(tput sgr0)"
+echo "$(tput setaf 3)NOTE: If you are installing on a VM, ensure to enable 3D acceleration, else Hyprland wont start!$(tput sgr0)"
 echo
 
 read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
@@ -118,21 +118,21 @@ execute_script() {
 
 # Collect user responses to all questions
 printf "\n"
-ask_yes_no "-Do you have any nvidia gpu in your system?" nvidia
+ask_yes_no "-Do you have an NVIDIA GPU in your system?" nvidia
 printf "\n"
-ask_yes_no "-Install GTK themes (required for Dark/Light function)?" gtk_themes
+ask_yes_no "-Do you want to install the GTK themes (required for dark/light mode functionality)?" gtk_themes
 printf "\n"
-ask_yes_no "-Do you want to configure Bluetooth?" bluetooth
+ask_yes_no "-Do you want to configure bluetooth?" bluetooth
 printf "\n"
-ask_yes_no "-Do you want to install Thunar file manager?" thunar
+ask_yes_no "-Do you want to install the Thunar file manager?" thunar
 printf "\n"
-ask_yes_no "-Install & configure SDDM log-in Manager plus (OPTIONAL) SDDM Theme?" sddm
+ask_yes_no "-Do you want to install & configure the SDDM log-in manager plus (OPTIONAL) the SDDM theme?" sddm
 printf "\n"
-ask_yes_no "-Install XDG-DESKTOP-PORTAL-HYPRLAND? (for proper Screen Share ie OBS)" xdph
+ask_yes_no "-Do you want to install XDG-DESKTOP-PORTAL-HYPRLAND? (for proper screen sharing i.e. OBS)" xdph
 printf "\n"
-ask_yes_no "-Install zsh & oh-my-zsh plus (OPTIONAL) pokemon-colorscripts?" zsh
+ask_yes_no "-Do you want to install zsh & oh-my-zsh plus (OPTIONAL) pokemon-colorscripts?" zsh
 printf "\n"
-ask_yes_no "-Installing on Asus ROG Laptops?" rog
+ask_yes_no "-Are you installing this on an Asus ROG laptop?" rog
 printf "\n"
 ask_yes_no "-Do you want to download and install pre-configured Hyprland dotfiles?" dots
 printf "\n"
@@ -193,10 +193,10 @@ fi
 
 clear
 
-printf "\n${OK} Yey! Installation Completed.\n"
+printf "\n${OK} Yay! Installation completed.\n"
 printf "\n"
 sleep 2
-printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
+printf "\n${NOTE} You can start Hyprland by typing Hyprland (if SDDM is not installed) (note the capital H!).\n"
 printf "\n"
 printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
 
@@ -210,5 +210,3 @@ if [[ "$HYP" =~ ^[Yy]$ ]]; then
         systemctl reboot
     fi    
 fi
-
-

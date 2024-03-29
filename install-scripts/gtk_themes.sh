@@ -25,29 +25,29 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_themes.log"
 for PKG1 in "${engine[@]}"; do
     install_package "$PKG1" 2>&1 | tee -a "$LOG"
     if [ $? -ne 0 ]; then
-        echo -e "\033[1A\033[K${ERROR} - $PKG1 install had failed, please check the install.log"
+        echo -e "\033[1A\033[K${ERROR} - $PKG1 has failed to install, please check install.log"
         exit 1
     fi
 done
 
 # Check if the directory exists and delete it if present
 if [ -d "GTK-themes-icons" ]; then
-    echo "$NOTE Tokyo Theme GTK themes and Icons folder exist..deleting..." 2>&1 | tee -a "$LOG"
+    echo "$NOTE Tokyo night GTK themes and icons folder exist... Deleting..." 2>&1 | tee -a "$LOG"
     rm -rf "GTK-themes-icons" 2>&1 | tee -a "$LOG"
 fi
 
-echo "$NOTE Cloning Tokyo Theme GTK themes and Icons repository..." 2>&1 | tee -a "$LOG"
+echo "$NOTE Cloning Tokyo night GTK themes and icons repository..." 2>&1 | tee -a "$LOG"
 if git clone https://github.com/JaKooLit/GTK-themes-icons.git ; then
     cd GTK-themes-icons
     chmod +x auto-extract.sh
     ./auto-extract.sh
     cd ..
-    echo "$OK Extracted GTK Themes & Icons to ~/.icons & ~/.themes folders" 2>&1 | tee -a "$LOG"
+    echo "$OK Extracted GTK themes & icons to the ~/.icons & ~/.themes folders" 2>&1 | tee -a "$LOG"
 else
-    echo "$ERROR Download failed for Tokyo Theme GTK themes and Icons.." 2>&1 | tee -a "$LOG"
+    echo "$ERROR Download failed for Tokyo night GTK themes and icons." 2>&1 | tee -a "$LOG"
 fi
 
 tar -xf "assets/Bibata-Modern-Ice.tar.xz" -C ~/.icons 2>&1 | tee -a "$LOG"
-echo "$OK Extracted Bibata-Modern-Ice.tar.xz to ~/.icons folder." 2>&1 | tee -a "$LOG"
+echo "$OK Extracted Bibata-Modern-Ice.tar.xz to the ~/.icons folder." 2>&1 | tee -a "$LOG"
 
 clear

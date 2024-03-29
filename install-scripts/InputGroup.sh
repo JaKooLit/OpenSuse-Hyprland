@@ -17,7 +17,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_input.log"
 
 while true; do
     echo "${WARN} This script will add your user to the 'input' group."
-    echo "${NOTE} Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
+    echo "${NOTE} Please note that adding yourself to the 'input' group might be necessary for waybar's keyboard-state functionality to properly work."
 
     read -p "${YELLOW}Do you want to proceed? (y/n): ${RESET}" choice
 
@@ -44,7 +44,7 @@ while true; do
         echo "${NOTE} No changes made. Exiting the script."
         break  # Break out of the loop if 'no' is chosen
     else
-        echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
+        echo "${ERROR} Invalid input. Please enter 'y' for yes or 'n' for no."
     fi
 done
 

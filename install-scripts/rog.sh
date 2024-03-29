@@ -34,13 +34,13 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 
 ### Install software for Asus ROG laptops ###
-printf " Installing asusctl dependencies...\n"
+printf "${NOTE} Installing asusctl dependencies...\n"
   for ASUS in "${asusctl[@]}"; do
-  install_package_no  "$ASUS" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-  echo -e "\e[1A\e[K${ERROR} - $ASUS install had failed, please check the install.log"
-  exit 1
-  fi
+    install_package_no  "$ASUS" 2>&1 | tee -a "$LOG"
+    if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $ASUS has failed to install, please check install.log"
+    exit 1
+    fi
   done
 
 # additional steps required before installing asusctl
@@ -61,7 +61,7 @@ install_and_log() {
   local project_name="$1"
   local git_url="$2"
   
-  printf "${NOTE} Installing $project_name\n"
+  printf "${NOTE} Installing $project_name...\n"
 
   if git clone "$git_url" "$project_name"; then
     cd "$project_name" || exit 1
@@ -94,4 +94,3 @@ install_and_log "supergfxctl" "https://gitlab.com/asus-linux/supergfxctl.git"
 
 
 clear
-

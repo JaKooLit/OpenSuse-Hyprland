@@ -31,7 +31,7 @@ printf "${NOTE} Installing core zsh packages...${RESET}\n"
 for ZSHP in "${zsh[@]}"; do
   install_package "$ZSHP" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-     echo -e "\e[1A\e[K${ERROR} - $ZSHP install had failed, please check the install.log"
+     echo -e "\e[1A\e[K${ERROR} - $ZSHP has failed to install, please check install.log"
   fi
 done
 
@@ -49,7 +49,7 @@ while true; do
                 cd pokemon-colorscripts && sudo ./install.sh && cd ..
             fi
             sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc >> "$LOG" 2>&1
-			echo "${NOTE} Pokemon Installation process completed" 2>&1 | tee -a "$LOG"
+			echo "${NOTE} Pokemon installation process completed" 2>&1 | tee -a "$LOG"
             break
             ;;
         [Nn]*) 
@@ -57,7 +57,7 @@ while true; do
             break
             ;;
         *)
-            echo "Please enter 'y' for yes or 'n' for no." 2>&1 | tee -a "$LOG"
+            echo "Invalid input. Please enter 'y' for yes or 'n' for no." 2>&1 | tee -a "$LOG"
             ;;
     esac
 done
@@ -66,7 +66,7 @@ printf "\n"
 
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then
-  printf "${NOTE} Installing Oh My Zsh and plugins...\n"
+  printf "${NOTE} Installing Oh My Zsh and its plugins...\n"
 	if [ ! -d "$HOME/.oh-my-zsh" ]; then
   		sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
 	else
@@ -100,11 +100,11 @@ if command -v zsh >/dev/null; then
     printf "${NOTE} Changing default shell to zsh...\n"
 
 	while ! chsh -s $(which zsh); do
-    echo "${ERROR} Authentication failed. Please enter the correct password."
+    echo "${ERROR} Authentication failed. Please, enter the correct password."
     sleep 1	
 	done
 	printf "\n"
-	printf "${NOTE} Shell changed successfully to zsh.\n" 2>&1 | tee -a "$LOG"
+	printf "${NOTE} Successfully changed shell to zsh.\n" 2>&1 | tee -a "$LOG"
 
 fi
 

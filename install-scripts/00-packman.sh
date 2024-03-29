@@ -18,7 +18,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_packman.log"
 
 # Adding Packman repository and switching over to Packman
-printf "\n%s - Adding Packman repository (Globally).... \n" "${NOTE}"
+printf "\n%s - Adding Packman repository (globally)...\n" "${NOTE}"
 
 sudo zypper -n --quiet ar --refresh -p 90 "$packman_repo" packman 2>&1 | tee -a "$LOG"
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"

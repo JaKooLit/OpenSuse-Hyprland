@@ -26,14 +26,14 @@ install_package_base() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1..."
     sudo zypper in -y -t pattern "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
     else
       # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\e[1A\e[K${ERROR} $1 has failed to install :(, please check install.log. You may need to install it manually! Sorry, I tried :("
       exit 1
     fi
   fi
@@ -46,14 +46,14 @@ install_package() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1..."
     sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
     else
       # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\e[1A\e[K${ERROR} $1 has failed to install :(, please check install.log. You may need to install it manually! Sorry, I tried :("
       exit 1
     fi
   fi
@@ -66,14 +66,14 @@ install_package_no() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1..."
     sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
     else
       # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\e[1A\e[K${ERROR} $1 has failed to install :(, please check install.log. You may need to install it manually! Sorry, I tried :("
       exit 1
     fi
   fi
@@ -86,14 +86,14 @@ install_package_opi() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1..."
     sudo opi "$1" -n 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
     else
       # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\e[1A\e[K${ERROR} $1 has failed to install :(, please check install.log. You may need to install it manually! Sorry, I tried :("
       exit 1
     fi
   fi
@@ -106,14 +106,14 @@ install_package_agree() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1..."
     sudo zypper in --auto-agree-with-licenses -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
     else
       # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\e[1A\e[K${ERROR} $1 has failed to install :(, please check install.log. You may need to install it manually! Sorry, I tried :("
       exit 1
     fi
   fi
@@ -123,14 +123,14 @@ uninstall_package() {
   # Checking if package is installed
   if sudo zypper se -i "$1" &>> /dev/null ; then
     # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
+    echo -e "${NOTE} Uninstalling $1..."
     sudo zypper remove -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is uninstalled
     if ! sudo zypper se -i "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was uninstalled."
     else
       # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the uninstall.log."
+      echo -e "\e[1A\e[K${ERROR} $1 has failed to uninstall. Please check uninstall.log."
       exit 1
     fi
   fi
