@@ -3,7 +3,7 @@
 # Main Hyprland Package#
 
 hypr=(
-hyprland
+  hyprland
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

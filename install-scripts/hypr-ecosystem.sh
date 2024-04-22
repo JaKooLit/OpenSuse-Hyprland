@@ -1,6 +1,11 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# swaylock-effects via OPI #
+# hypr-ecosystem packages via OPI #
+
+hypr-eco=(
+  hypridle
+  hyprlock
+)
 
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -14,14 +19,14 @@ cd "$PARENT_DIR" || exit 1
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
-LOG="Install-Logs/install-$(date +'%d-%H%M%S')_swaylock-effects.log"
+LOG="Install-Logs/install-$(date +'%d-%H%M%S')_hypr-eco.log"
 
-printf "${NOTE} Installing swaylock-effects using opi\n"
-# Swaylock-Effects
-for lock in swaylock-effects; do
-  install_package_opi "$lock" 2>&1 | tee -a "$LOG"
+printf "${NOTE} Installing hypridle & hyprlock using opi\n"
+# hypr-ecosystem packages
+ for ECO in "${hypr-eco[@]}"; do
+  install_package_opi "$ECO" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $lock install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $ECO install had failed, please check the install.log"
     exit 1
   fi
 done

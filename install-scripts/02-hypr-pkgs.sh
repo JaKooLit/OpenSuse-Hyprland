@@ -40,7 +40,6 @@ hypr_package=(
   rofi-wayland
   slurp
   swappy
-  swayidle
   SwayNotificationCenter
   swww
   wget
