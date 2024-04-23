@@ -3,7 +3,6 @@
 # hypr-ecosystem packages via OPI #
 
 hypr-eco=(
-  hypridle
   hyprlock
 )
 
