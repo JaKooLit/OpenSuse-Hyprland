@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 25 Apr 2024
+- updated fonts.sh install script to install Jetbrains Mono Nerd Font
+
 ## 23 Apr 2024
 - Dropping swayidle and swaylock in favor of hypridle and hyprlock
 
