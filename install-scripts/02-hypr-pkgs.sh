@@ -18,6 +18,7 @@ hypr_package=(
   grim
   gvfs
   gvfs-backends
+  hypridle
   ImageMagick
   jq
   kitty
@@ -40,7 +41,6 @@ hypr_package=(
   rofi-wayland
   slurp
   swappy
-  swayidle
   SwayNotificationCenter
   swww
   wget
