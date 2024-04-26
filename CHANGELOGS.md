@@ -1,7 +1,7 @@
 ## Changelogs
 
 ## 26 Apr 2024
-- Updated sddm.sh for Qt6 variant
+- Updated sddm.sh for Qt6 variant (reverted back) - aint working
 
 ## 25 Apr 2024
 - updated fonts.sh install script to install Jetbrains Mono Nerd Font
