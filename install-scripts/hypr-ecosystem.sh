@@ -2,7 +2,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # hypr-ecosystem packages via OPI #
 
-hypr-eco=(
+hypr_eco=(
   hyprlock
 )
 
@@ -22,7 +22,7 @@ LOG="Install-Logs/install-$(date +'%d-%H%M%S')_hypr-eco.log"
 
 printf "${NOTE} Installing hypridle & hyprlock using opi\n"
 # hypr-ecosystem packages
- for ECO in "${hypr-eco[@]}"; do
+ for ECO in "${hypr_eco[@]}"; do
   install_package_opi "$ECO" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $ECO install had failed, please check the install.log"

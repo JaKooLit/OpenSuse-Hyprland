@@ -7,9 +7,9 @@ sddm=(
   xauth
   xorg-x11-server
   xf86-input-evdev
-  qt6-qt5compat
-  qt6-declarative 
-  qt6-svg 
+  libqt5-qtgraphicaleffects
+  libqt5-qtquickcontrols
+  libqt5-qtquickcontrols2
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -68,20 +68,20 @@ while [ "$valid_input" != true ]; do
     printf "\n%s - Installing Simple SDDM Theme\n" "${NOTE}"
 
     # Check if /usr/share/sddm/themes/simple-sddm exists and remove if it does
-    if [ -d "/usr/share/sddm/themes/simple-sddm-2" ]; then
-      sudo rm -rf "/usr/share/sddm/themes/simple-sddm-2"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory." 2>&1 | tee -a "$LOG"
+    if [ -d "/usr/share/sddm/themes/simple-sddm" ]; then
+      sudo rm -rf "/usr/share/sddm/themes/simple-sddm"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm' directory." 2>&1 | tee -a "$LOG"
     fi
 
     # Check if simple-sddm directory exists in the current directory and remove if it does
-    if [ -d "simple-sddm-2" ]; then
-      rm -rf "simple-sddm-2"
-      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm-2' directory from the current location." 2>&1 | tee -a "$LOG"
+    if [ -d "simple-sddm" ]; then
+      rm -rf "simple-sddm"
+      echo -e "\e[1A\e[K${OK} - Removed existing 'simple-sddm' directory from the current location." 2>&1 | tee -a "$LOG"
     fi
 
-    if git clone https://github.com/JaKooLit/simple-sddm-2.git; then
-      while [ ! -d "simple-sddm-2" ]; do
-      sleep 1
+    if git clone https://github.com/JaKooLit/simple-sddm.git; then
+      while [ ! -d "simple-sddm" ]; do
+        sleep 1
       done
 
       if [ ! -d "/usr/share/sddm/themes" ]; then
@@ -89,8 +89,8 @@ while [ "$valid_input" != true ]; do
         echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
       fi
 
-      sudo mv simple-sddm-2 /usr/share/sddm/themes/
-      echo -e "[Theme]\nCurrent=simple-sddm-2" | sudo tee "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
+      sudo mv simple-sddm /usr/share/sddm/themes/
+      echo -e "[Theme]\nCurrent=simple-sddm" | sudo tee "$sddm_conf_dir/10-theme.conf" &>> "$LOG"
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection" | tee -a "$LOG" >&2
     fi
@@ -100,7 +100,7 @@ while [ "$valid_input" != true ]; do
     valid_input=true
   else
     printf "\n%s - Invalid input. Please enter 'y' for Yes or 'n' for No.\n" "${ERROR}" 2>&1 | tee -a "$LOG"
-    install_sddm_theme=""
+  install_sddm_theme=""
   fi
 done
 
