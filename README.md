@@ -59,7 +59,7 @@
 - default GTK theme if agreed to be installed is Tokyo night GTK themes (dark and light) + Tokyo night SE icons
 
 #### 💫 SDDM and GTK Themes offered
-- If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm-2)
+- If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm)
 - If you opted to install GTK Themes, Icons and Cursor offered are Tokyo Nights. [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice 
 
 #### ⚠️ WARNING! If you have GDM already as log-in manager, DO NOT install SDDM
