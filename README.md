@@ -44,6 +44,9 @@
 > [!NOTE]
 > Main reason why I have not included an uninstallation script is simple. Some packages maybe already installed on your system by default. If I create an uninstall script with packages that I have set to install, you may end up a unrecoverable system. 
 
+> [!WARNING] 
+> Download this script on a directory where you have write permissions. ie. HOME. Or any directory within your home directory. Else script will fail
+
 #### 🆕  Prerequisites
 - This install script is intended for atleast Server type installed.
 - In theory, This should work on a any Tumbleweed with DE (Plasma, Gnome, XFCE). Although I am not sure about xfce default login manager if able to detect Hyprland.
@@ -78,8 +81,8 @@
 #### ✨ to run
 > clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 ```bash
-git clone --depth=1 https://github.com/JaKooLit/OpenSuse-Hyprland.git
-cd OpenSuse-Hyprland
+git clone --depth=1 https://github.com/JaKooLit/OpenSuse-Hyprland.git ~/OpenSuse-Hyprland
+cd ~/OpenSuse-Hyprland
 chmod +x install.sh
 ./install.sh
 ```
