@@ -150,11 +150,10 @@ execute_script "hypr-ecosystem.sh"
 execute_script "cliphist.sh"
 execute_script "wlogout.sh"
 execute_script "force-install.sh"
+execute_script "hyprland.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
-else
-    execute_script "hyprland.sh"
 fi
 
 if [ "$gtk_themes" == "Y" ]; then
