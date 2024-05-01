@@ -38,7 +38,7 @@ printf " Installing asusctl dependencies...\n"
   for ASUS in "${asusctl[@]}"; do
   install_package_no  "$ASUS" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-  echo -e "\e[1A\e[K${ERROR} - $ASUS install had failed, please check the install.log"
+  echo -e "\e[1A\e[K${ERROR} - $ASUS Package installation failed, Please check the installation logs"
   exit 1
   fi
   done

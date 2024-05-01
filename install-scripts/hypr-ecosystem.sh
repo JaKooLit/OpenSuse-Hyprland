@@ -25,7 +25,7 @@ printf "${NOTE} Installing hypridle & hyprlock using opi\n"
  for ECO in "${hypr_eco[@]}"; do
   install_package_opi "$ECO" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $ECO install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $ECO Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
