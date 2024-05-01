@@ -5,7 +5,6 @@
 nvidia_pkg=(
   openSUSE-repos-NVIDIA
   dkms
-  hyprland
   libvdpau1
   libva-vdpau-driver
   libva-utils
