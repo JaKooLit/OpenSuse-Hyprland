@@ -19,7 +19,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +'%d-%H%M%S')_hypr-eco.log"
 
-printf "${NOTE} Installing hypridle & hyprlock using opi\n"
+printf "${NOTE} Installing hyprlock using opi\n"
 # hypr-ecosystem packages
  for ECO in "${hypr_eco[@]}"; do
   install_package_opi "$ECO" 2>&1 | tee -a "$LOG"
@@ -29,11 +29,18 @@ printf "${NOTE} Installing hypridle & hyprlock using opi\n"
   fi
 done
 
+# Check if the file exists and delete it
+pypr="/usr/local/bin/pypr"
+if [ -f "$pypr" ]; then
+    sudo rm "$pypr"
+fi
+
 # Hyprland Plugins
 # pyprland https://github.com/hyprland-community/pyprland installing using python
 printf "${NOTE} Installing pyprland\n"
 
-pip install pyprland 2>&1 | tee -a "$LOG" || True
 curl https://raw.githubusercontent.com/hyprland-community/pyprland/main/scripts/get-pypr | sh  2>&1 | tee -a "$LOG"
+
+pip install pyprland --break-system-packages 2>&1 | tee -a "$LOG" 
 
 clear
