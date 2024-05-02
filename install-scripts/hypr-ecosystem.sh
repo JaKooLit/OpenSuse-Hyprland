@@ -6,7 +6,6 @@ hypr_eco=(
   hyprlock
 )
 
-
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -29,5 +28,9 @@ printf "${NOTE} Installing hypridle & hyprlock using opi\n"
     exit 1
   fi
 done
+
+# Hyprland Plugins
+# pyprland https://github.com/hyprland-community/pyprland installing using python
+pip install pyprland 2>&1 | tee -a "$LOG" || True
 
 clear
