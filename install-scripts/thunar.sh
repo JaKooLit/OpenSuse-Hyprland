@@ -32,7 +32,7 @@ printf "\n%s - Installing thunar packages (no-recommends).... \n" "${NOTE}"
 for PKG_N in "${thunar2[@]}"; do
   install_package_no "$PKG_N" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
@@ -40,7 +40,7 @@ done
 printf "${NOTE} Installing additional Thunar Packages...\n"  
   for THUNAR in "${thunar[@]}"; do
     install_package "$THUNAR" 2>&1 | tee -a "$LOG"
-    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR install had failed, please check the install.log"; exit 1; }
+    [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"; exit 1; }
   done
 
  # Check for existing configs and copy if does not exist

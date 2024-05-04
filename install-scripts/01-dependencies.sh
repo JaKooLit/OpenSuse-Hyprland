@@ -33,7 +33,7 @@ printf "\n%s - Installing main dependencies.... \n" "${NOTE}"
 for PKG1 in "${dependencies[@]}"; do
   install_package_base "$PKG1" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
@@ -41,7 +41,7 @@ done
 for PKG2 in "${opi[@]}"; do
   install_package "$PKG2" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG2 install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $PKG2 Package installation failed, Please check the installation logs"
     exit 1
   fi
 done

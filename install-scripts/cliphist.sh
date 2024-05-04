@@ -23,7 +23,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_cliphist.log"
 printf "${NOTE} Installing cliphist (clipboard Manager) using go...\n"
  for CLIP in "${cliphist[@]}"; do
    sudo zypper in -f -y "$CLIP" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $CLIP install had failed, please check the install.log"; exit 1; }
+   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $CLIP Package installation failed, Please check the installation logs"; exit 1; }
   done
 
 # Install cliphist using go

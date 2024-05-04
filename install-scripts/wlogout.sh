@@ -22,7 +22,7 @@ printf "${NOTE} Installing wlogout via opi\n"
 for wlog in wlogout; do
   install_package_opi "$wlog" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $wlog install had failed, please check the install.log"
+    echo -e "\e[1A\e[K${ERROR} - $wlog Package installation failed, Please check the installation logs"
     exit 1
   fi
 done
