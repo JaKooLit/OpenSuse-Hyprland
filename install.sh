@@ -151,6 +151,7 @@ execute_script "cliphist.sh"
 execute_script "wlogout.sh"
 execute_script "force-install.sh"
 execute_script "hyprland.sh"
+execute_script "ags.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
