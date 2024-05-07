@@ -10,9 +10,7 @@ gtk-layer-shell-devel
 gjs-devel
 libpulse-devel
 libgtk-layer-shell0
-
 typescript
-
 )
 
 # specific tags to download
