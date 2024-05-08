@@ -35,7 +35,7 @@ hypr_package=(
   python311-requests
   python311-pip
   python311-pywal
-  python-pyquery
+  python311-pyquery
   qt5ct
   qt6ct
   qt6-svg-devel
