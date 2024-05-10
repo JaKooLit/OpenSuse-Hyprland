@@ -3,7 +3,6 @@
 # wallust - pywal colors replacement #
 
 depend=(
-cargo
 imagemagick
 )
 
