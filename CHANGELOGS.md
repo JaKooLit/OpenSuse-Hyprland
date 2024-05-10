@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 10 May 2024
+- added wallust-git and remove python-pywal for migration to wallust on Hyprland-Dots v2.2.11
+
 ## 07 May 2024
 - added ags.sh for upcoming ags overview for next Hyprland-Dots release. Will be installed form source
 
