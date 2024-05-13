@@ -6,6 +6,10 @@
 
 <br/>
 </div>
+## SHOW CASE
+
+https://github.com/JaKooLit/OpenSuse-Hyprland/assets/85185940/fa6f9422-49ad-4b4c-84fc-b9b520ae373a
+
 
 #### Screenshots 
 <p align="center">
