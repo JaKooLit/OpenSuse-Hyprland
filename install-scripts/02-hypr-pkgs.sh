@@ -13,6 +13,7 @@ Extra=(
 # packages neeeded
 hypr_package=(
   curl
+  gawk
   git
   go
   grim
@@ -34,7 +35,6 @@ hypr_package=(
   polkit-gnome
   python311-requests
   python311-pip
-  python311-pywal
   python311-pyquery
   qt5ct
   qt6ct
