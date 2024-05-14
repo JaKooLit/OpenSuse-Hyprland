@@ -123,6 +123,9 @@ source ~/.zshrc
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
 - At this time the packages force to install are the following `playerctl`
 
+#### ✨ Packages that are manually downloaded and build. These packages will not be updated by dnf and have to be manually updated
+- wallust [`LINK`](https://codeberg.org/explosion-mental/wallust)
+
 #### ❗ some known issues for nvidia
 - reports from members of my discord, states that some users of nvidia are getting stuck on sddm login. credit  to @Kenni Fix stated was 
 ```  
