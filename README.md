@@ -45,7 +45,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 </summary>
 
 #### 📹 Video presentation [`Youtube Link`](https://youtu.be/xmSW9W-MbME?si=h9p8b8Z_GmsgafRS)
-<details>
+
 
 ### 🪧🪧🪧 ANNOUNCEMENT 🪧🪧🪧
 - This Repo does not contain Hyprland Dots or configs! Dotfiles can be checked here [`Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots) . During installation, if you opt to copy installation, it will be downloaded from that centralized repo.
