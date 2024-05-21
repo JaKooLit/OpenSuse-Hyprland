@@ -157,6 +157,13 @@ log into your account
 
 - more info from the hyprland wiki [`Hyprland Wiki Link`](https://wiki.hyprland.org/FAQ/#my-external-monitor-is-blank--doesnt-render--receives-no-signal-laptop)
 
+
+> [!NOTE]
+> Auto start of Hyprland after login (no SDDM or GDM or any login managers)
+- This was disabled a few days ago. (19 May 2024). This was because some users, after they used the Distro-Hyprland scripts with other DE (gnome-wayland or plasma-wayland), if they choose to login into gnome-wayland for example, Hyprland is starting. 
+- to avoid this, I disabled it. You can re-enable again by editing `~/.zprofile` . Remove all the # on the first lines
+
+
 #### 🔧 Proper way to re-installing a particular script from install-scripts folder
 - CD into Fedora-Hyprland Folder and then ran the below command. 
 - i.e. `./install-scripts/gtk-themes` - For reinstall GTK Themes. 
