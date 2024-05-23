@@ -92,6 +92,8 @@ install_and_log "asusctl" "https://gitlab.com/asus-linux/asusctl.git"
 # Download and build supergfxctl
 install_and_log "supergfxctl" "https://gitlab.com/asus-linux/supergfxctl.git"
 
+printf " enabling power-profiles-daemon...\n"
+sudo systemctl enable power-profiles-daemon 2>&1 | tee -a "$LOG"
 
 clear
 

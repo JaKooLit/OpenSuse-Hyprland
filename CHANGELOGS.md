@@ -2,6 +2,8 @@
 
 ## 23 May 2024
 - added qalculate-gtk to work with rofi-calc. Default keybinds (SUPER ALT C)
+- added power-profiles-daemon for ROG laptops. Note, I cant add to all since it conflicts with TLP, CPU-Auto-frequency etc.
+- added fastfetch
 
 ## 19 May 2024
 - Disabled the auto-login in .zprofile as it causes auto-login to Hyprland if any wayland was chosen. Can enabled if only using hyprland

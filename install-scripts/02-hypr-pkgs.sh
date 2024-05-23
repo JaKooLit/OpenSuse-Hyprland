@@ -57,6 +57,7 @@ hypr_package_2=(
   brightnessctl
   btop
   cava
+  fastfetch
   mousepad
   mpv
   mpv-mpris
