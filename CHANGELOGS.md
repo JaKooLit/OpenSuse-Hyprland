@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 26 May 2024
+- Added fzf for zsh (CTRL R to invoke FZF history)
+
 ## 25 May 2024
 - switched to sddm-qt6 theme. Link of which is on readme
 
