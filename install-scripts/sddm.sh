@@ -4,7 +4,7 @@
 
 sddm=(
   sddm-qt6
-  qt6-qt5compat
+  qt6-qt5compat-imports
   qt6-declarative
   qt6-svg
   xorg-x11-server
