@@ -3,7 +3,6 @@
 # Nvidia - Check Readme for more details for the drivers #
 
 nvidia_pkg=(
-  openSUSE-repos-NVIDIA
   dkms
   libvdpau1
   libva-vdpau-driver
@@ -15,11 +14,10 @@ nvidia_pkg=(
 )
 
 nvidia_drivers=(
-  nvidia-driver-G06
-  nvidia-driver-G06-kmp-default
   nvidia-video-G06
   nvidia-gl-G06
   nvidia-utils-G06
+  nvidia-compute-utils-G06
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -36,7 +34,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_nvidia.log"
 
 # adding NVIDIA repo
-sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA || true
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
@@ -45,6 +43,7 @@ printf "${YELLOW} Installing Nvidia packages...\n"
     install_package_agree "$NVIDIA" 2>&1 | tee -a "$LOG"
   done
 
+# adding additional nvidia-stuff
 printf "${YELLOW} adding nvidia-stuff to /etc/default/grub..."
 
 # Additional options to add to GRUB_CMDLINE_LINUX
