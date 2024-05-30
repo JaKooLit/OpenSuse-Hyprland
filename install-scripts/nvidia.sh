@@ -36,14 +36,18 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_nvidia.log"
 
 # adding NVIDIA repo
-sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+sudo zypper -n --quiet ar --refresh -p 90 https://download.nvidia.com/opensuse/tumbleweed NVIDIA 2>&1 | tee -a "$LOG"
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
+
+# automatic install of nvidia driver
+sudo zypper install-new-recommends --repo NVIDIA 2>&1 | tee -a "$LOG"
+
 # Install additional Nvidia packages
-printf "${YELLOW} Installing Nvidia packages...\n"
-  for NVIDIA in "${nvidia_pkg[@]}" "${nvidia_drivers[@]}"; do
-    install_package_agree "$NVIDIA" 2>&1 | tee -a "$LOG"
-  done
+#printf "${YELLOW} Installing Nvidia packages...\n"
+#  for NVIDIA in "${nvidia_pkg[@]}" "${nvidia_drivers[@]}"; do
+#    install_package_agree "$NVIDIA" 2>&1 | tee -a "$LOG"
+#  done
 
 printf "${YELLOW} adding nvidia-stuff to /etc/default/grub..."
 
