@@ -179,6 +179,8 @@ log into your account
 #### ❗ some known issues on Hyprland-Dots
 - See FAQ section of Hyprland-Dots [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ)
 
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
 
 #### ⏩ Contributing
 - As stated above, these script does not contain actual config files. These are only the installer of packages
