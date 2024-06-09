@@ -21,6 +21,7 @@ hypr_package=(
   gvfs-backends
   hypridle
   ImageMagick
+  inxi
   jq
   kitty
   kvantum-qt6
