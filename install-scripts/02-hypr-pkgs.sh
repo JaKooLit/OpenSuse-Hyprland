@@ -34,9 +34,9 @@ hypr_package=(
   pavucontrol
   playerctl  
   polkit-gnome
-  python311-requests
-  python311-pip
-  python311-pyquery
+  python312-requests
+  python312-pip
+  python312-pyquery
   qt5ct
   qt6ct
   qt6-svg-devel
