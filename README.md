@@ -15,7 +15,7 @@
 </div>
 
 <div align="center">
-#### 👇 KOOL's Hyprland-Dots related Links 👇
+👇 KOOL's Hyprland-Dots related Links 👇
 <br/>
 </div>
 <div align="center">
@@ -100,7 +100,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 - Another for SDDM, if you are installing from a server type of opensuse install, I highly suggest to install the sddm theme since you'll get a vanilla look sddm theme. 
 
 #### ✨ Costumize the packages
-- inside the install-scripts folder, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
+- inside the install-scripts directory, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
 
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm-2)
@@ -192,9 +192,12 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 - to avoid this, I disabled it. You can re-enable again by editing `~/.zprofile` . Remove all the # on the first lines
 
 
-#### 🔧 Proper way to re-installing a particular script from install-scripts folder
-- CD into Fedora-Hyprland Folder and then ran the below command. 
-- i.e. `./install-scripts/gtk-themes` - For reinstall GTK Themes. 
+#### 🔧 Proper way to re-installing a particular script from install-scripts directory
+- CD into OpenSuse-Hyprland Folder and then ran the below command. 
+- i.e. `./install-scripts/gtk-themes.sh` - For reinstall GTK Themes or
+- `./install-scripts/sddm.sh` - For reinstall sddm
+> [!IMPORTANT]
+> DO NOT cd into install-scripts directory as script will most likely to fail
 
 #### 🛣️ TO DO:
 - ~~[ ] Install zsh and oh-my-zsh without necessary steps above~~ DONE 
