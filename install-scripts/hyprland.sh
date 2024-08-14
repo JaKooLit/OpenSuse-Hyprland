@@ -3,6 +3,7 @@
 # Main Hyprland Package#
 
 hypr=(
+  aquamarine
   hyprland
 )
 
