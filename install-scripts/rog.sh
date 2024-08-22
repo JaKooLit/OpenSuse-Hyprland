@@ -4,7 +4,7 @@
 
 ## dependencies are taken from the asusctl website https://gitlab.com/asus-linux/asusctl
 asusctl=(
-  rustup 
+  rust 
   make 
   cmake 
   systemd-devel 
