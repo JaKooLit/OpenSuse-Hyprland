@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 26 Aug 2024
+- added nvidia_drm.fbdev=1 for grub
+
 ## 13 Aug 2024
 - updated to download from Hyprland-Dots releases as usual
 
