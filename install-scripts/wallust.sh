@@ -3,6 +3,7 @@
 # wallust - pywal colors replacement #
 
 depend=(
+  rust
   cargo
   imagemagick
 )
@@ -48,7 +49,7 @@ fi
 printf "${NOTE} Installing wallust...\n"
 if git clone --depth 1 https://codeberg.org/explosion-mental/wallust.git; then
     cd wallust || exit 1
-	make
+	  make
     if sudo make install 2>&1 | tee -a "$MLOG" ; then
         printf "${OK} wallust installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
