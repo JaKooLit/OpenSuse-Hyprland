@@ -3,18 +3,17 @@
 # Aylur's GTK Shell #
 
 ags=(
-npm21
-meson
-gobject-introspection-devel
-gtk-layer-shell-devel
-gjs-devel
-libpulse-devel
-libgtk-layer-shell0
-typescript
+    npm22
+    meson
+    gobject-introspection-devel
+    gtk-layer-shell-devel
+    gjs-devel
+    libpulse-devel
+    libgtk-layer-shell0
+    typescript
 )
 
-# specific tags to download
-# for fedora 38 & 39, change this tag to v0.2.6
+# ags tag
 ags_tag="v1.8.2"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
