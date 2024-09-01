@@ -4,6 +4,7 @@
 
 hypr_eco=(
   python311-aiofiles
+  python-base
   hyprlock
 )
 
@@ -42,7 +43,7 @@ printf "${NOTE} Installing pyprland\n"
 
 curl https://raw.githubusercontent.com/hyprland-community/pyprland/main/scripts/get-pypr | sh  2>&1 | tee -a "$LOG"
 
-pip install pyprland 2>&1 | tee -a "$LOG" 
+sudo pip install pyprland --break-system-packages 2>&1 | tee -a "$LOG" 
 
 clear
 
