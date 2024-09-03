@@ -6,6 +6,7 @@ hypr_eco=(
   python311-aiofiles
   python-base
   hyprlock
+  hypridle
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
