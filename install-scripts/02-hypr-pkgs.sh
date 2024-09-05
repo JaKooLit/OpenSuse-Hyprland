@@ -19,7 +19,6 @@ hypr_package=(
   grim
   gvfs
   gvfs-backends
-  hypridle
   ImageMagick
   inxi
   jq
@@ -81,6 +80,7 @@ package_no_recommends=(
 uninstall=(
   dunst
   mako
+  rofi
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -95,6 +95,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
+
+# uninstalling conflicting packages
+printf "\n%s - Removing Mako, Dunst and rofi as it conflicts with swaync and rofi-wayland \n" "${NOTE}"
+for PKG in "${uninstall[@]}"; do
+  uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation failed, please check the log"
+    exit 1
+  fi
+done
 
 # Installation of main components
 printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
@@ -114,17 +124,6 @@ for PKG_N in "${package_no_recommends[@]}"; do
   install_package_no "$PKG_N" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
-done
-
-# removing dunst and mako to avoid swaync conflict
-printf "\n%s - Checking if mako or dunst are installed and removing for swaync to work properly \n" "${NOTE}"
-
-for PKG in "${uninstall[@]}"; do
-  uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation had failed, please check the log"
     exit 1
   fi
 done

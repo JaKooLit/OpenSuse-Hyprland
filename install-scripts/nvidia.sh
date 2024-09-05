@@ -39,13 +39,13 @@ sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 
 
 # automatic install of nvidia driver
-sudo zypper install-new-recommends --repo NVIDIA 2>&1 | tee -a "$LOG"
+#sudo zypper install-new-recommends --repo NVIDIA 2>&1 | tee -a "$LOG"
 
 # Install additional Nvidia packages
-#printf "${YELLOW} Installing Nvidia packages...\n"
-#  for NVIDIA in "${nvidia_pkg[@]}" "${nvidia_drivers[@]}"; do
-#    install_package_agree "$NVIDIA" 2>&1 | tee -a "$LOG"
-#  done
+printf "${YELLOW} Installing Nvidia packages...\n"
+  for NVIDIA in "${nvidia_pkg[@]}" "${nvidia_drivers[@]}"; do
+    install_package_agree "$NVIDIA" 2>&1 | tee -a "$LOG"
+  done
 
 # adding additional nvidia-stuff
 printf "${YELLOW} adding nvidia-stuff to /etc/default/grub..."
