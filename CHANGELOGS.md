@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 08 Sep 2024
+- Added final error checks on install-logs
+
 ## 28 Aug 2024
 - Added final check if hyprland is installed and will give an error to user
 
