@@ -1,17 +1,14 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
 # Final checking if packages are installed
-# NOTE: These package check are only the essentials
+# NOTE: These package checks are only the essentials
 
 packages=(
   aylurs-gtk-shell
-  cliphist
-  kvantum
   rofi-wayland
   ImageMagick
   SwayNotificationCenter
   swww
-  wallust
   waybar
   wl-clipboard
   wlogout
@@ -20,6 +17,12 @@ packages=(
   hyprlock
   hyprland
   pyprland 
+)
+
+# Local packages that should be in /usr/local/bin/
+local_pkgs_installed=(
+  cliphist
+  wallust 
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -38,11 +41,7 @@ LOG="Install-Logs/00_CHECK-$(date +%d-%H%M%S)_installed.log"
 printf "\n%s - Final Check if essential packages were installed \n" "${NOTE}"
 # Initialize an empty array to hold missing packages
 missing=()
-
-# Function to check if a package is installed using opi
-is_installed_opi() {
-    opi -l | grep -q "$1"
-}
+local_missing=()
 
 # Function to check if a package is installed using zypper
 is_installed_zypper() {
@@ -51,30 +50,39 @@ is_installed_zypper() {
 
 # Loop through each package
 for pkg in "${packages[@]}"; do
-    # Check if the package is installed via opi
-    if is_installed_opi "$pkg"; then
-        continue
-    fi
-
-    # If not found via opi, check using zypper
+    # Check if the package is installed via zypper
     if ! is_installed_zypper "$pkg"; then
         missing+=("$pkg")
     fi
 done
 
-# Check if the missing array is empty or not
-if [ ${#missing[@]} -eq 0 ]; then
+# Check for local packages
+for pkg in "${local_pkgs_installed[@]}"; do
+    if ! [ -f "/usr/local/bin/$pkg" ]; then
+        local_missing+=("$pkg")
+    fi
+done
+
+# Log missing packages
+if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ]; then
     echo "${OK} All essential packages are installed." | tee -a "$LOG"
 else
-    # Message to user on missing packages
-    echo "${WARN} The following packages are missing and will be logged:"
-    
-    # Log only the missing packages and inform the user
-    for pkg in "${missing[@]}"; do
-        echo "$pkg"
-        echo "$pkg" >> "$LOG" # Log the missing package to the file
-    done
-    
+    if [ ${#missing[@]} -ne 0 ]; then
+        echo "${WARN} The following packages are missing from zypper and will be logged:"
+        for pkg in "${missing[@]}"; do
+            echo "$pkg"
+            echo "$pkg" >> "$LOG" # Log the missing package to the file
+        done
+    fi
+
+    if [ ${#local_missing[@]} -ne 0 ]; then
+        echo "${WARN} The following local packages are missing from /usr/local/bin/ and will be logged:"
+        for pkg in "${local_missing[@]}"; do
+            echo "$pkg is not installed since you can't find it in /usr/local/bin/"
+            echo "$pkg" >> "$LOG" # Log the missing local package to the file
+        done
+    fi
+
     # Add a timestamp when the missing packages were logged
     echo "${NOTE} Missing packages logged at $(date)" >> "$LOG"
 fi
