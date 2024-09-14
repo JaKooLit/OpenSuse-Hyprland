@@ -8,10 +8,6 @@ depend=(
   imagemagick
 )
 
-#specific branch or release
-#wal_tag="master"
-# 08-Aug-2024 - Changed to master as wallust is now 3.0
-
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -36,30 +32,25 @@ for PKG1 in "${depend[@]}"; do
   fi
 done
 
-##
-printf "${NOTE} Installing wallust from dev branch...\n"  
-
-# Check if folder exists and remove it
-if [ -d "wallust" ]; then
-    printf "${NOTE} Removing existing wallust folder...\n"
-    rm -rf "wallust"
+# Remove any existing Wallust binary
+if [[ -f "/usr/local/bin/wallust" ]]; then
+    echo "Removing existing Wallust binary..." 2>&1 | tee -a "$LOG"
+    sudo rm "/usr/local/bin/wallust" 
 fi
 
-# Clone and build wallust
-printf "${NOTE} Installing wallust...\n"
-if git clone --depth 1 https://codeberg.org/explosion-mental/wallust.git; then
-    cd wallust || exit 1
-	  make
-    if sudo make install 2>&1 | tee -a "$MLOG" ; then
-        printf "${OK} wallust installed successfully.\n" 2>&1 | tee -a "$MLOG"
-    else
-        echo -e "${ERROR} Installation failed for wallust." 2>&1 | tee -a "$MLOG"
-    fi
-    #moving the addional logs to Install-Logs directory
-    mv $MLOG ../Install-Logs/ || true 
-    cd ..
+printf "\n%.0s" {1..2} 
+
+# Install Wallust using Cargo
+echo "Installing Wallust using Cargo..." | tee -a "$LOG"
+if cargo install wallust 2>&1 | tee -a "$LOG" ; then
+    echo "Wallust installed successfully." | tee -a "$LOG"
+
+    # Move the newly compiled binary to /usr/local/bin
+    echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
+    sudo mv "$HOME/.cargo/bin/wallust" /usr/local/bin 2>&1 | tee -a "$LOG"
 else
-    echo -e "${ERROR} Download failed for wallust." 2>&1 | tee -a "$LOG"
+    echo "Error: Wallust installation failed. Check the log file $LOG for details." | tee -a "$LOG"
+    exit 1
 fi
 
 clear
