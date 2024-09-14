@@ -5,7 +5,7 @@
 depend=(
   rust
   cargo
-  imagemagick
+  ImageMagick
 )
 
 
