@@ -3,9 +3,9 @@
 # Zsh and Oh my Zsh + Optional Pokemon ColorScripts#
 
 zsh=(
-    eza
-    fzf
-    zsh 
+  eza
+  fzf
+  zsh 
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

@@ -66,7 +66,7 @@ install_package_no() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1 with --no-recommends flag ..."
     sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
@@ -86,7 +86,7 @@ install_package_opi() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1 via opi ..."
     sudo opi "$1" -n 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
@@ -106,7 +106,7 @@ install_package_agree() {
     echo -e "${OK} $1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo -e "${NOTE} Installing $1 with --auto-agree-with-licenses flag ..."
     sudo zypper in --auto-agree-with-licenses -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then

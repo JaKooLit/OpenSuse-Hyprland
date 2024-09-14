@@ -2,22 +2,8 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Asus ROG asusctl and supergfxctl #
 
-## dependencies are taken from the asusctl website https://gitlab.com/asus-linux/asusctl
-asusctl=(
-  rust 
-  make 
-  cmake 
-  systemd-devel 
-  clang-devel 
-  llvm-devel 
-  gdk-pixbuf-devel 
-  cairo-devel 
-  pango-devel
+power=(
   power-profiles-daemon 
-  freetype2-devel 
-  gtk3-devel 
-  libexpat-devel 
-  libayatana-indicator3-7
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -34,8 +20,8 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 
 ### Install software for Asus ROG laptops ###
-printf " Installing asusctl dependencies...\n"
-  for ASUS in "${asusctl[@]}"; do
+printf " Installing additional for ASUS ROG...\n"
+  for ASUS in "${power[@]}"; do
   install_package_no  "$ASUS" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then
   echo -e "\e[1A\e[K${ERROR} - $ASUS Package installation failed, Please check the installation logs"
@@ -56,43 +42,28 @@ sudo zypper rm -n -y suse-prime 2>&1 | tee -a "$LOG" || true
 
 sudo zypper rm -n -y tlp 2>&1 | tee -a "$LOG" || true
 
-# Function to handle the installation and log messages
-install_and_log() {
-  local project_name="$1"
-  local git_url="$2"
-  
-  printf "${NOTE} Installing $project_name\n"
+printf "\n%.0s" {1..2}
 
-  if git clone "$git_url" "$project_name"; then
-    cd "$project_name" || exit 1
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 2>&1 | tee -a "$LOG"
-    source "$HOME/.cargo/env"
-    make
+# Asus packages from OBS
+opi_asus=(
+  asusctl
+  supergfxctl
+)
 
-    if sudo make install 2>&1 | tee -a "$LOG"; then
-      printf "${OK} $project_name installed successfully.\n"
-      if [ "$project_name" == "supergfxctl" ]; then
-        # Enable supergfxctl
-        sudo systemctl enable --now supergfxd 2>&1 | tee -a "$LOG"
-      fi
-    else
-      echo -e "${ERROR} Installation failed for $project_name."
-    fi
-
-    # Return to the previous directory
-    cd - || exit 1
-  else
-    echo -e "${ERROR} Cloning $project_name from $git_url failed."
+# Installing packages from OBS
+printf "${NOTE} Installing asus packages from OpenSuse Builder Service (OBS)...\n"
+for opi_asus_pkg in "${opi_asus[@]}"; do
+  install_package_opi "$opi_asus_pkg" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[1A\e[K${ERROR} - $opi_asus_pkg Package installation failed, Please check the installation logs"
+    exit 1
   fi
-}
+done
 
-# Download and build asusctl
-install_and_log "asusctl" "https://gitlab.com/asus-linux/asusctl.git"
 
-# Download and build supergfxctl
-install_and_log "supergfxctl" "https://gitlab.com/asus-linux/supergfxctl.git"
-
-printf " enabling power-profiles-daemon...\n"
+printf " enabling rog services...\n"
+sudo systemctl enable supergfxd 2>&1 | tee -a "$LOG"
+sleep 1
 sudo systemctl enable power-profiles-daemon 2>&1 | tee -a "$LOG"
 
 clear

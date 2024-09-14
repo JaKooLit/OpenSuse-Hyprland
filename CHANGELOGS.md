@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 14 Sep 2024
+- Refactor install scripts (opi packages in one install-script)
+- Discarded final error check in favor of checking for essential packages function to check if all essential packages are installed
+
 ## 08 Sep 2024
 - Added final error checks on install-logs
 
