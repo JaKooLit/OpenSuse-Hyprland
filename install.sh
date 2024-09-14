@@ -145,13 +145,10 @@ execute_script "00-packman.sh"
 execute_script "01-dependencies.sh"
 execute_script "02-hypr-pkgs.sh"
 execute_script "fonts.sh"
-execute_script "nwg-look.sh"
 execute_script "hypr-ecosystem.sh"
-execute_script "cliphist.sh"
-execute_script "wlogout.sh"
 execute_script "force-install.sh"
 execute_script "hyprland.sh"
-execute_script "ags.sh"
+execute_script "03-opi-pkgs.sh"
 execute_script "wallust.sh"
 
 if [ "$nvidia" == "Y" ]; then
@@ -194,64 +191,33 @@ fi
 
 clear
 
-printf "\n%.0s" {1..3}
-
-# Error-checking section
-LOG_DIR="Install-Logs"
-ERROR_FILE="$LOG_DIR/00-Error.log"
-
-# Create or clear the error file
-: > "$ERROR_FILE"
-
-# Check if the Install-Logs directory exists
-if [ -d "$LOG_DIR" ]; then
-    # Iterate through each file in the Install-Logs directory
-    for log_file in "$LOG_DIR"/*; do
-        # Check if it's a file
-        if [ -f "$log_file" ]; then
-            # Search for lines containing the word "error" (case-insensitive) in the log file
-            if grep -i "error" "$log_file" > /dev/null; then
-                # If errors are found, add the filename to the error file
-                echo "${WARN} Errors found in file: $(basename "$log_file")" >> "$ERROR_FILE"
-            fi
-        fi
-    done
-
-    # Check if the error file has any content
-    if [ -s "$ERROR_FILE" ]; then
-        echo "${ERROR} Errors encountered during Installation. See $ERROR_FILE for details."
-    else
-        echo "${OK} No errors were found."
-    fi
-else
-    echo "Directory $LOG_DIR does not exist or could not be found."
-fi
+printf "\n%.0s" {1..2}
+# final check essential packages if it is installed
+execute_script "04-Final-Check.sh"
 
 printf "\n%.0s" {1..1}
 
 # Check if either hyprland or hyprland-git is installed
 if sudo zypper se -i hyprland &> /dev/null || sudo zypper se -i hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, there may some errors during installation "
-    printf "\n${CAT} Please see the errors in Install-Logs as stated above\n"
+    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed Please see above!"
+    printf "\n${CAT} Ignore this message if it states 'All essential packages are installed.'\n"
     sleep 2
-    printf "\n${NOTE} You can start Hyprland by typing Hyprland (IF SDDM is not installed) (note the capital H!).\n"
-    printf "\n"
-    printf "\n${NOTE} It is highly recommended to reboot your system.\n\n"
+    printf "\n${NOTE} You can start Hyprland by typing 'Hyprland' (IF SDDM is not installed) (note the capital H!).\n"
+    printf "\n${NOTE} However, it is highly recommended to reboot your system.\n\n"
 
     # Prompt user to reboot
     read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
 
+    # Check if the user answered 'y' or 'Y'
     if [[ "$HYP" =~ ^[Yy]$ ]]; then
         if [[ "$nvidia" == "Y" ]]; then
             echo "${NOTE} NVIDIA GPU detected. Rebooting the system..."
-            systemctl reboot
-        else
-            systemctl reboot
-        fi    
+        fi
+        systemctl reboot
     fi
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland failed to install. Please check Error Log and Install-Logs directory...\n\n"
+    printf "\n${WARN} Hyprland failed to install. Please check 00_CHECK-time_installed.log and other files Install-Logs/ directory...\n\n"
     exit 1
 fi
 
