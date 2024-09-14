@@ -20,7 +20,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_packman.log"
 # Adding Packman repository and switching over to Packman
 printf "\n%s - Adding Packman repository (Globally).... \n" "${NOTE}"
 
-sudo zypper -n --quiet ar --refresh -p 90 "$packman_repo" packman 2>&1 | tee -a "$LOG"
+sudo zypper -n --quiet ar --refresh -p 80 "$packman_repo" packman 2>&1 | tee -a "$LOG"
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 sudo zypper -n dup --from packman --allow-vendor-change 2>&1 | tee -a "$LOG"
 
