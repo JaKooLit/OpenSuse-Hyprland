@@ -187,7 +187,7 @@ fi
 execute_script "InputGroup.sh"
 
 if [ "$dots" == "Y" ]; then
-    execute_script "dotfiles.sh"
+    execute_script "dotfiles-main.sh"
 fi
 
 clear

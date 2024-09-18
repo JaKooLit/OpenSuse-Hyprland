@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 18 Sep 2024
+- dotfiles will now be downloaded from main or master branch instead of from the releases version.
+
 ## 14 Sep 2024
 - Refactor install scripts (opi packages in one install-script)
 - Discarded final error check in favor of checking for essential packages function to check if all essential packages are installed
