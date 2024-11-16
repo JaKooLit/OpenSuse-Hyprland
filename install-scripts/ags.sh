@@ -8,12 +8,14 @@ ags=(
     meson 
     gjs-devel 
     gtk3-devel 
-    gtk-layer-shell 
+    gtk-layer-shell
+    gtk-layer-shell-devel 
     gnome-bluetooth 
     upower 
     NetworkManager 
     pulseaudio-libs-devel 
-    libdbusmenu-gtk3 
+    libdbusmenu-gtk3
+    libpulse-devel 
     libsoup3
 )
 
