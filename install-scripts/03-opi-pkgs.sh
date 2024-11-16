@@ -4,7 +4,7 @@
 
 opi_package=(
   cliphist
-  aylurs-gtk-shell
+  #aylurs-gtk-shell
   nwg-look
   wlogout
 )
