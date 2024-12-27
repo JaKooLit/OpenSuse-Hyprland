@@ -4,7 +4,7 @@
 
 packman_repo="https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
 
-factory_repo="https://download.opensuse.org/repositories/openSUSE:Factory/standard/openSUSE:Factory.repo"
+X11_wayland_repo="https://download.opensuse.org/repositories/X11:Wayland/openSUSE_Tumbleweed/X11:Wayland.repo"
                   
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -28,7 +28,7 @@ sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
 sudo zypper -n dup --from packman --allow-vendor-change 2>&1 | tee -a "$LOG"
 
 # add x11:wayland repo
-sudo zypper -n --quiet ar --refresh -p 80 "$factory_repo" openSUSE:Factory 2>&1 | tee -a "$LOG"
+sudo zypper ar --refresh -p 80 "$X11_wayland_repo" X11:Wayland 2>&1 | tee -a "$LOG"
 
 # Clear the terminal after execution
 clear
