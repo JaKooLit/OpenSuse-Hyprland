@@ -4,12 +4,13 @@
 # NOTE: These package checks are only the essentials
 
 packages=(
-  aylurs-gtk-shell
+  ags
   rofi-wayland
   ImageMagick
   SwayNotificationCenter
   swww
   waybar
+  wallust
   wl-clipboard
   wlogout
   kitty
