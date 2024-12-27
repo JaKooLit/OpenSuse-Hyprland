@@ -141,7 +141,7 @@ printf "\n"
 chmod +x install-scripts/*
 
 # Install hyprland packages
-execute_script "00-packman.sh"
+execute_script "00-add-repo.sh"
 execute_script "01-dependencies.sh"
 execute_script "02-hypr-pkgs.sh"
 execute_script "fonts.sh"
