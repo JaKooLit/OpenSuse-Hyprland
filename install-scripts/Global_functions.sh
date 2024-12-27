@@ -118,6 +118,7 @@ install_package_agree() {
     fi
   fi
 }
+
 # Function for uninstalling packages
 uninstall_package() {
   # Checking if package is installed
@@ -125,13 +126,7 @@ uninstall_package() {
     # Package is installed
     echo -e "${NOTE} Uninstalling $1 ..."
     sudo zypper remove -y "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is uninstalled
-    if ! sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the uninstall.log."
-      exit 1
-    fi
   fi
 }
+
+
