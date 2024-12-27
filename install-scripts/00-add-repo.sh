@@ -25,7 +25,7 @@ printf "\n%s - Adding Packman repository (Globally).... \n" "${NOTE}"
 sudo zypper -n --quiet ar --refresh -p 80 "$packman_repo" packman 2>&1 | tee -a "$LOG"
 
 # add x11:wayland repo
-sudo zypper -n --quiet ar --refresh -p 80 "$x11_wayland_repo" x11-wayland 2>&1 | tee -a "$LOG"
+sudo zypper -n --quiet ar --refresh -p 80 "$x11_wayland_repo" x11:wayland 2>&1 | tee -a "$LOG"
 
 
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
