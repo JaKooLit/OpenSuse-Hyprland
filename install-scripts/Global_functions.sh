@@ -70,7 +70,7 @@ install_package_no() {
     sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
@@ -110,7 +110,7 @@ install_package_agree() {
     sudo zypper in --auto-agree-with-licenses -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed
     if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} Package ${!YELLOW}$1${RESET} has been successfully installed!"
+      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       # Something is missing, exiting to review log
       echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
