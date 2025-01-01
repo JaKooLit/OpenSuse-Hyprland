@@ -10,7 +10,6 @@ ags=(
     gtk3-devel 
     gtk-layer-shell
     gtk-layer-shell-devel 
-    gnome-bluetooth 
     upower 
     NetworkManager 
     pulseaudio-libs-devel 
