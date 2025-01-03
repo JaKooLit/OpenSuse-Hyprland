@@ -9,7 +9,6 @@ packages=(
   SwayNotificationCenter
   swww
   waybar
-  wallust
   wl-clipboard
   wlogout
   kitty
