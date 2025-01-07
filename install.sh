@@ -195,6 +195,11 @@ fi
 
 clear
 
+# copy fastfetch config if opensuse is not present
+if [ ! -f "$HOME/.config/fastfetch/opensuse.png" ]; then
+    cp -r assets/fastfetch "$HOME/.config/"
+fi
+
 printf "\n%.0s" {1..2}
 # final check essential packages if it is installed
 execute_script "04-Final-Check.sh"

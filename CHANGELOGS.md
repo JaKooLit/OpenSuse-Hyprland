@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 07 Jan 2025
+- default theme for oh my zsh theme is now "funky" 
+- added fastfetch compact-config for opensuse (cant find a good tumbleweed one)
+
 ## 27 Dec 2024
 - install hyprland-qtutils from Suse OBS
 
