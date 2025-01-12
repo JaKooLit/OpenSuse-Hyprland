@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 12 Jan 2025
+- switch to final version of aylurs-gtk-shell-v1
+
 ## 07 Jan 2025
 - default theme for oh my zsh theme is now "funky" 
 - added fastfetch compact-config for opensuse (cant find a good tumbleweed one)
