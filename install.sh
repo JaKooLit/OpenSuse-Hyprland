@@ -41,7 +41,7 @@ fi
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
 NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
-WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
 CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
 ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
@@ -141,7 +141,7 @@ printf "\n"
 chmod +x install-scripts/*
 
 # Install hyprland packages
-execute_script "00-packman.sh"
+execute_script "00-add-repo.sh"
 execute_script "01-dependencies.sh"
 execute_script "02-hypr-pkgs.sh"
 execute_script "fonts.sh"
@@ -151,6 +151,9 @@ execute_script "force-install.sh"
 execute_script "hyprland.sh"
 execute_script "03-opi-pkgs.sh"
 execute_script "wallust.sh"
+
+# Install AGS from source (older version)
+execute_script "ags.sh"
 
 if [ "$nvidia" == "Y" ]; then
     execute_script "nvidia.sh"
@@ -187,10 +190,15 @@ fi
 execute_script "InputGroup.sh"
 
 if [ "$dots" == "Y" ]; then
-    execute_script "dotfiles.sh"
+    execute_script "dotfiles-main.sh"
 fi
 
 clear
+
+# copy fastfetch config if opensuse is not present
+if [ ! -f "$HOME/.config/fastfetch/opensuse.png" ]; then
+    cp -r assets/fastfetch "$HOME/.config/"
+fi
 
 printf "\n%.0s" {1..2}
 # final check essential packages if it is installed

@@ -4,7 +4,6 @@
 # NOTE: These package checks are only the essentials
 
 packages=(
-  aylurs-gtk-shell
   rofi-wayland
   ImageMagick
   SwayNotificationCenter
@@ -20,6 +19,7 @@ packages=(
 
 # Local packages that should be in /usr/local/bin/
 local_pkgs_installed=(
+  ags
   cliphist
   wallust 
 )

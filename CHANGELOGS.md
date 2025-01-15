@@ -1,5 +1,34 @@
 ## Changelogs
 
+## 12 Jan 2025
+- switch to final version of aylurs-gtk-shell-v1
+
+## 07 Jan 2025
+- default theme for oh my zsh theme is now "funky" 
+- added fastfetch compact-config for opensuse (cant find a good tumbleweed one)
+
+## 27 Dec 2024
+- install hyprland-qtutils from Suse OBS
+
+## 26 Dec 2024
+- Removal of Bibata Ice cursor on assets since its integrated in the GTK Themes and Icons extract from a separate repo
+- integrated hyprcursor in Bibata Ice Cursor
+
+## 16 Nov 2024
+- adjusted ags v1.8.2 install script
+
+## 15 Nov 2024
+- revert Aylurs GTK Shell (AGS) to install older version
+
+## 20 Sep 2024
+- User will be ask if they want to set Thunar as default file manager if they decided to install it
+
+## 19 Sep 2024
+- Added fastfetch on tty. However, will be disabled if user decided to install pokemon colorscripts
+
+## 18 Sep 2024
+- dotfiles will now be downloaded from main or master branch instead of from the releases version.
+
 ## 14 Sep 2024
 - Refactor install scripts (opi packages in one install-script)
 - Discarded final error check in favor of checking for essential packages function to check if all essential packages are installed

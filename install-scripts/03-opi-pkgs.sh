@@ -3,8 +3,8 @@
 # Packages from https://build.opensuse.org/ that will be installed via opi
 
 opi_package=(
-  cliphist
-  aylurs-gtk-shell
+  #cliphist
+  #aylurs-gtk-shell
   nwg-look
   wlogout
 )

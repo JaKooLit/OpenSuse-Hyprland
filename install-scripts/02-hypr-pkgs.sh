@@ -76,8 +76,9 @@ package_no_recommends=(
   NetworkManager-applet
 )
 
-# List of packages to uninstall as it conflicts with swaync or causing swaync to not function properly
+# List of packages to uninstall as it conflicts some packages
 uninstall=(
+  aylurs-gtk-shell
   dunst
   mako
   rofi
@@ -97,13 +98,9 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
 # uninstalling conflicting packages
-printf "\n%s - Removing Mako, Dunst and rofi as it conflicts with swaync and rofi-wayland \n" "${NOTE}"
+printf "\n%s - Removing Mako, Dunst and rofi (if present) as it conflicts with swaync and rofi-wayland \n" "${NOTE}"
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG uninstallation failed, please check the log"
-    exit 1
-  fi
 done
 
 # Installation of main components
