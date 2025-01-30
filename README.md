@@ -171,7 +171,7 @@ source ~/.zshrc
 
 
 #### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://www.youtube.com/watch?v=ir9NfMcZBzA)
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 #### ❗ some known issues on this Installer
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
