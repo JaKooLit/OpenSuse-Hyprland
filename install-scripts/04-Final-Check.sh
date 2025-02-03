@@ -19,7 +19,6 @@ packages=(
 
 # Local packages that should be in /usr/local/bin/
 local_pkgs_installed=(
-  ags
   cliphist
   wallust 
 )

@@ -116,7 +116,7 @@ https://github.com/JaKooLit/Hyprland-Dots/assets/85185940/50d53755-0f11-45d6-991
 
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://github.com/JaKooLit/simple-sddm-2)
-- If you opted to install GTK Themes, Icons here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons) & Bibata Cursor Modern Ice (assets directory)
+- If you opted to install GTK Themes, Icons,  here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons). This also includes Bibata Modern Ice cursor.
 
 #### ⚠️ WARNING! If you have GDM already as log-in manager, DO NOT install SDDM
 - You will likely to encounter issues
@@ -168,6 +168,10 @@ source ~/.zshrc
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
+
+
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 #### ❗ some known issues on this Installer
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
