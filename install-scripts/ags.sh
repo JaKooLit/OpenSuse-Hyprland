@@ -53,10 +53,6 @@ printf "\n%s - Installing ${BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies
 # Installing ags Dependencies
 for PKG1 in "${ags[@]}"; do
     install_package "$PKG1" "$LOG"
-    if [ $? -ne 0 ]; then
-        echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-        exit 1
-    fi
 done
 
 printf "\n%.0s" {1..1}
@@ -78,7 +74,7 @@ if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.gi
     cd ags || exit 1
     npm install
     meson setup build
-   if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
+   if sudo meson install -C build "$MLOG"; then
     printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
   else
     echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"

@@ -95,7 +95,7 @@ install_package() {
 # Function for installing packages (NO Recommends)
 install_package_no() {
   # Check if package is already installed
-  if sudo zypper se -i "$1" &>/dev/null ; then
+  if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     echo -e "${NOTE} Installing $1 with --no-recommends flag ..."
@@ -106,7 +106,7 @@ install_package_no() {
     show_progress $PID "$1" 
 
     # Double check if package is installed
-    if sudo zypper se -i "$1" &>/dev/null ; then
+    if zypper se -i "$1" &>/dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
@@ -118,7 +118,7 @@ install_package_no() {
 # Function to install packages
 install_package_opi() {
   # Check if package is already installed
-  if sudo zypper se -i "$1" &>/dev/null ; then
+  if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     echo -e "${NOTE} Installing $1 via opi ..."
@@ -129,7 +129,7 @@ install_package_opi() {
     show_progress $PID "$1" 
 
     # Double check if package is installed
-    if sudo zypper se -i "$1" &>/dev/null ; then
+    if zypper se -i "$1" &>/dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
@@ -141,7 +141,7 @@ install_package_opi() {
 # Function for installing packages (auto-agree)
 install_package_agree() {
   # Check if package is already installed
-  if sudo zypper se -i "$1" &>/dev/null ; then
+  if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     echo -e "${NOTE} Installing $1 with ${YELLOW}--auto-agree-with-licenses flag${RESET} ..."
@@ -152,7 +152,7 @@ install_package_agree() {
     show_progress $PID "$1" 
 
     # Double check if package is installed
-    if sudo zypper se -i "$1" &>/dev/null ; then
+    if zypper se -i "$1" &>/dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
@@ -166,11 +166,11 @@ uninstall_package() {
   local pkg="$1"
 
   # Checking if package is installed
-  if sudo zypper se -i "$pkg" &>/dev/null; then
+  if zypper se -i "$pkg" &>/dev/null; then
     echo -e "${NOTE} Uninstalling $pkg ..."
     sudo zypper remove -y "$pkg" 2>&1 | tee -a "$LOG" | grep -v "Error: Unable to find package"
 
-    if ! sudo zypper se -i "$pkg" &>/dev/null; then
+    if ! zypper se -i "$pkg" &>/dev/null; then
       echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
     else
       echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
