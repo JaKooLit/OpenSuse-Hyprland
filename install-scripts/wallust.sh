@@ -35,7 +35,7 @@ if [[ -f "/usr/local/bin/wallust" ]]; then
     sudo rm "/usr/local/bin/wallust" 
 fi
 
-printf "\n%.0s" {1..2} 
+printf "\n%.0s" {1..1} 
 
 # Install Wallust using Cargo
 echo "Installing ${SKY_BLUE}Wallust via Cargo${RESET} ..." | tee -a "$LOG"
@@ -50,4 +50,4 @@ else
     exit 1
 fi
 
-clear
+printf "\n%.0s" {1..2}
