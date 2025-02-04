@@ -65,7 +65,7 @@ if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.gi
     # Build and install ags
     npm install
     meson setup build
-    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
+    if sudo meson install -C build; then
         printf "${OK} ags installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for ags" 2>&1 | tee -a "$MLOG"
