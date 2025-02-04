@@ -51,7 +51,7 @@ show_progress() {
 # Function for installing packages (for devel_basis)
 install_package_base() {
   # Check if package is already installed
-  if sudo zypper se -i "$1" &>/dev/null ; then
+  if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     (
@@ -61,7 +61,7 @@ install_package_base() {
     show_progress $PID "$1" 
 
     # Double check if package is installed
-    if sudo zypper se -i "$1" &>/dev/null ; then
+    if zypper se -i "$1" &>/dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
@@ -73,7 +73,7 @@ install_package_base() {
 # Function to install packages
 install_package() {
   # Check if package is already installed
-  if sudo zypper se -i "$1" &>/dev/null ; then
+  if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
     (
@@ -83,7 +83,7 @@ install_package() {
     show_progress $PID "$1" 
 
     # Double check if package is installed
-    if sudo zypper se -i "$1" &>/dev/null ; then
+    if zypper se -i "$1" &>/dev/null ; then
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."

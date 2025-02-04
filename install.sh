@@ -52,7 +52,7 @@ fi
 printf "\n%.0s" {1..2}
 
 # install pciutils if detected not installed. Necessary for detecting GPU
-if ! sudo zypper se -i pciutils > /dev/null; then
+if ! zypper se -i pciutils > /dev/null; then
     echo "pciutils is not installed. Installing..."
     sudo zypper in -y --no-recommends pciutils
 fi
