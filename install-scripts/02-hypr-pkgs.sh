@@ -104,28 +104,20 @@ for PKG in "${uninstall[@]}"; do
 done
 
 # Installation of main components
-printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland necessary packages${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package "$PKG1" "$LOG"
 done
 
 # Installation of main components
-printf "\n%s - Installing hyprland packages (no-recommends).... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland additional necessary packages via opi${RESET} .... \n" "${NOTE}"
 
 for PKG_N in "${package_no_recommends[@]}"; do
-  install_package_no "$PKG_N" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package_no "$PKG_N" "$LOG"
 done
 
 # update home libraries
 xdg-user-dirs-update 
 
-clear
+printf "\n%.0s" {1..2}

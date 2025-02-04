@@ -21,7 +21,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_add-repo.log"
 
 # Adding Packman repository and switching over to Packman
-printf "\n%s - Adding Packman repository (Globally).... \n" "${NOTE}"
+printf "\n%s - Adding ${YELLOW}Packman repository (Globally)${RESET} .... \n" "${NOTE}"
 
 sudo zypper -n --quiet ar --refresh -p 80 "$packman_repo" packman 2>&1 | tee -a "$LOG"
 sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$LOG"
@@ -31,5 +31,4 @@ sudo zypper -n dup --from packman --allow-vendor-change 2>&1 | tee -a "$LOG"
 # add x11:wayland repo
 #sudo zypper ar --refresh -p 80 "$X11_wayland_repo" X11:Wayland 2>&1 | tee -a "$LOG"
 
-# Clear the terminal after execution
-clear
+printf "\n%.0s" {1..2}

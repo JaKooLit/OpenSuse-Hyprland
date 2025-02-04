@@ -28,22 +28,14 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
 
 # Installation of main dependencies
-printf "\n%s - Installing main dependencies.... \n" "${NOTE}"
+printf "\n%s - Installing ${BLUE}main dependencies${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${dependencies[@]}"; do
-  install_package_base "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package_base "$PKG1" "$LOG"
 done
 
 for PKG2 in "${opi[@]}"; do
-  install_package "$PKG2" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG2 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package "$PKG2" "$LOG"
 done
 
-clear
+printf "\n%.0s" {1..2}

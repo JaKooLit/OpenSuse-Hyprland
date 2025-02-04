@@ -7,7 +7,8 @@ if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
 
-set -e
+# Log file
+LOG="Install-Logs/install.log"
 
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
@@ -25,41 +26,67 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
+
+# Function that would show a progress
+show_progress() {
+    local pid=$1
+    local package_name=$2
+    local spin_chars=("●○○○○○" "○●○○○○" "○○●○○○" "○○○●○○" "○○○○●○" "○○○○○●" \
+                      "○○○○●○" "○○○●○○" "○○●○○○" "○●○○○○")  # Growing & Shrinking Dots
+    local i=0
+
+    tput civis  # Hide cursor
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
+
+    while ps -p $pid &> /dev/null; do
+        printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
+        i=$(( (i + 1) % 10 ))  
+        sleep 0.3  
+    done
+
+    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
+    tput cnorm  
+}
+
 # Function for installing packages (for devel_basis)
 install_package_base() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
+  # Check if package is already installed
+  if sudo zypper se -i "$1" &>/dev/null ; then
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y -t pattern "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+    (
+      stdbuf -oL sudo zypper in -y -t pattern "$1" 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+
+    # Double check if package is installed
+    if sudo zypper se -i "$1" &>/dev/null ; then
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
       exit 1
     fi
   fi
 }
 
-# Function for installing packages
+# Function to install packages
 install_package() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
+  # Check if package is already installed
+  if sudo zypper se -i "$1" &>/dev/null ; then
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo zypper in -y "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+    (
+      stdbuf -oL sudo zypper in -y "$1" 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+
+    # Double check if package is installed
+    if sudo zypper se -i "$1" &>/dev/null ; then
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
       exit 1
     fi
   fi
@@ -67,39 +94,45 @@ install_package() {
 
 # Function for installing packages (NO Recommends)
 install_package_no() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
+  # Check if package is already installed
+  if sudo zypper se -i "$1" &>/dev/null ; then
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    # Package not installed
     echo -e "${NOTE} Installing $1 with --no-recommends flag ..."
-    sudo zypper in -y --no-recommends "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+    (
+      stdbuf -oL sudo zypper in -y --no-recommends "$1" 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+
+    # Double check if package is installed
+    if sudo zypper se -i "$1" &>/dev/null ; then
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
       exit 1
     fi
   fi
 }
 
-# Function for installing packages
+# Function to install packages
 install_package_opi() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
+  # Check if package is already installed
+  if sudo zypper se -i "$1" &>/dev/null ; then
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    # Package not installed
     echo -e "${NOTE} Installing $1 via opi ..."
-    sudo opi "$1" -n 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
+    (
+      stdbuf -oL sudo opi "$1" -n 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+
+    # Double check if package is installed
+    if sudo zypper se -i "$1" &>/dev/null ; then
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
       exit 1
     fi
   fi
@@ -107,19 +140,22 @@ install_package_opi() {
 
 # Function for installing packages (auto-agree)
 install_package_agree() {
-  # Checking if package is already installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
+  # Check if package is already installed
+  if sudo zypper se -i "$1" &>/dev/null ; then
+    echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 with --auto-agree-with-licenses flag ..."
-    sudo zypper in --auto-agree-with-licenses -y "$1" 2>&1 | tee -a "$LOG"
-    # Making sure package is installed
-    if sudo zypper se -i "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+    echo -e "${NOTE} Installing $1 with ${YELLOW}--auto-agree-with-licenses flag${RESET} ..."
+    (
+      stdbuf -oL sudo zypper in --auto-agree-with-licenses -y "$1" -n 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+
+    # Double check if package is installed
+    if sudo zypper se -i "$1" &>/dev/null ; then
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
       exit 1
     fi
   fi
@@ -127,12 +163,21 @@ install_package_agree() {
 
 # Function for uninstalling packages
 uninstall_package() {
+  local pkg="$1"
+
   # Checking if package is installed
-  if sudo zypper se -i "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo zypper remove -y "$1" 2>&1 | tee -a "$LOG"
+  if sudo zypper se -i "$pkg" &>/dev/null; then
+    echo -e "${NOTE} Uninstalling $pkg ..."
+    sudo zypper remove -y "$pkg" 2>&1 | tee -a "$LOG" | grep -v "Error: Unable to find package"
+
+    if ! sudo zypper se -i "$pkg" &>/dev/null; then
+      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
+    else
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      return 1
+    fi
+  else
+    echo -e "${INFO} Package $pkg not installed, skipping."
   fi
+  return 0
 }
-
-

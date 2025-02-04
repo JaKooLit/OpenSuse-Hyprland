@@ -3,7 +3,6 @@
 # Main Hyprland Package#
 
 hypr=(
-  hyprland-qtutils
   hyprland
   hyprland-devel
 )
@@ -24,11 +23,10 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 
 
 # Hyprland
-printf "${NOTE} Installing Hyprland Package...\n"
+printf "${NOTE} Installing $SKY_BLUE}Hyprland Packages${RESET} ...\n"
  for HYPR in "${hypr[@]}"; do
-   install_package "$HYPR" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"; exit 1; }
+   install_package "$HYPR" "$LOG"
   done
 
 
-clear
+printf "\n%.0s" {1..2}

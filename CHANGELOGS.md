@@ -1,5 +1,9 @@
 ## Changelogs
 
+## 04 Feb 2025
+- Re-coded for better visibility
+- Offered a new SDDM theme.
+
 ## 30 Jan 2025
 - AGS (aylur's GTK shell) v1 for desktop overview is now optional
 
