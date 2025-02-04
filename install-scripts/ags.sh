@@ -22,10 +22,8 @@ ags=(
     gtk-layer-shell-devel 
     upower 
     NetworkManager 
-    pulseaudio-libs-devel 
-    libdbusmenu-gtk3
+    libdbusmenu-gtk3-4
     libpulse-devel 
-    libsoup3
 )
 
 # specific tags to download
