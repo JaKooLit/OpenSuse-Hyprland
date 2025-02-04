@@ -98,7 +98,6 @@ install_package_no() {
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    echo -e "${NOTE} Installing $1 with --no-recommends flag ..."
     (
       stdbuf -oL sudo zypper in -y --no-recommends "$1" 2>&1
     ) >> "$LOG" 2>&1 &
@@ -121,7 +120,6 @@ install_package_opi() {
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    echo -e "${NOTE} Installing $1 via opi ..."
     (
       stdbuf -oL sudo opi "$1" -n 2>&1
     ) >> "$LOG" 2>&1 &
@@ -144,7 +142,6 @@ install_package_agree() {
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
-    echo -e "${NOTE} Installing $1 with ${YELLOW}--auto-agree-with-licenses flag${RESET} ..."
     (
       stdbuf -oL sudo zypper in --auto-agree-with-licenses -y "$1" -n 2>&1
     ) >> "$LOG" 2>&1 &
