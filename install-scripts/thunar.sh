@@ -5,7 +5,6 @@
 thunar=(
   thunar-volman 
   tumbler 
-  thunar-plugin-archive
 )
 
 # no recommends
@@ -15,6 +14,7 @@ thunar2=(
 
 thunar_opi=(
   xarchiver
+  thunar-plugin-archive
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
