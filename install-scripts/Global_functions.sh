@@ -65,7 +65,6 @@ install_package_base() {
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
     fi
   fi
 }
@@ -87,7 +86,6 @@ install_package() {
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
     fi
   fi
 }
@@ -109,7 +107,6 @@ install_package_no() {
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
     fi
   fi
 }
@@ -131,7 +128,6 @@ install_package_opi() {
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
     fi
   fi
 }
@@ -153,7 +149,6 @@ install_package_agree() {
       echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
     else
       echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
     fi
   fi
 }
