@@ -23,7 +23,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprland.log"
 
 
 # Hyprland
-printf "${NOTE} Installing $SKY_BLUE}Hyprland Packages${RESET} ...\n"
+printf "${NOTE} Installing ${SKY_BLUE}Hyprland Packages${RESET} ...\n"
  for HYPR in "${hypr[@]}"; do
    install_package "$HYPR" "$LOG"
   done
