@@ -40,8 +40,6 @@ printf "${NOTE} Installing ${YELLOW}additional Thunar Packages${RESET} ...\n"
     install_package "$THUNAR" "$LOG"
   done
 
-# Installing packages from OBS
-printf "${NOTE} Installing ${SKY_BLUE}xarchiver via OPI${RESET} ...\n"
 for topi_pkg in "${thunar_opi[@]}"; do
   install_package_opi "$topi_pkg" "$LOG"
 done

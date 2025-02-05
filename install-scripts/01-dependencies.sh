@@ -28,7 +28,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
 
 # Installation of main dependencies
-printf "\n%s - Installing ${BLUE}main dependencies${RESET} .... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}main dependencies${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${dependencies[@]}"; do
   install_package_base "$PKG1" "$LOG"

@@ -24,7 +24,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +'%d-%H%M%S')_opi-pkgs.log"
 
 # Installing packages from OBS
-printf "${NOTE} Installing ${SKY_BLUE}some packages from OpenSuse Builder Service (OBS)${RESET} ...\n"
+printf "${NOTE} Installing some ${SKY_BLUE}packages from OpenSuse Builder Service (OBS)${RESET} ...\n"
 for opi_pkg in "${opi_package[@]}"; do
   install_package_opi "$opi_pkg" "$LOG"
 done

@@ -120,9 +120,6 @@ for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
   install_package "$PKG1" "$LOG"
 done
 
-# Installation of main components
-printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland additional necessary packages via opi${RESET} .... \n" "${NOTE}"
-
 for PKG_N in "${package_no_recommends[@]}"; do
   install_package_no "$PKG_N" "$LOG"
 done
