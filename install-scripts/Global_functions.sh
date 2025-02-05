@@ -149,12 +149,14 @@ install_package_agree() {
   fi
 }
 
-# Function for uninstalling packages
+# Function for removing packages
 uninstall_package() {
   local pkg="$1"
+
+    # Checking if package is installed
   if zypper se -i "$pkg" &>/dev/null; then
     echo -e "${NOTE} Uninstalling $pkg ..."
-    sudo zypper remove -y "$pkg" 2>&1 | tee -a "$LOG" | grep -v "Error: Unable to find package"
+    sudo zypper remove -y "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
 
     if ! zypper se -i "$pkg" &>/dev/null; then
       echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
