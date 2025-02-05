@@ -56,9 +56,8 @@ printf "\n%.0s" {1..1}
 if ! zypper se -i pciutils > /dev/null; then
     echo "pciutils is not installed. Installing..."
     sudo zypper in -y --no-recommends pciutils
+    printf "\n%.0s" {1..1}
 fi
-
-printf "\n%.0s" {1..1}
 
 # Create Directory for Install Logs
 if [ ! -d Install-Logs ]; then
@@ -139,10 +138,10 @@ execute_script() {
 # Check if nvidia is present
 if lspci | grep -i "nvidia" &> /dev/null; then
     printf "${INFO} ${YELLOW}NVIDIA GPU${RESET} detected in your system \n"
-    printf "${NOTE} Script will install ${YELLOW}nvidia-dkms nvidia-utils and nvidia-settings${RESET} \n"
     ask_yes_no "-Do you want script to configure ${YELLOW}NVIDIA${RESET} for you?" nvidia
     printf "\n"
 fi
+printf "\n"
 ask_yes_no "-Install ${YELLOW}GTK themes${RESET} (required for Dark/Light function)?" gtk_themes
 printf "\n"
 ask_yes_no "-Do you want to configure ${YELLOW}Bluetooth${RESET}?" bluetooth
