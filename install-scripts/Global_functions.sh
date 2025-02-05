@@ -27,24 +27,24 @@ SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 
-# Function that would show a progress
+# Show progress function
 show_progress() {
     local pid=$1
     local package_name=$2
-    local spin_chars=("●○○○○○" "○●○○○○" "○○●○○○" "○○○●○○" "○○○○●○" "○○○○○●" \
-                      "○○○○●○" "○○○●○○" "○○●○○○" "○●○○○○")  # Growing & Shrinking Dots
+    local spin_chars=("●○○○○○○○○○" "○●○○○○○○○○" "○○●○○○○○○○" "○○○●○○○○○○" "○○○○●○○○○" \
+                      "○○○○○●○○○○" "○○○○○○●○○○" "○○○○○○○●○○" "○○○○○○○○●○" "○○○○○○○○○●") 
     local i=0
 
-    tput civis  # Hide cursor
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
+    tput civis 
+    printf "\r${INFO} Installing ${YELLOW}%s${RESET} ..." "$package_name"
 
     while ps -p $pid &> /dev/null; do
-        printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
+        printf "\r${INFO} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
         i=$(( (i + 1) % 10 ))  
         sleep 0.3  
     done
 
-    printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s\n" "$package_name" ""
+    printf "\r${INFO} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n" "$package_name" ""
     tput cnorm  
 }
 
@@ -71,7 +71,6 @@ install_package_base() {
 
 # Function to install packages
 install_package() {
-  # Check if package is already installed
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
@@ -92,7 +91,6 @@ install_package() {
 
 # Function for installing packages (NO Recommends)
 install_package_no() {
-  # Check if package is already installed
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
@@ -113,7 +111,6 @@ install_package_no() {
 
 # Function to install packages
 install_package_opi() {
-  # Check if package is already installed
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
@@ -134,7 +131,6 @@ install_package_opi() {
 
 # Function for installing packages (auto-agree)
 install_package_agree() {
-  # Check if package is already installed
   if zypper se -i "$1" &>/dev/null ; then
     echo -e "${INFO} ${MAGENTA}$1${RESET} is already installed. Skipping..."
   else
@@ -156,8 +152,6 @@ install_package_agree() {
 # Function for uninstalling packages
 uninstall_package() {
   local pkg="$1"
-
-  # Checking if package is installed
   if zypper se -i "$pkg" &>/dev/null; then
     echo -e "${NOTE} Uninstalling $pkg ..."
     sudo zypper remove -y "$pkg" 2>&1 | tee -a "$LOG" | grep -v "Error: Unable to find package"
