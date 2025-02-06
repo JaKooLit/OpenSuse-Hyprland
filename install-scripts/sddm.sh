@@ -2,8 +2,11 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # SDDM with optional SDDM theme #
 
-sddm=(
+sddm_no=(
   sddm-qt6
+)
+
+sddm=(
   qt6-qt5compat-imports
   qt6-declarative
   qt6-svg
@@ -27,6 +30,10 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_sddm.log"
 
 # Install SDDM 
 printf "\n%s - Installing ${SKY_BLUE}SDDM and dependencies${RESET} .... \n" "${NOTE}"
+for PKG1 in "${sddm_no[@]}" ; do
+  install_package_no "$PKG1" "$LOG"
+done
+
 for PKG1 in "${sddm[@]}" ; do
   install_package_no "$PKG1" "$LOG"
 done

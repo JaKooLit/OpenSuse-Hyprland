@@ -109,6 +109,23 @@ install_package_no() {
   fi
 }
 
+# Function for force installing a package
+install_package_force() {
+    echo -e "${INFO} Force installing ${MAGENTA}$1${RESET}"
+    (
+      stdbuf -oL sudo zypper in -y --force "$1" 2>&1
+    ) >> "$LOG" 2>&1 &
+    PID=$!
+    show_progress $PID "$1" 
+
+    # Double check if package is installed
+    if zypper se -i "$1" &>/dev/null ; then
+      echo -e "${OK} Package ${YELLOW}$1${RESET} has been successfully installed!"
+    else
+      echo -e "\n${ERROR} ${YELLOW}$1${RESET} failed to install. Please check the $LOG. You may need to install manually."
+    fi
+}
+
 # Function to install packages
 install_package_opi() {
   if zypper se -i "$1" &>/dev/null ; then
