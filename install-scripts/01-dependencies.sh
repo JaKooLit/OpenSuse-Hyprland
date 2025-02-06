@@ -7,11 +7,6 @@ dependencies=(
 	devel_basis
 )
 
-# for installing nwg-look, swaylock-effects, wlogout
-go=(
-  go
-)
-
 # forced install as some reports failure that opi is not installed
 opi=(
   opi
@@ -38,12 +33,8 @@ for PKG1 in "${dependencies[@]}"; do
   install_package_base "$PKG1" "$LOG"
 done
 
-for PKG2 in "${go[@]}"; do
-  install_package "$PKG2" "$LOG"
-done
-
-for PKG3 in "${opi[@]}"; do
-  install_package_force "$PKG3" "$LOG"
+for PKG2 in "${opi[@]}"; do
+  install_package_force "$PKG2" "$LOG"
 done
 
 printf "\n%.0s" {1..2}
