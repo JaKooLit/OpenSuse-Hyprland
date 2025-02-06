@@ -3,14 +3,6 @@
 # Aylur's GTK Shell v 1.9.0 #
 # for desktop overview
 
-# Check if AGS is installed
-if command -v ags &>/dev/null; then
-    AGS_VERSION=$(ags -v | awk '{print $NF}') 
-    if [[ "$AGS_VERSION" == "1.9.0" ]]; then
-        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
-        exit 0
-    fi
-fi
 
 ags=(
     typescript 
@@ -43,7 +35,15 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
 MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
-printf "\n%.0s" {1..1}
+# Check if AGS is installed
+if command -v ags &>/dev/null; then
+    AGS_VERSION=$(ags -v | awk '{print $NF}') 
+    if [[ "$AGS_VERSION" == "1.9.0" ]]; then
+        printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed. Skipping installation."
+        printf "\n%.0s" {1..2}
+        exit 0
+    fi
+fi
 
 # Installation of main components
 printf "\n%s - Installing ${SKY_BLUE}Aylur's GTK shell $ags_tag${RESET} Dependencies \n" "${NOTE}"
@@ -72,7 +72,7 @@ if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.gi
     cd ags || exit 1
     npm install
     meson setup build
-   if sudo meson install -C build; then
+   if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
     printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
   else
     echo -e "\n${ERROR} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} Installation failed\n " 2>&1 | tee -a "$MLOG"
