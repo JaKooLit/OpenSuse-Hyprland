@@ -31,13 +31,14 @@ for PKG1 in "${sddm[@]}" ; do
   install_package_no "$PKG1" "$LOG"
 done
 
-# Check if other login managers are installed and disabling their service before enabling sddm
+# Check if other login managers are installed and disable their service before enabling sddm
 for login_manager in lightdm gdm lxdm lxdm-gtk3; do
-  if sudo  zypper se -i "$login_manager" &>> /dev/null; then
-    echo "Disabling $login_manager..."
-    sudo systemctl disable "$login_manager" 2>&1 | tee -a "$LOG"
+  if sudo zypper se -i "$login_manager" > /dev/null; then
+    echo "disabling $login_manager..."
+    sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG"
   fi
 done
+
 
 printf " Activating sddm service........\n"
 sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
