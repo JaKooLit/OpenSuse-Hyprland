@@ -72,6 +72,7 @@ if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.gi
     cd ags || exit 1
     npm install
     meson setup build
+
    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
     printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
   else
