@@ -20,10 +20,9 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_force.log"
 
-printf "${NOTE} Force installing packages...\n"
+printf "${NOTE} ${SKY_BLUE}Force installing${RESET} some packages...\n"
  for FORCE in "${force[@]}"; do
    sudo zypper in -f -y "$FORCE" 2>&1 | tee -a "$LOG"
-   [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $FORCE Package installation failed, Please check the installation logs"; exit 1; }
   done
 
-clear
+printf "\n%.0s" {1..2}

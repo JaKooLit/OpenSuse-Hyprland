@@ -20,13 +20,9 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 
 ### Install software for Asus ROG laptops ###
-printf " Installing additional for ASUS ROG...\n"
+printf " Installing ${SKY_BLUE}additional packages for ASUS ROG${RESET} ...\n"
   for ASUS in "${power[@]}"; do
-  install_package_no  "$ASUS" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-  echo -e "\e[1A\e[K${ERROR} - $ASUS Package installation failed, Please check the installation logs"
-  exit 1
-  fi
+  install_package_no  "$ASUS" "$LOG"
   done
 
 # additional steps required before installing asusctl
@@ -51,20 +47,16 @@ opi_asus=(
 )
 
 # Installing packages from OBS
-printf "${NOTE} Installing asus packages from OpenSuse Builder Service (OBS)...\n"
+printf "${NOTE} Installing ${SKY_BLUE}asus packages from OpenSuse Builder Service (OBS)${RESET} ...\n"
 for opi_asus_pkg in "${opi_asus[@]}"; do
-  install_package_opi "$opi_asus_pkg" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $opi_asus_pkg Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package_opi "$opi_asus_pkg" "$LOG"
 done
 
 
-printf " enabling rog services...\n"
+printf " enabling ${SKY_BLUE}ROG services${RESET} ...\n"
 sudo systemctl enable supergfxd 2>&1 | tee -a "$LOG"
 sleep 1
 sudo systemctl enable power-profiles-daemon 2>&1 | tee -a "$LOG"
 
-clear
+printf "\n%.0s" {1..2}
 

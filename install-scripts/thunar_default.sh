@@ -1,16 +1,7 @@
 #!/bin/bash
 # 💫 https://github.com/JaKooLit 💫 #
-# main dependencies #
+# Thunar-default #
 
-# packages neeeded
-dependencies=(
-	devel_basis
-)
-
-# forced install as some reports failure that opi is not installed
-opi=(
-  opi
-)
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
@@ -22,19 +13,13 @@ cd "$PARENT_DIR" || exit 1
 
 source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
-
 # Set the name of the log file to include the current date and time
-LOG="Install-Logs/install-$(date +%d-%H%M%S)_dependencies.log"
+LOG="Install-Logs/install-$(date +%d-%H%M%S)_thunar-default.log"
 
-# Installation of main dependencies
-printf "\n%s - Installing ${SKY_BLUE}main dependencies${RESET} .... \n" "${NOTE}"
-
-for PKG1 in "${dependencies[@]}"; do
-  install_package_base "$PKG1" "$LOG"
-done
-
-for PKG2 in "${opi[@]}"; do
-  install_package_force "$PKG2" "$LOG"
-done
+printf "${INFO} Setting ${SKY_BLUE}Thunar${RESET} as default file manager...\n"  
+ 
+xdg-mime default thunar.desktop inode/directory
+xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
+echo "${OK} ${MAGENTA}Thunar${RESET} is now set as the default file manager." | tee -a "$LOG"
 
 printf "\n%.0s" {1..2}

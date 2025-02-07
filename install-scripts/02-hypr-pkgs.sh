@@ -97,35 +97,34 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
-# uninstalling conflicting packages
-printf "\n%s - Removing Mako, Dunst and rofi (if present) as it conflicts with swaync and rofi-wayland \n" "${NOTE}"
+# conflicting packages removal
+overall_failed=0
+printf "\n%s - ${SKY_BLUE}Removing some packages${RESET} as it conflicts with KooL's Hyprland Dots \n" "${NOTE}"
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
+  if [ $? -ne 0 ]; then
+    overall_failed=1
+  fi
 done
 
+if [ $overall_failed -ne 0 ]; then
+  echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
+fi
+
+printf "\n%.0s" {1..1}
+
 # Installation of main components
-printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
+printf "\n%s - Installing ${SKY_BLUE}KooL's hyprland necessary packages${RESET} .... \n" "${NOTE}"
 
 for PKG1 in "${hypr_package[@]}" "${hypr_package_2[@]}" "${Extra[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package "$PKG1" "$LOG"
 done
 
-# Installation of main components
-printf "\n%s - Installing hyprland packages (no-recommends).... \n" "${NOTE}"
-
 for PKG_N in "${package_no_recommends[@]}"; do
-  install_package_no "$PKG_N" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package_no "$PKG_N" "$LOG"
 done
 
 # update home libraries
 xdg-user-dirs-update 
 
-clear
+printf "\n%.0s" {1..2}

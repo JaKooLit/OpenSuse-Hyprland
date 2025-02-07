@@ -36,7 +36,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/00_CHECK-$(date +%d-%H%M%S)_installed.log"
 
-printf "\n%s - Final Check if essential packages were installed \n" "${NOTE}"
+printf "\n%s - Final Check if all ${SKY_BLUE}Essential packages${RESET} were installed \n" "${NOTE}"
 # Initialize an empty array to hold missing packages
 missing=()
 local_missing=()
@@ -66,7 +66,7 @@ if [ ${#missing[@]} -eq 0 ] && [ ${#local_missing[@]} -eq 0 ]; then
     echo "${OK} All essential packages are installed." | tee -a "$LOG"
 else
     if [ ${#missing[@]} -ne 0 ]; then
-        echo "${WARN} The following packages are missing from zypper and will be logged:"
+        echo "${WARN} The following packages are not installed and will be logged:"
         for pkg in "${missing[@]}"; do
             echo "$pkg"
             echo "$pkg" >> "$LOG" # Log the missing package to the file
@@ -76,7 +76,7 @@ else
     if [ ${#local_missing[@]} -ne 0 ]; then
         echo "${WARN} The following local packages are missing from /usr/local/bin/ and will be logged:"
         for pkg in "${local_missing[@]}"; do
-            echo "$pkg is not installed since you can't find it in /usr/local/bin/"
+            echo "$pkg1 is not installed. can't find it in /usr/local/bin/"
             echo "$pkg" >> "$LOG" # Log the missing local package to the file
         done
     fi

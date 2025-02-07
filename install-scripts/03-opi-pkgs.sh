@@ -24,13 +24,9 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +'%d-%H%M%S')_opi-pkgs.log"
 
 # Installing packages from OBS
-printf "${NOTE} Installing packages from OpenSuse Builder Service (OBS)...\n"
+printf "${NOTE} Installing some ${SKY_BLUE}packages from OpenSuse Builder Service (OBS)${RESET} ...\n"
 for opi_pkg in "${opi_package[@]}"; do
-  install_package_opi "$opi_pkg" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\e[1A\e[K${ERROR} - $opi_pkg Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package_opi "$opi_pkg" "$LOG"
 done
 
-clear
+printf "\n%.0s" {1..2}

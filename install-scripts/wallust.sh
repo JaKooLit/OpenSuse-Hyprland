@@ -23,13 +23,10 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_wallust.log"
 MLOG="install-$(date +%d-%H%M%S)_wallust2.log"
 
+echo "Installing ${SKY_BLUE}rust packages to install wallust${RESET} ..." | tee -a "$LOG"
 # Installing depencies
 for PKG1 in "${depend[@]}"; do
-  install_package "$PKG1" 2>&1 | tee -a "$LOG"
-  if [ $? -ne 0 ]; then
-    echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
-    exit 1
-  fi
+  install_package "$PKG1" "$LOG"
 done
 
 # Remove any existing Wallust binary
@@ -38,12 +35,12 @@ if [[ -f "/usr/local/bin/wallust" ]]; then
     sudo rm "/usr/local/bin/wallust" 
 fi
 
-printf "\n%.0s" {1..2} 
+printf "\n%.0s" {1..1} 
 
 # Install Wallust using Cargo
-echo "Installing Wallust using Cargo..." | tee -a "$LOG"
+echo "Installing ${SKY_BLUE}Wallust via Cargo${RESET} ..." | tee -a "$LOG"
 if cargo install wallust 2>&1 | tee -a "$LOG" ; then
-    echo "Wallust installed successfully." | tee -a "$LOG"
+    echo "${OK} ${MAGENTA}Wallust${RESET} installed successfully." | tee -a "$LOG"
 
     # Move the newly compiled binary to /usr/local/bin
     echo "Moving Wallust binary to /usr/local/bin..." | tee -a "$LOG"
@@ -53,4 +50,4 @@ else
     exit 1
 fi
 
-clear
+printf "\n%.0s" {1..2}
