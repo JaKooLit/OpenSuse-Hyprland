@@ -14,6 +14,15 @@ sddm=(
   xf86-input-evdev
 )
 
+# login managers to attempt to disable
+login=(
+  lightdm 
+  gdm3 
+  gdm 
+  lxdm 
+  lxdm-gtk3
+)
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -39,7 +48,7 @@ for PKG1 in "${sddm[@]}" ; do
 done
 
 # Check if other login managers are installed and disable their service before enabling sddm
-for login_manager in lightdm gdm3 gdm lxdm lxdm-gtk3; do
+for login_manager in "${login[@]}"; do
   if sudo zypper se -i "$login_manager" > /dev/null; then
     echo "disabling $login_manager..."
     sudo systemctl disable "$login_manager.service" >> "$LOG" 2>&1
@@ -47,8 +56,16 @@ for login_manager in lightdm gdm3 gdm lxdm lxdm-gtk3; do
   fi
 done
 
+# Double check with systemctl
+for manager in "${login[@]}"; do
+  if systemctl is-active --quiet "$manager" > /dev/null 2>&1; then
+    echo "$manager is active, disabling it..." >> "$LOG" 2>&1
+    sudo systemctl disable "$manager" --now >> "$LOG" 2>&1
+  fi
+done
 
-printf " Activating sddm service........\n"
+printf "\n%.0s" {1..1}
+printf "${INFO} Activating sddm service........\n"
 sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
 sudo update-alternatives --set default-displaymanager /usr/lib/X11/displaymanagers/sddm 2>&1 | tee -a "$LOG"
 sudo systemctl enable sddm.service 2>&1 | tee -a "$LOG"
