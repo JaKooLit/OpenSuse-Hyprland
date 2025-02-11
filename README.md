@@ -120,7 +120,7 @@ chmod +x install.sh
     <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/OpenSuse-Hyprland/main/OpenSuse-Installer.png" />
 
 
-### 🤟 semi-unattended installation (new for 2025)
+### 🤟 semi-unattended installation (new for Feb 2025)
 - edit preset.sh to modify what packages you want. Make sure to change only with Y or N
 - to use preset instead of usual `./install.sh` you can ran like this
 
@@ -148,22 +148,25 @@ source ~/.zshrc
 - to change the theme, `SUPER SHIFT O` , choose  desired theme, and close and open terminal. 
 - or manually edit `~/.zshrc` . Look for ZSH_THEME="desired theme"
 
-#### ✨ TO DO once installation done and dotfiles copied
-- ~~if you opted to install gtk themes, to apply the theme and icon, press the dark/light button (beside the padlock). To apply Bibata modern ice cursor, launch nwg-look (GTK Settings) through rofi.~~ Hyprland-Dots v2.1.18, initial boot file will attempt to apply GTK themes,cursor, and icons. You can tweak more using nwg-look (GTK-Settings) utility
+#### 🎞️ AGS Overview DEMO
+- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
+#### ✨ TO DO once installation done and dotfiles copied
 - SUPER H for HINT or click on the waybar HINT! Button 
-- Head over to [FAQ](https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ) and [TIPS](https://github.com/JaKooLit/Hyprland-Dots/wiki/TIPS)
+- Head over to [KooL Hyprland WIKI](https://github.com/JaKooLit/Hyprland-Dots/wiki)
 
 #### 🙋 Got a questions regarding the Hyprland Dots or configurations? 🙋
 - Head over to wiki Link [`WIKI`](https://github.com/JaKooLit/Hyprland-Dots/wiki)
 
+#### ⌨ Keybinds
+- Keybinds [`CLICK`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds)
+
+> [!TIP]
+> KooL Hyprland has a searchable keybind function via rofi. (SUPER SHIFT K) or right click the `HINTS` waybar button
+
 #### 🙋 👋 Having issues or questions? 
 - for the install part, kindly open issue on this repo
 - for the Pre-configured Hyprland dots / configuration, submit issue [`here`](https://github.com/JaKooLit/Hyprland-Dots/issues)
-
-
-#### 🎞️ AGS Overview DEMO
-- in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
 
 #### ❗ some known issues on this Installer
 - some users reported that they have to install some packages. It is in the install-scripts/force-install.sh
