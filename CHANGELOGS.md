@@ -1,5 +1,8 @@
 ## Changelogs
 
+## 16 Feb 2025
+- cliphist is now in official repo
+
 ## 06 Feb 2025
 - added semi-unattended function.
 - move all the initial questions at the beginning

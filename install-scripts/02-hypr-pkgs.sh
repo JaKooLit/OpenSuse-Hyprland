@@ -13,6 +13,7 @@ Extra=(
 # packages neeeded
 hypr_package=(
   curl
+  cliphist
   gawk
   git
   go
