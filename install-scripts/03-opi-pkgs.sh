@@ -4,7 +4,7 @@
 
 opi_package=(
   #cliphist
-  #aylurs-gtk-shell
+  nwg-displays
   nwg-look
   wlogout
 )
