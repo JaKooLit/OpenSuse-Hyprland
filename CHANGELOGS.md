@@ -2,6 +2,14 @@
 
 ## 20 Feb 2025
 - Added nwg-displays for the upcoming Kools dots v2.3.12
+- 
+## 18 Feb 2025
+- Change default zsh theme to adnosterzak
+- pokemon coloscript integrated with fastfetch when opted with pokemon to add some bling
+- additional external oh-my-zsh theme
+
+## 16 Feb 2025
+- cliphist is now in official repo
 
 ## 06 Feb 2025
 - added semi-unattended function.

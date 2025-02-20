@@ -2,6 +2,8 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Cliphist via go ( and force installing go) #
 
+# 16 Feb 2025 - cliphist is now added in hypr-pkgs as it is now in TW repo
+
 cliphist=(
     go
 )
