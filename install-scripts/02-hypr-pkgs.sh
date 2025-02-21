@@ -72,7 +72,7 @@ hypr_package_2=(
 # The following will be installed with NO recommends
 package_no_recommends=(
   waybar
-  eog
+  loupe
   gnome-system-monitor
   NetworkManager-applet
 )
