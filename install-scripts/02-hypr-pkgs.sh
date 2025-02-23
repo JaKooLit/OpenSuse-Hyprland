@@ -46,6 +46,7 @@ hypr_package=(
   swappy
   SwayNotificationCenter
   swww
+  unzip # required later
   wget
   wayland-protocols-devel
   wl-clipboard
