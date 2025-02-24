@@ -4,6 +4,7 @@
 # some users report that they need to install this packages
 
 force=(
+  bc
   playerctl
 )
 
