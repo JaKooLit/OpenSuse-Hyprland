@@ -23,7 +23,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_force.log"
 
 printf "${NOTE} ${SKY_BLUE}Force installing${RESET} some packages...\n"
  for FORCE in "${force[@]}"; do
-   sudo zypper in -f -y "$FORCE" 2>&1 | tee -a "$LOG"
+   install_package_force "$FORCE" "$LOG"
   done
 
 printf "\n%.0s" {1..2}
