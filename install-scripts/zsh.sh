@@ -3,8 +3,9 @@
 # Zsh and Oh my Zsh + Optional Pokemon ColorScripts#
 
 zsh=(
-  eza
+  lsd
   fzf
+  mercurial
   zsh 
 )
 
