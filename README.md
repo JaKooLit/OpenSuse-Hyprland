@@ -107,6 +107,12 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - There is an guide by Asusctl dev [`Asusctl`](https://asus-linux.org/wiki/opensuse-guide/)
 - However. during my test, the ROG gui is not behaving well, and I cant click any button. So The asusctl and supergfxctl that I have set here are build from source through their gitlab
 
+## ✨ Auto clone and install
+- you can use this command to automatically clone the installer and ran the script for you
+```bash
+sh <(curl -L https://raw.githubusercontent.com/JaKooLit/OpenSuse-Hyprland/main/auto-install.sh)
+```
+
 ## ✨ to use this script
 > clone this repo (latest commit only) to reduce file size download by using git. Change directory, make executable and run the script
 ```bash
@@ -115,26 +121,6 @@ cd ~/OpenSuse-Hyprland
 chmod +x install.sh
 ./install.sh
 ```
-
-<p align="center">
-    <img align="center" width="100%" src="https://raw.githubusercontent.com/JaKooLit/OpenSuse-Hyprland/main/OpenSuse-Installer.png" />
-
-
-### 🤟 semi-unattended installation (new for Feb 2025)
-- edit preset.sh to modify what packages you want. Make sure to change only with Y or N
-- to use preset instead of usual `./install.sh` you can ran like this
-
-```bash
-./install.sh --preset
-```
-
-- if you have nvidia you can add --nvidia argument
-
-```bash
-./install.sh --preset --nvidia
-```
-
-- its called semi-unattended it is because you still have to answer some questions when installing KooL's Hyprland Dots
 
 #### ✨ for ZSH and OH-MY-ZSH installation
 > installer should auto change your default shell to zsh. However, if it does not, do this
