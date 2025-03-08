@@ -294,7 +294,7 @@ sleep 1
 execute_script "hyprland.sh"
 
 sleep 1
-execute_script "hyprland ecosystem.sh" 
+execute_script "hypr-ecosystem.sh" 
 #execute_script "cliphist.sh"
 
 sleep 1
