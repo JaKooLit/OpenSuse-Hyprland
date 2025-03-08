@@ -67,7 +67,6 @@ hypr_package_2=(
   mpv-mpris
   nvtop
   qalculate-gtk
-  vim
   yad
 )
 
