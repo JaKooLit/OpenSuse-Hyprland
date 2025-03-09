@@ -2,6 +2,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Hyprland-Dots to download from main #
 
+
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -20,9 +21,7 @@ printf "${NOTE} Cloning and Installing ${SKY_BLUE}KooL's Hyprland Dots${RESET}..
 
 if [ -d Hyprland-Dots ]; then
   cd Hyprland-Dots
-  git stash
-  git pull
-  git stash apply
+  git stash && git pull
   chmod +x copy.sh
   ./copy.sh 
 else
