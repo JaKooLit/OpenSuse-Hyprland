@@ -3,6 +3,7 @@
 # hypr-ecosystem packages via OPI #
 
 hypr_eco=(
+  python311-pipx
   python311-aiofiles
   python-base
   hyprlock
@@ -41,9 +42,8 @@ fi
 # pyprland https://github.com/hyprland-community/pyprland installing using python
 printf "${NOTE} Installing ${SKY_BLUE}pyprland${RESET} \n"
 
+sudo pipx ensurepath && sudo pipx install pyprland --force 2>&1 | tee -a "$LOG" 
+
 curl https://raw.githubusercontent.com/hyprland-community/pyprland/main/scripts/get-pypr | sh  2>&1 | tee -a "$LOG"
 
-sudo pip install pyprland --break-system-packages 2>&1 | tee -a "$LOG" 
-
 printf "\n%.0s" {1..2}
-
