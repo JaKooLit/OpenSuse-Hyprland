@@ -94,6 +94,12 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 #### ✨ Costumize the packages
 - inside the install-scripts directory, you can edit 02-hypr-pkgs.sh, etc. Care though as the Hyprland Dots might not work properly
 
+#### 🚩 Switching to SDDM assuming you have GDM installed and running
+- if you really want switch to SDDM from GDM, you need to disable the gdm first.
+- `sudo systemctl disable gdm.service` then reboot
+- after reboot, need to ran the install script via tty. So suggest download the install script first. Then disable gdm. reboot and once logged in, cd into Distro-Hyprland then `./install.sh` and then choose SDDM and SDDM theme in the options. 
+- NOTE: Distro-Hyprland is OpenSuse-Hyprland, or Fedora-Hyprland .. depends on which install scripts you downloaded.
+
 #### 💫 SDDM and GTK Themes offered
 - If you opted to install SDDM theme, here's the [`LINK`](https://codeberg.org/minMelody/sddm-sequoia) which is a fork of [`LINK`](https://codeberg.org/minMelody/sddm-sequoia)
 - If you opted to install GTK Themes, Icons,  here's the [`LINK`](https://github.com/JaKooLit/GTK-themes-icons). This also includes Bibata Modern Ice cursor.
@@ -116,6 +122,10 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - you can use this command to automatically clone the installer and ran the script for you
 ```bash
 sh <(curl -L https://raw.githubusercontent.com/JaKooLit/OpenSuse-Hyprland/main/auto-install.sh)
+```
+- if you are using say fish or a non-POSIX compliant
+```bash
+curl -sL https://raw.githubusercontent.com/JaKooLit/OpenSuse-Hyprland/main/auto-install.sh | bash
 ```
 
 ## ✨ to use this script
