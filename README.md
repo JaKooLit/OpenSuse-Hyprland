@@ -199,7 +199,7 @@ env = WLR_RENDERER_ALLOW_SOFTWARE,1
 
 
 #### 🔧 Proper way to re-installing a particular script from install-scripts directory
-- CD into OpenSuse-Hyprland Folder and then ran the below command. 
+- CD into OpenSuse-Hyprland directory and then ran the below command. 
 - i.e. `./install-scripts/gtk-themes.sh` - For reinstall GTK Themes or
 - `./install-scripts/sddm.sh` - For reinstall sddm
 > [!IMPORTANT]
