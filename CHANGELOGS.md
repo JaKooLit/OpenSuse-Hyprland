@@ -1,5 +1,8 @@
 ## CHANGELOGS
 
+## 08 June 2025
+- updated SDDM theme. 
+
 ## 11 March 2025
 - Added uninstall script
 
