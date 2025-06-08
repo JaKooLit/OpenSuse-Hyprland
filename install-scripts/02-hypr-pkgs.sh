@@ -15,6 +15,7 @@ hypr_package=(
   bc
   curl
   cliphist
+  findutils
   gawk
   git
   go

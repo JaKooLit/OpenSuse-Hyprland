@@ -3,8 +3,12 @@
 ## 08 June 2025
 - updated SDDM theme. 
 
+## 20 March 2025
+- added findutils as dependencies
+
 ## 11 March 2025
 - Added uninstall script
+- forked AGS v1 into JakooLit repo. This is just incase Aylur decide to take down v1
 
 ## 10 March 2025
 - Dropped pyprland in favor of hyprland built in tool for a drop down like terminal and Desktop magnifier

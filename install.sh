@@ -153,7 +153,7 @@ if check_services_running; then
 
     # Display the active login manager(s) in the whiptail message box
     whiptail --title "Active non-SDDM login manager(s) detected" \
-        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable first the active services above first before running this script\n\nYour option to install SDDM and SDDM theme has now been removed\n\n😎 Ja " 22 80
+        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable the active services above, reboot before running this script\n\nYour option to install SDDM and SDDM theme has now been removed\n\n- Ja " 23 80
 fi
 
 # Check if NVIDIA GPU is detected
@@ -407,39 +407,44 @@ printf "\n%.0s" {1..1}
 
 # Check if either hyprland or hyprland-git is installed
 if sudo zypper se -i hyprland &> /dev/null || sudo zypper se -i hyprland-git &> /dev/null; then
-    printf "\n${OK} Hyprland is installed. However, some essential packages may not be installed. Please see above!"
+    printf "\n ${OK} 👌 Hyprland is installed. However, some essential packages may not be installed. Please see above!"
     printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
     sleep 2
     printf "\n%.0s" {1..2}
 
-    printf "${SKY_BLUE}Thank you${RESET} for using ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
+    printf "${SKY_BLUE}Thank you${RESET} 🫰 for using 🇵🇭 ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
     printf "\n%.0s" {1..2}
 
     printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
     printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
 
-    read -rp "${CAT} Would you like to reboot now? (y/n): " HYP
+    while true; do
+        echo -n "${CAT} Would you like to reboot now? (y/n): "
+        read HYP
+        HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
 
-    HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
-
-    if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
-        echo "${INFO} Rebooting now..."
-        systemctl reboot 
-    elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
-        echo "${OK} You choose NOT to reboot"
-        printf "\n%.0s" {1..1}
-        # Check if NVIDIA GPU is present
-        if lspci | grep -i "nvidia" &> /dev/null; then
-            echo "${INFO} HOWEVER ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
+        if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
+            echo "${INFO} Rebooting now..."
+            systemctl reboot 
+            break
+        elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
+            echo "👌 ${OK} You chose NOT to reboot"
             printf "\n%.0s" {1..1}
+            # Check if NVIDIA GPU is present
+            if lspci | grep -i "nvidia" &> /dev/null; then
+                echo "${INFO} HOWEVER ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
+                printf "\n%.0s" {1..1}
+            fi
+            break
+        else
+            echo "${WARN} Invalid response. Please answer with 'y' or 'n'."
         fi
-    else
-        echo "${WARN} Invalid response. Please answer with 'y' or 'n'. Exiting."
-        exit 1
-    fi
+    done
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..." | tee -a "$LOG"
+    printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
     printf "\n%.0s" {1..3}
     exit 1
 fi
+
+printf "\n%.0s" {1..2}
