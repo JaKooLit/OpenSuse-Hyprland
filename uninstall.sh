@@ -113,6 +113,7 @@ packages=(
     "qalculate-gtk" "calculater - QT" "off"
     "qt5ct" "qt5ct" "off"
     "qt6ct" "qt6ct" "off"
+    "quickshell" "quickshell" "off"
     "rofi-wayland" "rofi-wayland" "off"
     "slurp" "screenshot tool" "off"
     "swappy" "screenshot tool" "off"
@@ -137,7 +138,6 @@ packages=(
 
 # Define the list of directories to choose from (with options_command tags)
 directories=(
-    "ags" "AGS desktop overview configuration" "off"
     "btop" "btop configuration" "off"
     "cava" "cava configuration" "off"
     "fastfetch" "fastfetch configuration" "off"
@@ -146,6 +146,7 @@ directories=(
     "Kvantum" "Kvantum-manager configuration" "off"
     "qt5ct" "qt5ct configuration" "off"
     "qt6ct" "qt6ct configuration" "off"
+    "quickshell" "quickshell desktop overview configuration" "off"
     "rofi" "rofi configuration" "off"
     "swappy" "swappy (screenshot tool) configuration" "off"
     "swaync" "swaync (notification agent) configuration" "off"
