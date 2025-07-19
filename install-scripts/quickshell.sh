@@ -30,4 +30,15 @@ for opi_pkg in "${quick[@]}"; do
   install_package_opi "$opi_pkg" "$LOG"
 done
 
+# removal of ags
+# Check if the file exists and remove it
+printf "\n%s - removing ${SKY_BLUE}AGS${RESET}  \n" "${NOTE}"
+if [ -f "/usr/local/bin/ags" ]; then
+    sudo rm -r /usr/local/bin/ags
+fi
+
+if [ -d "/usr/local/share/com.github.Aylur.ags" ]; then
+    sudo rm -rf /usr/local/share/com.github.Aylur.ags
+fi
+
 printf "\n%.0s" {1..2}
