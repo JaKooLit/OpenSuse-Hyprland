@@ -7,9 +7,13 @@ sddm_no=(
 )
 
 sddm=(
-  qt6-qt5compat-imports
+  libQt6Svg6
   qt6-declarative
   qt6-svg
+  qt6-virtualkeyboard
+  qt6-virtualkeyboard-imports
+  qt6-multimedia
+  qt6-multimedia-imports
   xorg-x11-server
   xf86-input-evdev
 )
