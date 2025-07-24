@@ -5,6 +5,7 @@
 
 quick=(
   quickshell
+  qt6-qt5compat-imports
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
