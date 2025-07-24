@@ -291,6 +291,9 @@ execute_script "fonts.sh"
 
 echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland packages...${RESET}" | tee -a "$LOG"
 sleep 1
+execute_script "02-hypr-pkgs.sh"
+
+sleep 1
 execute_script "hyprland.sh"
 
 sleep 1
