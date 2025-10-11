@@ -43,7 +43,7 @@ hypr_package=(
   qt5ct
   qt6ct
   qt6-svg-devel
-  rofi-wayland
+  rofi
   slurp
   swappy
   SwayNotificationCenter
