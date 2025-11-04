@@ -3,6 +3,7 @@
 # Aylur's GTK Shell v 1.9.0 #
 # for desktop overview
 
+set -euo pipefail
 
 ags=(
     typescript 
@@ -17,6 +18,7 @@ ags=(
     libdbusmenu-gtk3-4
     libpulse-devel 
     gobject-introspection
+    gobject-introspection-devel
 )
 
 # Packages to force re-install (if needed)
@@ -44,8 +46,15 @@ fi
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_ags.log"
 MLOG="install-$(date +%d-%H%M%S)_ags2.log"
 
-# Check if AGS is installed
-if command -v ags &>/dev/null; then
+# Check if AGS is installed (only if main ESM exists to avoid wrapper error)
+AGS_ESM=""
+if [ -f "/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags" ]; then
+  AGS_ESM="/usr/local/share/com.github.Aylur.ags/com.github.Aylur.ags"
+elif [ -f "/usr/share/com.github.Aylur.ags/com.github.Aylur.ags" ]; then
+  AGS_ESM="/usr/share/com.github.Aylur.ags/com.github.Aylur.ags"
+fi
+
+if command -v ags &>/dev/null && [ -n "$AGS_ESM" ]; then
     AGS_VERSION=$(ags -v | awk '{print $NF}')
     if [[ "$AGS_VERSION" == "1.9.0" ]]; then
         printf "${INFO} ${MAGENTA}Aylur's GTK Shell v1.9.0${RESET} is already installed.\n"
@@ -98,6 +107,7 @@ if git clone --depth=1 https://github.com/JaKooLit/ags_v1.9.0.git; then
     npm install
     meson setup build
    if sudo meson install -C build 2>&1 | tee -a "$MLOG"; then
+    : # with pipefail set, this reflects meson install status
     printf "\n${OK} ${YELLOW}Aylur's GTK shell $ags_tag${RESET} installed successfully.\n" 2>&1 | tee -a "$MLOG"
 
     # Patch installed AGS launchers to ensure GI typelibs in /usr/local/lib are discoverable in GJS ESM
